@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "EarleyLocalLexing",
+        "repositoryURL": "https://github.com/phlegmaticprogrammer/EarleyLocalLexing",
+        "state": {
+          "branch": null,
+          "revision": "d2da99128cdb1179a83b27851a632bffc7063a43",
+          "version": "0.4.0"
+        }
+      },
+      {
+        "package": "FirstOrderDeepEmbedding",
+        "repositoryURL": "https://github.com/phlegmaticprogrammer/FirstOrderDeepEmbedding",
+        "state": {
+          "branch": null,
+          "revision": "3343a6060f60b1be3834f2fa8c1fa8998ef4fa54",
+          "version": "0.4.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

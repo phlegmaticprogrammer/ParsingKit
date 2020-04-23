@@ -1,15 +1,95 @@
 import XCTest
-@testable import ParsingKit
+import ParsingKit
+import FirstOrderDeepEmbedding
 
 final class ParsingKitTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(ParsingKit().text, "Hello, World!")
+
+    func testSymbol() {
+        let s = IndexedSymbolName("S")
+        let s0 = IndexedSymbolName("S", 0)
+        let s1 = IndexedSymbolName("S", 1)
+        let t = IndexedSymbolName("T")
+        XCTAssertFalse(s.hasIndex)
+        XCTAssertFalse(s0.hasIndex)
+        XCTAssert(s1.hasIndex)
+        XCTAssertEqual(s, s0)
+        XCTAssertNotEqual(s, s1)
+        XCTAssertNotEqual(s, t)
+        XCTAssertEqual("\(s)", "S")
+        XCTAssertEqual("\(s0)", "S")
+        XCTAssertEqual("\(s1)", "S[1]")
+    }
+    
+    func testUTF8CharLexer() {
+        let scalars: [UInt8] = [
+            0xF0, 0x9F, 0x91, 0xA8, // man
+            0xE2, 0x80, 0x8D, // zero width joiner
+            0xF0, 0x9F, 0x91, 0xA9, // woman
+            0xF0, 0x9F, 0x91, 0xA7, // girl
+            0xF0, 0x9F, 0x91, 0xA6, // boy
+            32, 64, 0xD8, 0x00, // invalid!
+        ]
+        //let s = ArrayInput("ᄀᄀᄀ각ᆨᆨABC")
+        let s = ArrayInput(scalars)
+        var indices = [Int]()
+        var position = 0
+        repeat {
+            guard let result = UTF8CharLexer().lex(input: s, position: position, in: UNIT.singleton) else { break }
+            indices.append(result.length)
+            position += result.length
+        } while true
+        XCTAssertEqual(indices, [11, 4, 4, 1, 1])
+    }
+    
+    func testCalculator() {
+        
+        func run(_ input : String, ambiguous : Bool, _ results : Int...) {
+            let calculator = Calculator(ambiguous: ambiguous)
+            let lexers = Lexers<Character>()
+            lexers.add(lexer: CharLexer(), for: calculator.Char)
+            let parser = Parser(grammar: calculator, lexers: lexers)
+            let parseResult = parser.parse(input: ArrayInput(input), position: 0, symbol: calculator.Expr, param: UNIT.singleton)
+            switch parseResult {
+            case .failed: XCTAssert(results.isEmpty)
+            case let .success(length: _, results: parseResults):
+                XCTAssertEqual(Set(parseResults.keys), Set(results))
+            }
+        }
+        
+        run("512+6*3", ambiguous: false, 530)
+        run("6*3+512", ambiguous: false, 530)
+        run("512+6*3", ambiguous: true, 530, 80)
+        run("10", ambiguous: false, 10)
+        run("10", ambiguous: true, 10)
+        run("100", ambiguous: false, 100)
+        run("100", ambiguous: true, 100, 10)
+        run("1000", ambiguous: false, 1000)
+        run("1000", ambiguous: true, 1000, 100, 10)
+        run("10000", ambiguous: false, 10000)
+        run("10000", ambiguous: true, 10000, 1000, 100, 10)
+        run("12345", ambiguous: false, 12345)
+        
+        run("123", ambiguous: true, 123, 33)
+        run("234", ambiguous: true, 234, 54)
+        run("345", ambiguous: true, 345, 75)
+
+        run("123*10+4", ambiguous: true, 1234, 334)
+        run("1*10+234", ambiguous: true, 244, 64)
+        run("12*10+34", ambiguous: true, 154)
+        run("1234", ambiguous: true, 1234, 334, 244, 64, 154)
+        
+        run("234*10+5", ambiguous: true, 2345, 545)
+        run("2*10+345", ambiguous: true, 365, 95)
+        run("23*10+45", ambiguous: true, 275)
+        run("2345", ambiguous: true, 2345, 545, 365, 95, 275)
+        
+        run("1*10+2345", ambiguous: true, 2355, 555, 375, 105, 285)
+        run("12*10+345", ambiguous: true, 465, 195)
+        run("123*10+45", ambiguous: true, 1275, 375)
+        run("1234*10+5", ambiguous: true, 12345, 3345, 2445, 645, 1545)
+
+        run("12345", ambiguous: false, 12345)
+        run("12345", ambiguous: true, 2355, 555, 375, 105, 285, 465, 195, 1275, 12345, 3345, 2445, 645, 1545)
     }
 
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
