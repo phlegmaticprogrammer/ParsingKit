@@ -1,0 +1,16 @@
+name: Linux
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Package
+      run: docker run --rm --mount type=bind,src=$GITHUB_WORKSPACE,dst=/github_workspace -w /github_workspace swift:5.1 swift build -v
+    - name: Test Package
+      run: docker run --rm --mount type=bind,src=$GITHUB_WORKSPACE,dst=/github_workspace -w /github_workspace swift:5.1 swift test -v --enable-test-discovery --enable-code-coverage
+      
