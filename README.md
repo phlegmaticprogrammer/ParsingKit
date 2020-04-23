@@ -13,6 +13,7 @@ Its [API](https://phlegmaticprogrammer.github.io/ParsingKit) is not documented y
 For now, to get a feel for the framework, you can examine the existing tests. Here is an example grammar taken from them:
 
 ```swift
+import FirstOrderDeepEmbedding
 import ParsingKit
 
 class Calculator : Grammar {

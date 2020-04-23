@@ -1,5 +1,9 @@
 import FirstOrderDeepEmbedding
 
+public typealias Sort = FirstOrderDeepEmbedding.Sort
+
+public typealias ASort = FirstOrderDeepEmbedding.ASort
+
 public typealias UNIT = FirstOrderDeepEmbedding.UNIT
 
 public typealias BOOL = FirstOrderDeepEmbedding.BOOL
