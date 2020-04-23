@@ -1,4 +1,3 @@
-import FirstOrderDeepEmbedding
 import ParsingKit
 
 class Calculator : Grammar {
