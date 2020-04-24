@@ -48,6 +48,19 @@ public class GrammarBuilder {
 
 }
 
+public func collectGrammarElement(_ elements : [GrammarElement]) -> GrammarElement {
+    var components : [GrammarComponent] = []
+    for elem in elements {
+        components.append(contentsOf: elem.grammarComponents())
+    }
+    return GrammarElements(_grammarComponents: components)
+}
+
+public func collectGrammarElement(@GrammarBuilder _ grammarBuilder : () -> GrammarElement) -> GrammarElement
+{
+    return grammarBuilder()
+}
+
 internal protocol SettableSymbol {
     func setSymbol(grammar : Grammar, name : SymbolName)
 }

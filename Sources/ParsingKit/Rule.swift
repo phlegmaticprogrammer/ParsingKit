@@ -63,7 +63,7 @@ struct RuleBodyImpl : RuleBody {
 @_functionBuilder
 public class RuleBodyBuilder {
     
-    public static func buildBlock(file : String = #file, line : Int = #line, _ components : RuleBody...) -> RuleBody  {
+    public static func buildBlock(_ components : RuleBody...) -> RuleBody  {
         var body = RuleBodyImpl()
         for c in components {
             body.ruleBodyElems.append(contentsOf: c.ruleBodyElems)
@@ -96,6 +96,18 @@ public func <-- <In : Sort, Out : Sort>(target : Symbol<In, Out>, input : In) ->
 
 public prefix func %?(_ condition : BOOL) -> RuleBody {
     return RuleBodyImpl(ruleBodyElems: [.condition(cond: condition.inhabitant, position: .unknown)])
+}
+
+public func collectRuleBody(_ ruleBodies : [RuleBody]) -> RuleBody {
+    var elems : [RuleBodyElem] = []
+    for body in ruleBodies {
+        elems.append(contentsOf: body.ruleBodyElems)
+    }
+    return RuleBodyImpl(ruleBodyElems: elems)
+}
+
+public func collectRuleBody(@RuleBodyBuilder _ ruleBodyBuilder : () -> RuleBody) -> RuleBody {
+    return ruleBodyBuilder()
 }
 
 public struct Rule : GrammarElement, HasPosition, Hashable {

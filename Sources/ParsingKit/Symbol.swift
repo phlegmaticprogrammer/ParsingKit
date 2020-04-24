@@ -32,12 +32,12 @@ public struct IndexedSymbolName : CustomStringConvertible, Hashable {
     public let name : SymbolName
     
     /// An optional index to distinguish between different occurrences of the same terminal / nonterminal. A value of `0` stands for this symbol having no index.
-    public let index : Int
+    public let index : AnyHashable
     
     /// Constructs an indexed symbol.
     /// - parameter name: The name of this indexed symbol.
     /// - parameter index: An optional index, to distinguish between different occurrences of the same terminal / nonterminal.
-    public init(_ name : SymbolName, _ index : Int = 0) {
+    public init(_ name : SymbolName, _ index : AnyHashable = 0) {
         self.name = name
         self.index = index
     }
@@ -45,7 +45,8 @@ public struct IndexedSymbolName : CustomStringConvertible, Hashable {
     /// Whether this symbol has an index or not. An index of `0` counts as having no index.
     /// - returns: `false` if `index` is `0`, otherwise `true`
     public var hasIndex : Bool {
-        return index != 0
+        guard let i = index as? Int else { return false }
+        return i != 0
     }
     
     public var description : String {
