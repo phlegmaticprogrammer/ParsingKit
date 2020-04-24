@@ -1,5 +1,6 @@
 import XCTest
 import ParsingKit
+import FirstOrderDeepEmbedding
 
 final class ParsingKitTests: XCTestCase {
 
