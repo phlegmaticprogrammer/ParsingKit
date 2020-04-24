@@ -104,19 +104,3 @@ class Calculator : Grammar {
     }
     
 }
-
-
-/*func parseExample(_ g : Grammar<CODEPOINT>, input : String, results : Set<Int>) {
-    let result = g.parse(input: Codepoints(input))
-    XCTAssertTrue(!result.error)
-    XCTAssertEqual(result.length, input.count)
-    XCTAssertEqual(result.results.count, results.count)
-    for r in result.results {
-        XCTAssertTrue(r.0.globals.isEmpty)
-        let trees = Set(ParseTree.explode(r.1).map { tree in tree.result as! Int })
-        XCTAssertEqual(trees.count, 1)
-        XCTAssertEqual(trees.first!, r.0.out as! Int)
-        XCTAssert(results.contains(trees.first!))
-    }
-}*/
-
