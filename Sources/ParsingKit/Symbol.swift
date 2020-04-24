@@ -168,7 +168,7 @@ public class Symbol<In : Sort, Out : Sort> : RuleBody {
         INT.Var(SymbolVar.Length(symbol: name))
     }
 
-    public subscript(_ index : Int) -> Self {
+    public subscript(_ index : AnyHashable) -> Self {
         let newName = IndexedSymbolName(name.name, index)
         return Self(name: newName, kind: kind)
     }
