@@ -91,5 +91,27 @@ final class ParsingKitTests: XCTestCase {
         run("12345", ambiguous: false, 12345)
         run("12345", ambiguous: true, 2355, 555, 375, 105, 285, 465, 195, 1275, 12345, 3345, 2445, 645, 1545)
     }
+    
+    func testRegex() {
+        let g = Regex()
+        let lexers = Lexers<Character>()
+        lexers.add(lexer: CharLexer(), for: g.Char)
+        let parser = Parser(grammar: g, lexers: lexers)
+
+        func run(_ input : String, _ S : NONTERMINAL, matches : Bool) {
+            let parseResult = parser.parse(input: ArrayInput(input), position: 0, symbol: S, param: UNIT.singleton)
+            switch parseResult {
+            case .failed: XCTAssertFalse(matches)
+            case let .success(length: _, results: parseResults):
+                XCTAssertEqual(parseResults.count, 1)
+                XCTAssertTrue(matches)
+            }
+        }
+        
+        run("B", g.X, matches: true)
+        //run("B", g.Y, matches: false)
+
+    }
+
 
 }
