@@ -27,7 +27,6 @@ struct RuleStack {
             switch name {
             case .In: return kind.in.sortname
             case .Out: return kind.out.sortname
-            case .Length: return nil
             }
         }
         return environment
@@ -90,7 +89,6 @@ struct RuleStack {
         switch symbolVar {
         case let .In(symbol: symbol): return assignIn(symbol)
         case let .Out(symbol: symbol): return assignOut(symbol)
-        case .Length: return false
         }
     }
     

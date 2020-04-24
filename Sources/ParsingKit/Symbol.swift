@@ -115,13 +115,11 @@ public enum SymbolKind : Hashable {
 internal enum SymbolVar : Hashable, CustomStringConvertible {
     case In(symbol : IndexedSymbolName)
     case Out(symbol : IndexedSymbolName)
-    case Length(symbol : IndexedSymbolName)
     
     var symbol : IndexedSymbolName {
         switch self {
         case let .In(symbol: symbol): return symbol
         case let .Out(symbol: symbol): return symbol
-        case let .Length(symbol: symbol): return symbol
         }
     }
     
@@ -129,7 +127,6 @@ internal enum SymbolVar : Hashable, CustomStringConvertible {
         switch self {
         case let .In(symbol: symbol): return "\(symbol).in"
         case let .Out(symbol: symbol): return "\(symbol).out"
-        case let .Length(symbol: symbol): return "\(symbol).length"
         }
     }
     
@@ -138,7 +135,6 @@ internal enum SymbolVar : Hashable, CustomStringConvertible {
         switch self {
         case .In: return kind.in
         case .Out: return kind.out
-        case .Length: return INT()
         }
     }
     
@@ -162,10 +158,6 @@ public class Symbol<In : Sort, Out : Sort> : RuleBody {
     
     public var out : Out {
         Out.Var(SymbolVar.Out(symbol: name))
-    }
-
-    public var length : INT {
-        INT.Var(SymbolVar.Length(symbol: name))
     }
 
     public subscript(_ index : AnyHashable) -> Self {

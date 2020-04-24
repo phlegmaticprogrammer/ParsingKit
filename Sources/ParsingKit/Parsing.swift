@@ -28,7 +28,7 @@ fileprivate class S : EarleyLocalLexing.Selector {
     
     typealias Result = ParseTree
     
-    typealias Priority = (_ in1 : Param, _ out1 : Param, _ len1 : Int, _ in2 : Param, _ out2 : Param, _ len2 : Int) -> Bool
+    typealias Priority = (_ in1 : Param, _ out1 : Param, _ in2 : Param, _ out2 : Param) -> Bool
     
     typealias Priorities = [Int : [Int : Priority]]
     
@@ -72,7 +72,7 @@ fileprivate class S : EarleyLocalLexing.Selector {
                 guard let prios = prios[key2.terminalIndex] else { continue }
                 for token1 in tokens1 {
                     for token2 in tokens2 {
-                        guard prios(key1.inputParam, token1.outputParam, token1.length, key2.inputParam, token2.outputParam, token2.length) else { continue }
+                        guard prios(key1.inputParam, token1.outputParam, key2.inputParam, token2.outputParam) else { continue }
                         discarded.insert(T(terminalIndex: key1.terminalIndex, inputParam: key1.inputParam, outputParam: token1.outputParam))
                         continue next_token
                     }
@@ -82,7 +82,7 @@ fileprivate class S : EarleyLocalLexing.Selector {
                 guard let prios = prios[key2.terminalIndex] else { continue }
                 for token1 in tokens1 {
                     for token2 in tokens2 {
-                        guard prios(key1.inputParam, token1.outputParam, token1.length, key2.inputParam, token2.outputParam, token2.length) else { continue }
+                        guard prios(key1.inputParam, token1.outputParam, key2.inputParam, token2.outputParam) else { continue }
                         discarded.insert(T(terminalIndex: key1.terminalIndex, inputParam: key1.inputParam, outputParam: token1.outputParam))
                         continue next_token
                     }
@@ -201,7 +201,6 @@ fileprivate class Allocate : FirstOrderDeepEmbedding.ComputationOnTerms {
             return (k: N, allocated: output!)
         case .Out:
             return (k: k, allocated: .Var(name: 2 * k))
-        case .Length: fatalError()
         }
     }
     
@@ -296,7 +295,6 @@ class Parsing<Char> {
                 switch v {
                 case .In: inputs[k - 1] = store.store(right)
                 case .Out: output = store.store(right)
-                case .Length: fatalError()
                 }
                 break
             case let .condition(cond: cond, position: _):
@@ -361,7 +359,7 @@ class Parsing<Char> {
     }
     
     private enum ConditionVar : Hashable {
-        case in1, out1, len1, in2, out2, len2
+        case in1, out1, in2, out2
     }
     
     private func convert(terminalPriorities : Set<TerminalPriority>) -> S.Priorities {
@@ -401,13 +399,11 @@ class Parsing<Char> {
                     switch symbolVar {
                     case .In: v = .in1
                     case .Out: v = .out1
-                    case .Length: v = .len1
                     }
                 } else if symbol == terminalPriority.terminal2 {
                     switch symbolVar {
                     case .In: v = .in2
                     case .Out: v = .out2
-                    case .Length: v = .len2
                     }
                 } else {
                     fatalError()
@@ -423,15 +419,13 @@ class Parsing<Char> {
             for condition in conditions {
                 conditionIds.insert(store.store(condition))
             }
-            func eval(in1 : Param, out1 : Param, len1 : Int, in2 : Param, out2 : Param, len2 : Int) -> Bool {
+            func eval(in1 : Param, out1 : Param, in2 : Param, out2 : Param) -> Bool {
                 func evalEnv(varname : VarName) -> Param {
                     switch varname as! ConditionVar {
                     case .in1: return in1
                     case .out1: return out1
-                    case .len1: return len1
                     case .in2: return in2
                     case .out2: return out2
-                    case .len2: return len2
                     }
                 }
                 let computation = Eval(language: language, environment: evalEnv)
