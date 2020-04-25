@@ -138,7 +138,7 @@ fileprivate class C<Char> : EarleyLocalLexing.ConstructResult {
         guard deepSymbols.contains(k.symbol) else { return ParseTree.leaf(key: k) }
         let id = ruleIds[completed.ruleIndex]
         let count = completed.count
-        let rhs = (1 ... count).map { i in completed.rhs(i).result! }
+        let rhs = (0 ..< count).map { i in completed.rhs(i+1).result! }
         return .rule(id: id, key: k, rhs: rhs)
     }
     

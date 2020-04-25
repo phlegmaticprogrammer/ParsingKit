@@ -51,7 +51,8 @@ final class ParsingKitTests: XCTestCase {
             let parseResult = parser.parse(input: ArrayInput(input), position: 0, symbol: calculator.Expr, param: UNIT.singleton)
             switch parseResult {
             case .failed: XCTAssert(results.isEmpty)
-            case let .success(length: _, results: parseResults):
+            case let .success(length: length, results: parseResults):
+                XCTAssertEqual(length, input.count)
                 XCTAssertEqual(Set(parseResults.keys), Set(results))
             }
         }
@@ -102,14 +103,16 @@ final class ParsingKitTests: XCTestCase {
             let parseResult = parser.parse(input: ArrayInput(input), position: 0, symbol: S, param: UNIT.singleton)
             switch parseResult {
             case .failed: XCTAssertFalse(matches)
-            case let .success(length: _, results: parseResults):
+            case let .success(length: length, results: parseResults):
                 XCTAssertEqual(parseResults.count, 1)
                 XCTAssertTrue(matches)
+                XCTAssertEqual(length, input.count)
             }
         }
         
         run("A", g.A, matches: true)
-
+        run("", g.A, matches: false)
+        run("B", g.A, matches: false)
     }
     
     func testRegex() {
@@ -122,14 +125,38 @@ final class ParsingKitTests: XCTestCase {
             let parseResult = parser.parse(input: ArrayInput(input), position: 0, symbol: S, param: UNIT.singleton)
             switch parseResult {
             case .failed: XCTAssertFalse(matches)
-            case let .success(length: _, results: parseResults):
-                XCTAssertEqual(parseResults.count, 1)
-                XCTAssertTrue(matches)
+            case let .success(length: length, results: parseResults):
+                if matches {
+                    XCTAssertEqual(length, input.count)
+                    XCTAssertEqual(parseResults.count, 1)
+                } else {
+                    XCTAssert(length < input.count)
+                }
             }
         }
         
+        run("", g.X, matches: false)
         run("B", g.X, matches: true)
-
+        run("BC", g.X, matches: true)
+        run("C", g.X, matches: false)
+        run("ABC", g.X, matches: true)
+        run("AAABC", g.X, matches: true)
+        run("AAAB", g.X, matches: true)
+        run("AAAC", g.X, matches: false)
+        run("", g.Y, matches: false)
+        run("A", g.Y, matches: false)
+        run("B", g.Y, matches: false)
+        run("C", g.Y, matches: false)
+        run("AB", g.Y, matches: false)
+        run("AC", g.Y, matches: true)
+        run("BC", g.Y, matches: true)
+        run("CB", g.Y, matches: false)
+        run("ACBC", g.Y, matches: true)
+        run("BCAC", g.Y, matches: true)
+        run("BCACACACACBCBCBCBCBC", g.Y, matches: true)
+        run("", g.Z, matches: true)
+        run("BBBBBBB", g.Z, matches: true)
+        run("A", g.Z, matches: false)
     }
 
 
