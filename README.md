@@ -12,33 +12,33 @@ It is experimental in the sense that its goal is to explore how practical Local 
 Its [API](https://phlegmaticprogrammer.github.io/ParsingKit) is not documented yet, and it hasn't been extensively tested yet. A document describing the principles on which ParsingKit is based is in the making.
 For now, to get a feel for the framework, you can examine the existing tests. Here is an example grammar taken from them:
 
-```swift
+```Swift
 import FirstOrderDeepEmbedding
 import ParsingKit
 
-class Calculator : Grammar {
-        
-    @Sym var Expr : Nonterminal<UNIT, INT>
-    @Sym var Sum : Nonterminal<UNIT, INT>
-    @Sym var Product : Nonterminal<UNIT, INT>
-    @Sym var Num : Nonterminal<UNIT, INT>
-    @Sym var Digit : Nonterminal<UNIT, INT>
-    @Sym var Char : Terminal<UNIT, CHAR>
-                
+class Calculator : TextGrammar {
+    
+    typealias N = Nonterminal<UNIT, INT>
+    
+    @Sym var Expr : N
+    @Sym var Sum : N
+    @Sym var Product : N
+    @Sym var Num : N
+    @Sym var Digit : N
+            
     override func build() {
         add {
             Expr.rule {
                 Sum
                                 
-                Sum~ --> Expr
+                Sum.out --> Expr
             }
 
             Sum.rule {
                 Sum[1]
-                Char
+                literal("+")
                 Product
                 
-                %?(Char~ == "+")
                 Sum[1]~ + Product~ --> Sum
             }
 
@@ -50,10 +50,9 @@ class Calculator : Grammar {
 
             Product.rule {
                 Product[1]
-                Char
+                literal("*")
                 Num
                 
-                %?(Char~ == "*")
                 Product[1]~ * Num~ --> Product
             }
             
@@ -68,7 +67,8 @@ class Calculator : Grammar {
                 
                 Digit~ --> Num
             }
-                        
+            
+            
             Num.rule {
                 Num[1]
                 Digit
@@ -87,6 +87,16 @@ class Calculator : Grammar {
     }
     
 }
+
+```
+
+Parsing with this grammar is simple:
+
+```Swift
+let calculator = Calculator()
+let parser = calculator.parser()
+let result = parser.parse(input: "32+4*7", start: calculator.Expr)
+print("parsing result = \(result)")
 ```
 
 

@@ -161,7 +161,7 @@ open class Grammar {
         self._rules = rules
         self._terminalPriorities = priorities
         self._sealed = false
-        installPropertySymbols()
+        installPropertySymbols(mirror : Mirror(reflecting: self))
         build()
         if sealed { self._sealed = true }
     }
@@ -171,8 +171,10 @@ open class Grammar {
         return String(name.dropFirst())
     }
     
-    private func installPropertySymbols() {
-        let mirror = Mirror(reflecting: self)
+    private func installPropertySymbols(mirror : Mirror) {
+        if let parent = mirror.superclassMirror {
+            installPropertySymbols(mirror: parent)
+        }
         for child in mirror.children {
             if let x = child.value as? SettableSymbol {
                 let name = extractPropertyName(child.label!)!

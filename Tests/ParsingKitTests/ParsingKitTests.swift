@@ -45,10 +45,8 @@ final class ParsingKitTests: XCTestCase {
         
         func run(_ input : String, ambiguous : Bool, _ results : Int...) {
             let calculator = Calculator(ambiguous: ambiguous)
-            let lexers = Lexers<Character>()
-            lexers.add(lexer: CharLexer(), for: calculator.Char)
-            let parser = Parser(grammar: calculator, lexers: lexers)
-            let parseResult = parser.parse(input: ArrayInput(input), position: 0, symbol: calculator.Expr, param: UNIT.singleton)
+            let parser = calculator.parser()
+            let parseResult = parser.parse(input: input, start: calculator.Expr)
             switch parseResult {
             case .failed: XCTAssert(results.isEmpty)
             case let .success(length: length, results: parseResults):
@@ -95,12 +93,10 @@ final class ParsingKitTests: XCTestCase {
     
     func testSimple() {
         let g = Simple()
-        let lexers = Lexers<Character>()
-        lexers.add(lexer: CharLexer(), for: g.Char)
-        let parser = Parser(grammar: g, lexers: lexers)
+        let parser = g.parser()
 
         func run(_ input : String, _ S : NONTERMINAL, matches : Bool) {
-            let parseResult = parser.parse(input: ArrayInput(input), position: 0, symbol: S, param: UNIT.singleton)
+            let parseResult = parser.parse(input: input, start: S)
             switch parseResult {
             case .failed: XCTAssertFalse(matches)
             case let .success(length: length, results: parseResults):
@@ -117,12 +113,10 @@ final class ParsingKitTests: XCTestCase {
     
     func testRegex() {
         let g = Regex()
-        let lexers = Lexers<Character>()
-        lexers.add(lexer: CharLexer(), for: g.Char)
-        let parser = Parser(grammar: g, lexers: lexers)
+        let parser = g.parser()
 
         func run(_ input : String, _ S : NONTERMINAL, matches : Bool) {
-            let parseResult = parser.parse(input: ArrayInput(input), position: 0, symbol: S, param: UNIT.singleton)
+            let parseResult = parser.parse(input: input, start: S)
             switch parseResult {
             case .failed: XCTAssertFalse(matches)
             case let .success(length: length, results: parseResults):

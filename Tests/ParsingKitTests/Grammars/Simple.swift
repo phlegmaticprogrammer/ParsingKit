@@ -1,15 +1,10 @@
 import ParsingKit
 import FirstOrderDeepEmbedding
 
-class Simple : Grammar {
+class Simple : TextGrammar {
     
-    @Sym var Char : Terminal<UNIT, CHAR>
     @Sym var A : NONTERMINAL
-    
-    init() {
-        super.init()
-    }
-    
+        
     override func build() {
         add {
             A.rule {

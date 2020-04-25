@@ -67,8 +67,8 @@ public class Parser<Char> {
         parsing = Parsing(grammar: grammar, lexers: lexers)
     }
     
-    public func parse<In : ASort, Out : ASort>(input : Input<Char>, position : Int, symbol : Symbol<In, Out>, param : In.Native) -> ParseResult<Out.Native> {
-        return parsing.parse(input: input, position: position, symbol: symbol, param: param)
+    public func parse<In : ASort, Out : ASort>(input : Input<Char>, position : Int = 0, start : Nonterminal<In, Out>, param : In.Native) -> ParseResult<Out.Native> {
+        return parsing.parse(input: input, position: position, symbol: start, param: param)
     }
 
 }

@@ -2,7 +2,7 @@ import ParsingKit
 import FirstOrderDeepEmbedding
 
 
-class Calculator : Grammar {
+class Calculator : TextGrammar {
     
     typealias N = Nonterminal<UNIT, INT>
     
@@ -11,7 +11,6 @@ class Calculator : Grammar {
     @Sym var Product : N
     @Sym var Num : N
     @Sym var Digit : N
-    @Sym var Char : Terminal<UNIT, CHAR>
         
     let ambiguous : Bool
     
@@ -19,19 +18,6 @@ class Calculator : Grammar {
         self.ambiguous = ambiguous
     }
     
-    public func lit(_ chars : String) -> RuleBody {
-        var bodies : [RuleBody] = []
-        for c in chars {
-            let index = TUID()
-            let body = collectRuleBody {
-                Char[index]
-                %?(Char[index].out == CHAR(c))
-            }
-            bodies.append(body)
-        }
-        return collectRuleBody(bodies)
-    }
-
     override func build() {
         add {
             Expr.rule {
@@ -42,7 +28,7 @@ class Calculator : Grammar {
 
             Sum.rule {
                 Sum[1]
-                lit("+")
+                literal("+")
                 Product
                 
                 Sum[1]~ + Product~ --> Sum
@@ -56,7 +42,7 @@ class Calculator : Grammar {
 
             Product.rule {
                 Product[1]
-                lit("*")
+                literal("*")
                 Num
                 
                 Product[1]~ * Num~ --> Product

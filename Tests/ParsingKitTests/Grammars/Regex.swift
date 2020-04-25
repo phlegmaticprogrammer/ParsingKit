@@ -2,9 +2,8 @@ import ParsingKit
 import FirstOrderDeepEmbedding
 
 
-class Regex : Grammar {
+class Regex : TextGrammar {
     
-    @Sym var Char : Terminal<UNIT, CHAR>
     @Sym var A : TERMINAL
     @Sym var B : TERMINAL
     @Sym var C : TERMINAL
@@ -12,11 +11,7 @@ class Regex : Grammar {
     var X : NONTERMINAL!
     var Y : NONTERMINAL!
     var Z : NONTERMINAL!
-    
-    init() {
-        super.init()
-    }
-    
+        
     override func build() {
         add {
             A.rule {
