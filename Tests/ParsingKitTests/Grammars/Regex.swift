@@ -32,9 +32,9 @@ class Regex : Grammar {
                 %?(Char~ == "C")
             }
         }
-        X = Seq(Star(A), B, Maybe(C))
-        Y = Plus(Seq(Or(A, B), C))
-        Z = Star(B)
+        X = Seq(Repeat(A), B, Maybe(C))
+        Y = Repeat1(Seq(Or(A, B), C))
+        Z = Repeat(B)
     }
 
 }

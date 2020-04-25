@@ -4,7 +4,7 @@ extension Grammar {
     
     public typealias SYMBOL = Symbol<UNIT, UNIT>
     
-    public func Star(_ symbol : SYMBOL) -> NONTERMINAL {
+    public func Repeat(_ symbol : SYMBOL) -> NONTERMINAL {
         let STAR = fresh(nonterminal: SymbolName("\(symbol)*"), in: UNIT(), out: UNIT())
         add {
             STAR.rule {
@@ -18,7 +18,7 @@ extension Grammar {
         return STAR
     }
     
-    public func Plus(_ symbol : SYMBOL) -> NONTERMINAL {
+    public func Repeat1(_ symbol : SYMBOL) -> NONTERMINAL {
         let PLUS = fresh(nonterminal: SymbolName("\(symbol)+"), in : UNIT(), out : UNIT())
         add {
             PLUS.rule {
