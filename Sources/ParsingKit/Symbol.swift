@@ -146,6 +146,8 @@ internal enum SymbolVar : Hashable, CustomStringConvertible {
     }
 }
 
+postfix operator ~
+
 public class Symbol<In : Sort, Out : Sort> : RuleBody {
 
     public let name : IndexedSymbolName
@@ -159,7 +161,15 @@ public class Symbol<In : Sort, Out : Sort> : RuleBody {
     public var out : Out {
         Out.Var(SymbolVar.Out(symbol: name))
     }
+    
+    public static postfix func ~(symbol : Symbol<In, Out>) -> Out {
+        return symbol.out
+    }
 
+    public static prefix func ~(symbol : Symbol<In, Out>) -> In {
+        return symbol.in
+    }
+    
     public subscript(_ index : AnyHashable) -> Self {
         let newName = IndexedSymbolName(name.name, index)
         return Self(name: newName, kind: kind)

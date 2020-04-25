@@ -30,7 +30,7 @@ class Calculator : Grammar {
             Expr.rule {
                 Sum
                                 
-                Sum.out --> Expr
+                Sum~ --> Expr
             }
 
             Sum.rule {
@@ -38,14 +38,14 @@ class Calculator : Grammar {
                 Char
                 Product
                 
-                %?(Char.out == "+")
-                Sum[1].out + Product.out --> Sum
+                %?(Char~ == "+")
+                Sum[1]~ + Product~ --> Sum
             }
 
             Sum.rule {
                 Product
                                 
-                Product.out --> Sum
+                Product~ --> Sum
             }
 
             Product.rule {
@@ -53,35 +53,35 @@ class Calculator : Grammar {
                 Char
                 Num
                 
-                %?(Char.out == "*")
-                Product[1].out * Num.out --> Product
+                %?(Char~ == "*")
+                Product[1]~ * Num~ --> Product
             }
             
             Product.rule {
                 Num
 
-                Num.out --> Product
+                Num~ --> Product
             }
             
             Num.rule {
                 Digit
                 
-                Digit.out --> Num
+                Digit~ --> Num
             }
                         
             Num.rule {
                 Num[1]
                 Digit
                                     
-                Num[1].out * 10 + Digit.out --> Num
+                Num[1]~ * 10 + Digit~ --> Num
             }
             
             Digit.rule {
                 Char
                 
-                %?(Char.out >= "0" && Char.out <= "9")
+                %?(Char~ >= "0" && Char~ <= "9")
                                 
-                Char.out.match("0" => 0, "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7, "8" => 8, "9" => 9) --> Digit
+                Char~.match("0" => 0, "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7, "8" => 8, "9" => 9) --> Digit
             }
         }
     }

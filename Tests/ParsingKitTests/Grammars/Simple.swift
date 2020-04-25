@@ -14,7 +14,7 @@ class Simple : Grammar {
         add {
             A.rule {
                 Char
-                %?(Char.out == "A")
+                %?(Char~ == "A")
             }
         }
     }

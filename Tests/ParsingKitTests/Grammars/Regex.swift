@@ -21,15 +21,15 @@ class Regex : Grammar {
         add {
             A.rule {
                 Char
-                %?(Char.out == "A")
+                %?(Char~ == "A")
             }
             B.rule {
                 Char
-                %?(Char.out == "B")
+                %?(Char~ == "B")
             }
             C.rule {
                 Char
-                %?(Char.out == "C")
+                %?(Char~ == "C")
             }
         }
         X = Seq(Star(A), B, Maybe(C))

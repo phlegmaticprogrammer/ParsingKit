@@ -45,13 +45,13 @@ class Calculator : Grammar {
                 lit("+")
                 Product
                 
-                Sum[1].out + Product.out --> Sum
+                Sum[1]~ + Product~ --> Sum
             }
 
             Sum.rule {
                 Product
                                 
-                Product.out --> Sum
+                Product~ --> Sum
             }
 
             Product.rule {
@@ -59,19 +59,19 @@ class Calculator : Grammar {
                 lit("*")
                 Num
                 
-                Product[1].out * Num.out --> Product
+                Product[1]~ * Num~ --> Product
             }
             
             Product.rule {
                 Num
 
-                Num.out --> Product
+                Num~ --> Product
             }
             
             Num.rule {
                 Digit
                 
-                Digit.out --> Num
+                Digit~ --> Num
             }
             
             
@@ -80,7 +80,7 @@ class Calculator : Grammar {
                     Num[1]
                     Digit
                                         
-                    Num[1].out * 10 + Digit.out --> Num
+                    Num[1]~ * 10 + Digit~ --> Num
                 }
             }
             
@@ -89,16 +89,16 @@ class Calculator : Grammar {
                     Num[1]
                     Num[2]
                                         
-                    Num[1].out * 10 + Num[2].out --> Num
+                    Num[1]~ * 10 + Num[2]~ --> Num
                 }
             }
             
             Digit.rule {
                 Char
                 
-                %?(Char.out >= "0" && Char.out <= "9")
+                %?(Char~ >= "0" && Char~ <= "9")
                                 
-                Char.out.match("0" => 0, "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7, "8" => 8, "9" => 9) --> Digit
+                Char~.match("0" => 0, "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7, "8" => 8, "9" => 9) --> Digit
             }
         }
     }
