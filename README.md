@@ -96,7 +96,11 @@ Parsing with this grammar is simple:
 let calculator = Calculator()
 let parser = calculator.parser()
 let result = parser.parse(input: "32+4*7", start: calculator.Expr)
-print("parsing result = \(result)")
+switch result {
+case let .failed(position): print("parsing failed at position \(position)")
+case let .success(length: length, results: results):
+    print("parsing succeeded (\(length) characters consumed): output parameter = \(results.first!.key)")
+}
 ```
 
 
