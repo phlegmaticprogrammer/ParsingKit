@@ -14,8 +14,22 @@ extension Grammar {
         return fresh(terminal: SymbolName(name))
     }
     
+    public func freshNONTERMINAL(_ name : String) -> NONTERMINAL {
+        return fresh(nonterminal: SymbolName(name), in: UNIT(), out:UNIT())
+    }
+    
+    public func Empty() -> NONTERMINAL {
+        let E = freshNONTERMINAL("Empty")
+        add {
+            E.rule {
+                EMPTY
+            }
+        }
+        return E
+    }
+    
     public func Repeat(_ symbol : SYMBOL) -> NONTERMINAL {
-        let STAR = fresh(nonterminal: SymbolName("\(symbol)*"), in: UNIT(), out: UNIT())
+        let STAR = freshNONTERMINAL("\(symbol)*")
         add {
             STAR.rule {
                 EMPTY
@@ -29,7 +43,7 @@ extension Grammar {
     }
     
     public func Repeat1(_ symbol : SYMBOL) -> NONTERMINAL {
-        let PLUS = fresh(nonterminal: SymbolName("\(symbol)+"), in : UNIT(), out : UNIT())
+        let PLUS = freshNONTERMINAL("\(symbol)+")
         add {
             PLUS.rule {
                 symbol
@@ -43,7 +57,7 @@ extension Grammar {
     }
     
     public func Maybe(_ symbol : SYMBOL) -> NONTERMINAL {
-        let MAYBE = fresh(nonterminal: SymbolName("\(symbol)?"), in : UNIT(), out : UNIT())
+        let MAYBE = freshNONTERMINAL("\(symbol)?")
         add {
             MAYBE.rule {
                 EMPTY
@@ -56,7 +70,7 @@ extension Grammar {
     }
     
     public func Or(_ symbols : SYMBOL...) -> NONTERMINAL {
-        let OR = fresh(nonterminal: SymbolName("OR"), in : UNIT(), out : UNIT())
+        let OR = freshNONTERMINAL("OR")
         for symbol in symbols {
             add {
                 OR.rule {
@@ -68,7 +82,7 @@ extension Grammar {
     }
     
     public func Seq(_ symbols : SYMBOL...) -> NONTERMINAL {
-        let SEQ = fresh(nonterminal: SymbolName("SEQ"), in : UNIT(), out : UNIT())
+        let SEQ = freshNONTERMINAL("SEQ")
         var bodies : [RuleBody] = []
         for symbol in symbols {
             let index = TUID()
