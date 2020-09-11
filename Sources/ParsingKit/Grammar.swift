@@ -163,7 +163,7 @@ open class Grammar {
         self._sealed = false
         installPropertySymbols(mirror : Mirror(reflecting: self))
         build()
-        if sealed { self._sealed = true }
+        if sealed { seal() }
     }
     
     private func extractPropertyName(_ name : String) -> String? {
@@ -190,7 +190,9 @@ open class Grammar {
     }
     
     public func seal() {
+        guard !_sealed else { return }
         _sealed = true
+        checkGrammar()
     }
     
     private func checkSeal() {
@@ -452,5 +454,57 @@ open class Grammar {
     }
     
     open func build() { }
+    
+    // computes the symbols the right hand side of this rule depends on, assuming wellformedness of rule
+    private func symbolDependencies(rule : Rule) -> Set<SymbolName> {
+        var names : Set<SymbolName> = []
+        for e in rule.body {
+            switch e {
+            case .assignment, .condition: break
+            case .symbol(symbol: let symbol, position: _):
+                names.insert(symbol.name)
+            }
+        }
+        return names
+    }
+    
+    private func computeSymbolDependencies() -> [SymbolName : Set<SymbolName>] {
+        var dependencies : [SymbolName : Set<SymbolName>] = [:]
+        for (symbol, rules) in rules {
+            var deps : Set<SymbolName> = []
+            for rule in rules {
+                let ds = symbolDependencies(rule: rule)
+                deps.formUnion(ds)
+            }
+            dependencies[symbol] = deps
+        }
+        var changed : Bool
+        repeat {
+            changed = false
+            for (symbol, deps) in dependencies {
+                var symbolDeps = deps
+                let oldCount = symbolDeps.count
+                for dep in deps {
+                    if let ds = dependencies[dep] {
+                        symbolDeps.formUnion(ds)
+                    }
+                }
+                if symbolDeps.count != oldCount {
+                    changed = true
+                }
+                dependencies[symbol] = symbolDeps
+            }
+        } while changed
+        return dependencies
+    }
+    
+    private func checkGrammar() {
+        let dependencies = computeSymbolDependencies()
+        for (symbol, deps) in dependencies {
+            if kindOf(symbol)!.isTerminal && deps.contains(symbol) {
+                failedCheck(Position.unknown, "terminal '\(symbol)' depends on itself")
+            }
+        }
+    }
 
 }
