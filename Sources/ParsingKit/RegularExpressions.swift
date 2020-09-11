@@ -4,6 +4,16 @@ extension Grammar {
     
     public typealias SYMBOL = Symbol<UNIT, UNIT>
     
+    public func assign(_ symbol1 : SYMBOL, _ symbol2 : SYMBOL) -> GrammarElement {
+        return symbol1.rule {
+            symbol2
+        }
+    }
+    
+    public func freshTERMINAL(_ name : String) -> TERMINAL {
+        return fresh(terminal: SymbolName(name))
+    }
+    
     public func Repeat(_ symbol : SYMBOL) -> NONTERMINAL {
         let STAR = fresh(nonterminal: SymbolName("\(symbol)*"), in: UNIT(), out: UNIT())
         add {
@@ -61,8 +71,9 @@ extension Grammar {
         let SEQ = fresh(nonterminal: SymbolName("SEQ"), in : UNIT(), out : UNIT())
         var bodies : [RuleBody] = []
         for symbol in symbols {
+            let index = TUID()
             bodies.append(collectRuleBody {
-                symbol
+                symbol[index]
             })
         }
         add {

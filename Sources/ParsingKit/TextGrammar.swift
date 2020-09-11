@@ -20,6 +20,17 @@ open class TextGrammar : Grammar {
         }
         return collectRuleBody(bodies)
     }
+    
+    public func const(_ chars : String) -> NONTERMINAL {
+        let c = fresh(nonterminal: SymbolName("const_\(chars)"), in: UNIT(), out: UNIT())
+        add {
+            c.rule {
+                literal(chars)
+            }
+        }
+        return c
+    }
+
         
     public func parser() -> Parser<Character> {
         let lexers = Lexers<Character>()
