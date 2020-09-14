@@ -282,7 +282,7 @@ class Parsing<Char> {
         var modes :  [Int : TerminalParseMode<Param>] = [:]
         for (symbolname, positive) in lookaheads {
             guard let esymbol = symbolMap[symbolname], case let .terminal(index: index) = esymbol else {
-                fatalError("lookahead symbol must be terminal")
+                fatalError("lookahead symbol must be terminal: \(symbolname)")
             }
             let mode : TerminalParseMode<Param>
             if positive {

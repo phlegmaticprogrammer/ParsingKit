@@ -349,7 +349,7 @@ open class Grammar {
                 symbol~ --> terminal
             }
         }
-        _lookaheadSymbols[name] = true
+        _lookaheadSymbols[terminal.name.name] = true
         return terminal
     }
     
@@ -363,7 +363,7 @@ open class Grammar {
                 symbol <-- terminal.in
             }
         }
-        _lookaheadSymbols[name] = false
+        _lookaheadSymbols[terminal.name.name] = false
         return terminal
     }
 
