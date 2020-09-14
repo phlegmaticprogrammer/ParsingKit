@@ -99,6 +99,32 @@ extension Grammar {
         return OR
     }
     
+    public func GreedyOr(_ symbols : SYMBOL...) -> SYMBOL {
+        let OR = freshNONTERMINAL("_GreedyOr")
+        var i = 1
+        var higher : [TERMINAL] = []
+        for symbol in symbols {
+            let terminal = freshTERMINAL("_case-\(i)")
+            makeDeep(terminal)
+            for h in higher {
+                add {
+                    prioritise(terminal: h, over: terminal)
+                }
+            }
+            add {
+                OR.rule {
+                    terminal
+                }
+                terminal.rule {
+                    symbol
+                }
+            }
+            i += 1
+            higher.append(terminal)
+        }
+        return OR
+    }
+    
     public func Seq(_ symbols : SYMBOL...) -> NONTERMINAL {
         let SEQ = freshNONTERMINAL("_Seq")
         var bodies : [RuleBody] = []
