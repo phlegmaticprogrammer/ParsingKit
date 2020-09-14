@@ -42,7 +42,7 @@ extension Grammar {
         return STAR
     }
 
-    public func RepeatGreedy(_ symbol : SYMBOL) -> TERMINAL {
+    public func RepeatGreedy(_ symbol : SYMBOL) -> SYMBOL {
         let STAR = freshTERMINAL("_RepeatGreedy-\(symbol.name.name)")
         makeDeep(STAR)
         add {
@@ -61,6 +61,15 @@ extension Grammar {
                 PLUS[1]
                 symbol
             }
+        }
+        return PLUS
+    }
+    
+    public func Repeat1Greedy(_ symbol : SYMBOL) -> SYMBOL {
+        let PLUS = freshTERMINAL("_Repeat1Greedy-\(symbol.name.name)")
+        makeDeep(PLUS)
+        add {
+            assign(PLUS, Repeat1(symbol))
         }
         return PLUS
     }
