@@ -250,7 +250,8 @@ class Parsing<Char> {
         let priorities = convert(terminalPriorities: grammar.terminalPriorities)
         let selector = S(priorities: priorities)
         let constructResult = C<Char>(terminals: terminals, nonterminals: nonterminals, deepSymbols: grammar.deepSymbols, ruleIds: ruleIds)
-        g = EarleyLocalLexing.Grammar(rules: rules, lexer: lexer, selector: selector, constructResult: constructResult)
+        let terminalParseModes = convert(grammar.lookaheads)
+        g = EarleyLocalLexing.Grammar(rules: rules, lexer: lexer, selector: selector, constructResult: constructResult, terminalParseModes: terminalParseModes)
     }
     
     private func addSymbols(_ symbols : Grammar.Symbols) {
@@ -275,6 +276,23 @@ class Parsing<Char> {
                 self.rules.append(convertRule(rule))
             }
         }
+    }
+    
+    private func convert(_ lookaheads : [SymbolName : Bool]) -> [Int : TerminalParseMode<Param>] {
+        var modes :  [Int : TerminalParseMode<Param>] = [:]
+        for (symbolname, positive) in lookaheads {
+            guard let esymbol = symbolMap[symbolname], case let .terminal(index: index) = esymbol else {
+                fatalError("lookahead symbol must be terminal")
+            }
+            let mode : TerminalParseMode<Param>
+            if positive {
+                mode = .andNext
+            } else {
+                mode = .notNext(param: UNIT.singleton)
+            }
+            modes[index] = mode
+        }
+        return modes
     }
     
     private func convertRule(_ rule : Rule) -> ERule<Param> {

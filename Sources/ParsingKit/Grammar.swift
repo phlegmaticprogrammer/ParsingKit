@@ -93,6 +93,8 @@ open class Grammar {
     
     private var _deepSymbols : Set<SymbolName>
     
+    private var _lookaheadSymbols : [SymbolName : Bool]
+    
     private var _rules : Rules
     
     private var _terminalPriorities : Set<TerminalPriority>
@@ -120,6 +122,10 @@ open class Grammar {
     public var terminalPriorities : Set<TerminalPriority> {
         return _terminalPriorities
     }
+    
+    public var lookaheads :  [SymbolName : Bool] {
+        return _lookaheadSymbols
+    }
         
     private static func add(symbols : inout Symbols, moreSymbols : Symbols) {
         for (name, kind) in moreSymbols {
@@ -146,9 +152,19 @@ open class Grammar {
         var rules : Rules = [:]
         var deepSymbols : Set<SymbolName> = []
         var priorities : Set<TerminalPriority> = []
+        var lookaheads : [SymbolName : Bool] = [:]
         var l = Language.standard
         for parent in parents {
             if !parent.isSealed { fatalError("grammar parents must be sealed") }
+            for (lookahead, mode) in parent._lookaheadSymbols {
+                if symbols[lookahead] != nil {
+                    guard let currentMode = lookaheads[lookahead], currentMode == mode else {
+                        fatalError("incompatible lookaheads in parents found")
+                    }
+                } else {
+                    lookaheads[lookahead] = mode
+                }
+            }
             Grammar.add(symbols: &symbols, moreSymbols: parent._symbols)
             Grammar.add(rules: &rules, moreRules: parent._rules)
             deepSymbols.formUnion(parent._deepSymbols)
@@ -161,6 +177,7 @@ open class Grammar {
         self._rules = rules
         self._terminalPriorities = priorities
         self._sealed = false
+        self._lookaheadSymbols = lookaheads
         installPropertySymbols(mirror : Mirror(reflecting: self))
         build()
         if sealed { seal() }
@@ -319,6 +336,35 @@ open class Grammar {
         return TerminalPriority(position: .position(file: file, line: line),
                                 terminal1: terminal1.name, terminal2: terminal2.name,
                                 condition: when)
+    }
+    
+    // Do not provide a lexer for the terminal returned here!!!
+    public func andNext<In : Sort, Out : Sort>(_ symbol : Symbol<In, Out>) -> Terminal<In, Out> {
+        let name = SymbolName("_andNext-\(symbol.name.name)")
+        let terminal : Terminal<In, Out> = fresh(terminal: name)
+        add {
+            terminal.rule {
+                symbol
+                symbol <-- terminal.in
+                symbol~ --> terminal
+            }
+        }
+        _lookaheadSymbols[name] = true
+        return terminal
+    }
+    
+    // Do not provide a lexer for the terminal returned here!!!
+    public func notNext<In : Sort, Out : Sort>(_ symbol : Symbol<In, Out>) -> Terminal<In, UNIT> {
+        let name = SymbolName("_notNext-\(symbol.name.name)")
+        let terminal : Terminal<In, UNIT> = fresh(terminal: name)
+        add {
+            terminal.rule {
+                symbol
+                symbol <-- terminal.in
+            }
+        }
+        _lookaheadSymbols[name] = false
+        return terminal
     }
 
     public func add(@GrammarBuilder _ builder : () -> GrammarElement) {
