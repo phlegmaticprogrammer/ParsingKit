@@ -221,10 +221,14 @@ open class Grammar {
         _deepSymbols.remove(name)
     }
     
-    public func makeDeep(_ name : SymbolName) {
+    private func makeDeep(_ name : SymbolName) {
         checkSeal()
         precondition(exists(name))
         _deepSymbols.insert(name)
+    }
+    
+    public func makeDeep<I,O>(_ terminal : Terminal<I, O>) {
+        self.makeDeep(terminal.name.name)
     }
         
     private func freshSymbol(basedOn : SymbolName) -> SymbolName {

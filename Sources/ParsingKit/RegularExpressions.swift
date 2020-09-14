@@ -41,6 +41,15 @@ extension Grammar {
         }
         return STAR
     }
+
+    public func RepeatGreedy(_ symbol : SYMBOL) -> TERMINAL {
+        let STAR = freshTERMINAL("_RepeatGreedy-\(symbol.name.name)")
+        makeDeep(STAR)
+        add {
+            assign(STAR, Repeat(symbol))
+        }
+        return STAR
+    }
     
     public func Repeat1(_ symbol : SYMBOL) -> NONTERMINAL {
         let PLUS = freshNONTERMINAL("_Repeat1-\(symbol.name.name)")
