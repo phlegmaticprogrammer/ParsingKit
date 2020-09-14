@@ -29,7 +29,7 @@ extension Grammar {
     }
     
     public func Repeat(_ symbol : SYMBOL) -> NONTERMINAL {
-        let STAR = freshNONTERMINAL("_Repeat-\(symbol.name.name)")
+        let STAR = freshNONTERMINAL("_Repeat")
         add {
             STAR.rule {
                 EMPTY
@@ -43,7 +43,7 @@ extension Grammar {
     }
 
     public func RepeatGreedy(_ symbol : SYMBOL) -> SYMBOL {
-        let STAR = freshTERMINAL("_RepeatGreedy-\(symbol.name.name)")
+        let STAR = freshTERMINAL("_RepeatGreedy")
         makeDeep(STAR)
         add {
             assign(STAR, Repeat(symbol))
@@ -52,7 +52,7 @@ extension Grammar {
     }
     
     public func Repeat1(_ symbol : SYMBOL) -> NONTERMINAL {
-        let PLUS = freshNONTERMINAL("_Repeat1-\(symbol.name.name)")
+        let PLUS = freshNONTERMINAL("_Repeat1")
         add {
             PLUS.rule {
                 symbol
@@ -66,7 +66,7 @@ extension Grammar {
     }
     
     public func Repeat1Greedy(_ symbol : SYMBOL) -> SYMBOL {
-        let PLUS = freshTERMINAL("_Repeat1Greedy-\(symbol.name.name)")
+        let PLUS = freshTERMINAL("_Repeat1Greedy")
         makeDeep(PLUS)
         add {
             assign(PLUS, Repeat1(symbol))
@@ -75,7 +75,7 @@ extension Grammar {
     }
     
     public func Maybe(_ symbol : SYMBOL) -> NONTERMINAL {
-        let MAYBE = freshNONTERMINAL("_Maybe-\(symbol.name.name)?")
+        let MAYBE = freshNONTERMINAL("_Maybe")
         add {
             MAYBE.rule {
                 EMPTY
@@ -86,7 +86,29 @@ extension Grammar {
         }
         return MAYBE
     }
-    
+
+    public func MaybeGreedy(_ symbol : SYMBOL) -> NONTERMINAL {
+        let MAYBE = freshNONTERMINAL("_MaybeGreedy")
+        let caseSome = freshTERMINAL("_caseSome")
+        let caseNone = freshTERMINAL("_caseNone")
+        add {
+            caseNone.rule {
+                EMPTY
+            }
+            caseSome.rule {
+                symbol
+            }
+            MAYBE.rule {
+                caseSome
+            }
+            MAYBE.rule {
+                caseNone
+            }
+            prioritise(terminal: caseSome, over: caseNone)
+        }
+        return MAYBE
+    }
+
     public func Or(_ symbols : SYMBOL...) -> NONTERMINAL {
         let OR = freshNONTERMINAL("_Or")
         for symbol in symbols {
@@ -99,8 +121,8 @@ extension Grammar {
         return OR
     }
     
-    public func GreedyOr(_ symbols : SYMBOL...) -> SYMBOL {
-        let OR = freshNONTERMINAL("_GreedyOr")
+    public func OrGreedy(_ symbols : SYMBOL...) -> SYMBOL {
+        let OR = freshNONTERMINAL("_OrGreedy")
         var i = 1
         var higher : [TERMINAL] = []
         for symbol in symbols {
