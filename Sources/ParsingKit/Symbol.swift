@@ -234,3 +234,5 @@ public final class Nonterminal<In : Sort, Out : Sort> : Symbol<In, Out> {
 public typealias TERMINAL = Terminal<UNIT, UNIT>
 
 public typealias NONTERMINAL = Nonterminal<UNIT, UNIT>
+
+public typealias SYMBOL = Symbol<UNIT, UNIT>

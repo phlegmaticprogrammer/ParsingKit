@@ -3,7 +3,7 @@ import FirstOrderDeepEmbedding
 
 
 class Regex : TextGrammar {
-    
+        
     @Sym var A : TERMINAL
     @Sym var B : TERMINAL
     @Sym var C : TERMINAL

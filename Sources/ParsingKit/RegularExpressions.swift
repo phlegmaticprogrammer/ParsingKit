@@ -92,7 +92,7 @@ extension Grammar {
         return MAYBE
     }
 
-    public func MaybeGreedy<S>(_ symbol : Symbol<S, S>) -> Symbol<S, S> {
+    public func MaybeGreedy<S>(_ symbol : Symbol<S, S>) -> Nonterminal<S, S> {
         let MAYBE : Nonterminal<S, S> = freshNonterminal("_MaybeGreedy")
         let caseSome : Terminal<S, S> = freshTerminal("_caseSome")
         let caseNone : Terminal<S, S> = freshTerminal("_caseNone")
@@ -119,7 +119,7 @@ extension Grammar {
         return OR
     }
     
-    public func OrGreedy<S, T>(_ symbols : Symbol<S, T>...) -> Symbol<S, T> {
+    public func OrGreedy<S, T>(_ symbols : Symbol<S, T>...) -> Nonterminal<S, T> {
         let OR : Nonterminal<S, T> = freshNonterminal("_OrGreedy")
         var i = 1
         var higher : [Terminal<S, T>] = []
@@ -141,7 +141,7 @@ extension Grammar {
         return OR
     }
     
-    public func Seq<S, U, V>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>) -> Symbol<S, V> {
+    public func Seq<S, U, V>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>) -> Nonterminal<S, V> {
         let SEQ : Nonterminal<S, V> = freshNonterminal("_Seq")
         let index1 = TUID()
         let index2 = TUID()
@@ -157,7 +157,7 @@ extension Grammar {
         return SEQ
     }
 
-    public func Seq<S, U, V, W>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>, _ symbol3 : Symbol<V, W>) -> Symbol<S, W> {
+    public func Seq<S, U, V, W>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>, _ symbol3 : Symbol<V, W>) -> Nonterminal<S, W> {
         let SEQ : Nonterminal<S, W> = freshNonterminal("_Seq")
         let index1 = TUID()
         let index2 = TUID()
@@ -177,7 +177,7 @@ extension Grammar {
     }
 
     public func Seq<S, U, V, W, X>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>, _ symbol3 : Symbol<V, W>,
-                                   _ symbol4 : Symbol<W, X>) -> Symbol<S, X> {
+                                   _ symbol4 : Symbol<W, X>) -> Nonterminal<S, X> {
         let SEQ : Nonterminal<S, X> = freshNonterminal("_Seq")
         let index1 = TUID()
         let index2 = TUID()
@@ -200,7 +200,7 @@ extension Grammar {
     }
 
     public func Seq<S, U, V, W, X, Y>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>, _ symbol3 : Symbol<V, W>,
-                                      _ symbol4 : Symbol<W, X>, _ symbol5 : Symbol<X, Y>) -> Symbol<S, Y> {
+                                      _ symbol4 : Symbol<W, X>, _ symbol5 : Symbol<X, Y>) -> Nonterminal<S, Y> {
         let SEQ : Nonterminal<S, Y> = freshNonterminal("_Seq")
         let index1 = TUID()
         let index2 = TUID()
