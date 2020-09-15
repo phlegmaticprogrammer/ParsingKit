@@ -1,9 +1,7 @@
 import FirstOrderDeepEmbedding
 
 extension Grammar {
-    
-    public typealias SYMBOL = Symbol<UNIT, UNIT>
-    
+        
     public func assign<S, T>(_ symbol1 : Symbol<S, T>, _ symbol2 : Symbol<S, T>) -> GrammarElement {
         return symbol1.rule {
             symbol2
