@@ -3,10 +3,10 @@ import FirstOrderDeepEmbedding
 extension Grammar {
         
     public func assign<S, T>(_ symbol1 : Symbol<S, T>, _ symbol2 : Symbol<S, T>) -> GrammarElement {
-        return symbol1.rule {
-            symbol2
-            symbol2 <-- symbol1.in
-            symbol2~ --> symbol1
+        return symbol1[0].rule {
+            symbol2[1]
+            symbol2[1] <-- symbol1[0].in
+            symbol2[1]~ --> symbol1[0]
         }
     }
     
@@ -223,6 +223,27 @@ extension Grammar {
             }
         }
         return SEQ
+    }
+        
+    public func Supply<S, T>(_ input : S = S.default(), _ symbol : Symbol<S, T>) -> Nonterminal<UNIT, T> {
+        let s : Nonterminal<UNIT, T> = freshNonterminal("_Supply")
+        add {
+            s.rule {
+                symbol
+                symbol <-- input
+                symbol~ --> s
+            }
+        }
+        return s
+    }
+    
+    public func Greedy<S, T>(_ symbol : Symbol<S, T>) -> Terminal<S, T> {
+        let g : Terminal<S, T> = freshTerminal("_Greedy")
+        makeDeep(g)
+        add {
+            assign(g, symbol)
+        }
+        return g
     }
 
 }
