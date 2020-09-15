@@ -12,12 +12,12 @@ extension Grammar {
         }
     }
     
-    public func freshTerminal<S>(_ name : String) -> Terminal<S, S> {
-        return fresh(terminal: SymbolName(name), in: S(), out: S())
+    public func freshTerminal<S, T>(_ name : String) -> Terminal<S, T> {
+        return fresh(terminal: SymbolName(name), in: S(), out: T())
     }
     
-    public func freshNonterminal<S>(_ name : String) -> Nonterminal<S, S> {
-        return fresh(nonterminal: SymbolName(name), in: S(), out:S())
+    public func freshNonterminal<S, T>(_ name : String) -> Nonterminal<S, T> {
+        return fresh(nonterminal: SymbolName(name), in: S(), out:T())
     }
     
     public func Empty<S>() -> Nonterminal<S, S> {
@@ -61,11 +61,7 @@ extension Grammar {
     public func Repeat1<S>(_ symbol : Symbol<S, S>) -> Nonterminal<S, S> {
         let PLUS : Nonterminal<S, S> = freshNonterminal("_Repeat1")
         add {
-            PLUS.rule {
-                symbol
-                symbol <-- PLUS.in
-                symbol~ --> PLUS
-            }
+            assign(PLUS, symbol)
             PLUS.rule {
                 PLUS[1]
                 symbol
@@ -86,59 +82,51 @@ extension Grammar {
         return PLUS
     }
     
-    public func Maybe(_ symbol : SYMBOL) -> NONTERMINAL {
-        let MAYBE : NONTERMINAL = freshNonterminal("_Maybe")
+    public func Maybe<S>(_ symbol : Symbol<S, S>) -> Nonterminal<S, S> {
+        let MAYBE : Nonterminal<S, S> = freshNonterminal("_Maybe")
         add {
             MAYBE.rule {
                 EMPTY
+                MAYBE.in --> MAYBE
             }
-            MAYBE.rule {
-                symbol
-            }
+            assign(MAYBE, symbol)
         }
         return MAYBE
     }
 
-    public func MaybeGreedy(_ symbol : SYMBOL) -> NONTERMINAL {
-        let MAYBE : NONTERMINAL = freshNonterminal("_MaybeGreedy")
-        let caseSome : TERMINAL = freshTerminal("_caseSome")
-        let caseNone : TERMINAL = freshTerminal("_caseNone")
+    public func MaybeGreedy<S>(_ symbol : Symbol<S, S>) -> Symbol<S, S> {
+        let MAYBE : Nonterminal<S, S> = freshNonterminal("_MaybeGreedy")
+        let caseSome : Terminal<S, S> = freshTerminal("_caseSome")
+        let caseNone : Terminal<S, S> = freshTerminal("_caseNone")
         add {
             caseNone.rule {
                 EMPTY
+                caseNone.in --> caseNone
             }
-            caseSome.rule {
-                symbol
-            }
-            MAYBE.rule {
-                caseSome
-            }
-            MAYBE.rule {
-                caseNone
-            }
+            assign(caseSome, symbol)
+            assign(MAYBE, caseSome)
+            assign(MAYBE, caseNone)
             prioritise(terminal: caseSome, over: caseNone)
         }
         return MAYBE
     }
 
-    public func Or(_ symbols : SYMBOL...) -> NONTERMINAL {
-        let OR : NONTERMINAL = freshNonterminal("_Or")
+    public func Or<S, T>(_ symbols : Symbol<S, T>...) -> Nonterminal<S, T> {
+        let OR : Nonterminal<S, T> = freshNonterminal("_Or")
         for symbol in symbols {
             add {
-                OR.rule {
-                    symbol
-                }
+                assign(OR, symbol)
             }
         }
         return OR
     }
     
-    public func OrGreedy(_ symbols : SYMBOL...) -> SYMBOL {
-        let OR : NONTERMINAL = freshNonterminal("_OrGreedy")
+    public func OrGreedy<S, T>(_ symbols : Symbol<S, T>...) -> Symbol<S, T> {
+        let OR : Nonterminal<S, T> = freshNonterminal("_OrGreedy")
         var i = 1
-        var higher : [TERMINAL] = []
+        var higher : [Terminal<S, T>] = []
         for symbol in symbols {
-            let terminal : TERMINAL = freshTerminal("_case-\(i)")
+            let terminal : Terminal<S, T> = freshTerminal("_case-\(i)")
             makeDeep(terminal)
             for h in higher {
                 add {
@@ -146,12 +134,8 @@ extension Grammar {
                 }
             }
             add {
-                OR.rule {
-                    terminal
-                }
-                terminal.rule {
-                    symbol
-                }
+                assign(OR, terminal)
+                assign(OR, symbol)
             }
             i += 1
             higher.append(terminal)
@@ -159,18 +143,85 @@ extension Grammar {
         return OR
     }
     
-    public func Seq(_ symbols : SYMBOL...) -> NONTERMINAL {
-        let SEQ : NONTERMINAL = freshNonterminal("_Seq")
-        var bodies : [RuleBody] = []
-        for symbol in symbols {
-            let index = TUID()
-            bodies.append(collectRuleBody {
-                symbol[index]
-            })
-        }
+    public func Seq<S, U, V>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>) -> Symbol<S, V> {
+        let SEQ : Nonterminal<S, V> = freshNonterminal("_Seq")
+        let index1 = TUID()
+        let index2 = TUID()
         add {
             SEQ.rule {
-                collectRuleBody(bodies)
+                symbol1[index1]
+                symbol2[index2]
+                symbol1[index1] <-- SEQ.in
+                symbol2[index2] <-- symbol1[index1]~
+                symbol2[index2]~ --> SEQ
+            }
+        }
+        return SEQ
+    }
+
+    public func Seq<S, U, V, W>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>, _ symbol3 : Symbol<V, W>) -> Symbol<S, W> {
+        let SEQ : Nonterminal<S, W> = freshNonterminal("_Seq")
+        let index1 = TUID()
+        let index2 = TUID()
+        let index3 = TUID()
+        add {
+            SEQ.rule {
+                symbol1[index1]
+                symbol2[index2]
+                symbol3[index3]
+                symbol1[index1] <-- SEQ.in
+                symbol2[index2] <-- symbol1[index1]~
+                symbol3[index3] <-- symbol2[index2]~
+                symbol3[index3]~ --> SEQ
+            }
+        }
+        return SEQ
+    }
+
+    public func Seq<S, U, V, W, X>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>, _ symbol3 : Symbol<V, W>,
+                                   _ symbol4 : Symbol<W, X>) -> Symbol<S, X> {
+        let SEQ : Nonterminal<S, X> = freshNonterminal("_Seq")
+        let index1 = TUID()
+        let index2 = TUID()
+        let index3 = TUID()
+        let index4 = TUID()
+        add {
+            SEQ.rule {
+                symbol1[index1]
+                symbol2[index2]
+                symbol3[index3]
+                symbol4[index4]
+                symbol1[index1] <-- SEQ.in
+                symbol2[index2] <-- symbol1[index1]~
+                symbol3[index3] <-- symbol2[index2]~
+                symbol4[index4] <-- symbol3[index3]~
+                symbol4[index4]~ --> SEQ
+            }
+        }
+        return SEQ
+    }
+
+    public func Seq<S, U, V, W, X, Y>(_ symbol1 : Symbol<S, U>, _ symbol2 : Symbol<U, V>, _ symbol3 : Symbol<V, W>,
+                                      _ symbol4 : Symbol<W, X>, _ symbol5 : Symbol<X, Y>) -> Symbol<S, Y> {
+        let SEQ : Nonterminal<S, Y> = freshNonterminal("_Seq")
+        let index1 = TUID()
+        let index2 = TUID()
+        let index3 = TUID()
+        let index4 = TUID()
+        let index5 = TUID()
+        add {
+            SEQ.rule {
+                symbol1[index1]
+                symbol2[index2]
+                symbol3[index3]
+                symbol4[index4]
+                symbol5[index5]
+                symbol1[index1] <-- SEQ.in
+                symbol2[index2] <-- symbol1[index1]~
+                symbol3[index3] <-- symbol2[index2]~
+                symbol4[index4] <-- symbol3[index3]~
+                symbol5[index5] <-- symbol4[index4]~
+                symbol5[index5]~ --> SEQ
             }
         }
         return SEQ
