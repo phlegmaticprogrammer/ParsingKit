@@ -133,7 +133,7 @@ extension Grammar {
             }
             add {
                 assign(OR, terminal)
-                assign(OR, symbol)
+                assign(terminal, symbol)
             }
             i += 1
             higher.append(terminal)
