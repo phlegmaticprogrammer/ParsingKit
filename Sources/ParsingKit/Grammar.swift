@@ -342,6 +342,7 @@ open class Grammar {
     public func andNext<In : Sort, Out : Sort>(_ symbol : Symbol<In, Out>) -> Terminal<In, Out> {
         let name = SymbolName("_andNext-\(symbol.name.name)")
         let terminal : Terminal<In, Out> = fresh(terminal: name)
+        makeDeep(terminal)
         add {
             terminal.rule {
                 symbol
@@ -357,6 +358,7 @@ open class Grammar {
     public func notNext<In : Sort, Out : Sort>(_ symbol : Symbol<In, Out>) -> Terminal<In, UNIT> {
         let name = SymbolName("_notNext-\(symbol.name.name)")
         let terminal : Terminal<In, UNIT> = fresh(terminal: name)
+        makeDeep(terminal)
         add {
             terminal.rule {
                 symbol
