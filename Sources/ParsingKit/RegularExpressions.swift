@@ -30,7 +30,7 @@ extension Grammar {
     }
     
     public func Repeat<S>(_ symbol : Symbol<S, S>) -> Nonterminal<S, S> {
-        let STAR : Nonterminal<S, S> = freshNonterminal("_Repeat")
+        let STAR : Nonterminal<S, S> = freshNonterminal("_Repeat-\(symbol.name.name)")
         add {
             STAR.rule {
                 EMPTY
@@ -55,9 +55,9 @@ extension Grammar {
         }
         return STAR
     }
-    
+        
     public func Repeat1<S>(_ symbol : Symbol<S, S>) -> Nonterminal<S, S> {
-        let PLUS : Nonterminal<S, S> = freshNonterminal("_Repeat1")
+        let PLUS : Nonterminal<S, S> = freshNonterminal("_Repeat1-\(symbol.name.name)")
         add {
             assign(PLUS, symbol)
             PLUS.rule {
@@ -70,7 +70,7 @@ extension Grammar {
         }
         return PLUS
     }
-    
+
     public func Repeat1Greedy<S>(_ symbol : Symbol<S, S>) -> Symbol<S,S> {
         let PLUS : Terminal<S, S> = freshTerminal("_Repeat1Greedy")
         makeDeep(PLUS)

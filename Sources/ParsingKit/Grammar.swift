@@ -554,7 +554,8 @@ open class Grammar {
         let dependencies = computeSymbolDependencies()
         for (symbol, deps) in dependencies {
             if kindOf(symbol)!.isTerminal && deps.contains(symbol) {
-                failedCheck(Position.unknown, "terminal '\(symbol)' depends on itself")
+                print("warning: terminal '\(symbol)' depends on itself")
+                //failedCheck(Position.unknown, "terminal '\(symbol)' depends on itself")
             }
         }
     }

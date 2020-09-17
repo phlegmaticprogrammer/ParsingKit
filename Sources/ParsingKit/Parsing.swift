@@ -146,6 +146,10 @@ fileprivate class C<Char> : EarleyLocalLexing.ConstructResult {
         return result ?? ParseTree.leaf(key: transform(key: key))
     }
     
+    func bailout(key: ItemKey<AnyHashable>) -> ParseTree? {
+        return ParseTree.leaf(key: transform(key: key))
+    }
+    
     func merge(key: ItemKey<Param>, results: [Result]) -> Result? {
         let k = transform(key: key)
         guard deepSymbols.contains(k.symbol) else { return ParseTree.leaf(key: k) }
@@ -155,7 +159,7 @@ fileprivate class C<Char> : EarleyLocalLexing.ConstructResult {
             result.collect(trees: &collectedResults)
         }
         if collectedResults.count == 1 {
-            return collectedResults.first
+            return collectedResults.first!
         } else {
             return .forest(key: k, trees: collectedResults)
         }
