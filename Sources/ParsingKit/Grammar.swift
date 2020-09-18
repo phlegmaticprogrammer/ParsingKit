@@ -249,6 +249,7 @@ open class Grammar {
     }
         
     private func freshSymbol(basedOn : SymbolName) -> SymbolName {
+        guard _symbols[basedOn] != nil else { return basedOn }
         for i in 0 ... Int.max {
             let name = SymbolName("\(basedOn)-\(i)")
             if _symbols[name] == nil { return name }
