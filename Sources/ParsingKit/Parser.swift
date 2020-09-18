@@ -43,6 +43,22 @@ public indirect enum ParseTree : Hashable {
     internal static func leaf(key : Key) -> ParseTree {
         return .forest(key: key, trees: [])
     }
+    
+    public var isAmbiguous : Bool {
+        switch self {
+        case let .forest(key: _, trees: trees):
+            if trees.count > 1 { return true }
+            for tree in trees {
+                if tree.isAmbiguous { return true }
+            }
+            return false
+        case let .rule(id: _, key: _, rhs: rhs):
+            for tree in rhs {
+                if tree.isAmbiguous { return true }
+            }
+            return false
+        }
+    }
 
 }
 
