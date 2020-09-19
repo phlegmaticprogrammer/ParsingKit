@@ -48,14 +48,40 @@ extension Grammar {
     }
 
     public func RepeatGreedy<S>(_ symbol : Symbol<S, S>) -> Symbol<S, S> {
-        let STAR : Terminal<S, S> = freshTerminal("_RepeatGreedy")
+        let STAR : Terminal<S, S> = freshTerminal("_RepeatGreedy-\(symbol.name.name)")
         makeDeep(STAR)
         add {
             assign(STAR, Repeat(symbol))
         }
         return STAR
     }
-        
+
+    public func Iterate<S>(_ symbol : Symbol<S, UNIT>) -> Nonterminal<S, UNIT> {
+        let STAR : Nonterminal<S, UNIT> = freshNonterminal("_Iterate-\(symbol.name.name)")
+        add {
+            STAR.rule {
+                EMPTY
+            }
+            STAR.rule {
+                STAR[1]
+                symbol
+                STAR[1] <-- STAR.in
+                symbol <-- STAR.in
+            }
+        }
+        return STAR
+    }
+
+    public func IterateGreedy<S>(_ symbol : Symbol<S, UNIT>) -> Symbol<S, UNIT> {
+        let STAR : Terminal<S, UNIT> = freshTerminal("_IterateGreedy-\(symbol.name.name)")
+        makeDeep(STAR)
+        add {
+            assign(STAR, Iterate(symbol))
+        }
+        return STAR
+    }
+
+    
     public func Repeat1<S>(_ symbol : Symbol<S, S>) -> Nonterminal<S, S> {
         let PLUS : Nonterminal<S, S> = freshNonterminal("_Repeat1-\(symbol.name.name)")
         add {
@@ -72,7 +98,7 @@ extension Grammar {
     }
 
     public func Repeat1Greedy<S>(_ symbol : Symbol<S, S>) -> Symbol<S,S> {
-        let PLUS : Terminal<S, S> = freshTerminal("_Repeat1Greedy")
+        let PLUS : Terminal<S, S> = freshTerminal("_Repeat1Greedy-\(symbol.name.name)")
         makeDeep(PLUS)
         add {
             assign(PLUS, Repeat1(symbol))
@@ -81,7 +107,7 @@ extension Grammar {
     }
     
     public func Maybe<S>(_ symbol : Symbol<S, S>) -> Nonterminal<S, S> {
-        let MAYBE : Nonterminal<S, S> = freshNonterminal("_Maybe")
+        let MAYBE : Nonterminal<S, S> = freshNonterminal("_Maybe-\(symbol.name.name)")
         add {
             MAYBE.rule {
                 EMPTY
@@ -93,7 +119,7 @@ extension Grammar {
     }
 
     public func MaybeGreedy<S>(_ symbol : Symbol<S, S>) -> Nonterminal<S, S> {
-        let MAYBE : Nonterminal<S, S> = freshNonterminal("_MaybeGreedy")
+        let MAYBE : Nonterminal<S, S> = freshNonterminal("_MaybeGreedy-\(symbol.name.name)")
         let caseSome : Terminal<S, S> = freshTerminal("_caseSome")
         let caseNone : Terminal<S, S> = freshTerminal("_caseNone")
         add {
@@ -226,7 +252,7 @@ extension Grammar {
     }
         
     public func Supply<S, T>(_ input : S = S.default(), _ symbol : Symbol<S, T>) -> Nonterminal<UNIT, T> {
-        let s : Nonterminal<UNIT, T> = freshNonterminal("_Supply")
+        let s : Nonterminal<UNIT, T> = freshNonterminal("_Supply-\(symbol.name.name)")
         add {
             s.rule {
                 symbol
@@ -238,7 +264,7 @@ extension Grammar {
     }
     
     public func Greedy<S, T>(_ symbol : Symbol<S, T>) -> Terminal<S, T> {
-        let g : Terminal<S, T> = freshTerminal("_Greedy")
+        let g : Terminal<S, T> = freshTerminal("_Greedy-\(symbol.name.name)")
         makeDeep(g)
         add {
             assign(g, symbol)
