@@ -21,12 +21,12 @@ open class TextGrammar : Grammar {
         return collectRuleBody(bodies)
     }
     
-    public func const(_ char : Character) -> NONTERMINAL {
+    public func const(_ char : Character) -> TERMINAL {
         return const(String(char))
     }
 
-    public func const(_ chars : String) -> NONTERMINAL {
-        let c = fresh(nonterminal: SymbolName("const_\(chars)"), in: UNIT(), out: UNIT())
+    public func const(_ chars : String) -> TERMINAL {
+        let c = fresh(terminal: SymbolName("__const_\(chars)"), in: UNIT(), out: UNIT())
         add {
             c.rule {
                 literal(chars)
