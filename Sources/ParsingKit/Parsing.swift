@@ -277,6 +277,7 @@ class Parsing<Char> {
                 let index = terminals.count
                 terminals.append(symbolname)
                 symbolMap[symbolname] = .terminal(index: index)
+                print("terminal \(symbolname) --> \(index)")
             }
         }
     }
