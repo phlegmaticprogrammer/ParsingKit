@@ -27,15 +27,13 @@ fileprivate class S : EarleyLocalLexing.Selector {
     typealias Param = AnyHashable
     
     typealias Result = ParseTree
-    
-    typealias Priority = (_ in1 : Param, _ out1 : Param, _ in2 : Param, _ out2 : Param) -> Bool
-    
-    typealias Priorities = [Int : [Int : Priority]]
+        
+    typealias Priorities = [Int : Set<Int>] // maps each terminal to the set of terminals with LOWER priority
     
     let priorities : Priorities
     
     init(priorities : Priorities) {
-        self.priorities = priorities
+        self.priorities = S.transitiveClosure(priorities)
     }
 
     struct T : Hashable {
@@ -44,53 +42,46 @@ fileprivate class S : EarleyLocalLexing.Selector {
         let outputParam : Param
     }
     
-    func discard(tokens : Tokens<Param, Result>, discarded : Set<T>) -> Tokens<Param, Result> {
-        guard !discarded.isEmpty else { return tokens }
-        var ts : Tokens<Param, Result> = [:]
-        for (key, tokens) in tokens {
-            var filtered : [Token<Param, Result>] = []
-            for token in tokens {
-                let t = T(terminalIndex: key.terminalIndex, inputParam: key.inputParam, outputParam: token.outputParam)
-                if !discarded.contains(t) {
-                    filtered.append(token)
+    private static func transitiveClosure(_ priorities : Priorities) -> Priorities {
+        var currentClosure : Priorities = priorities
+        var changed : Bool = false
+        func step(_ terminals : Set<Int>) -> Set<Int> {
+            var result = terminals
+            for t in terminals {
+                if let ts = currentClosure[t] {
+                    result.formUnion(ts)
                 }
             }
-            if !filtered.isEmpty {
-                ts[key] = Set(filtered)
+            if result.count != terminals.count {
+                changed = true
             }
+            return result
         }
-        return ts
+        repeat {
+            changed = false
+            currentClosure = currentClosure.mapValues(step)
+        } while changed
+        return priorities
     }
-    
-    func select(from: Tokens<Param, Result>, alreadySelected: Tokens<Param, Result>) -> Tokens<Param, Result> {
-        var discarded : Set<T> = []
         
+    func select(from: Tokens<Param, Result>, alreadySelected: Tokens<Param, Result>) -> Tokens<Param, Result> {
+        var forbidden : Set<Int> = []
+        for (key, _) in alreadySelected {
+            guard let prios = priorities[key.terminalIndex] else { continue }
+            forbidden.formUnion(prios)
+        }
+        for (key, _) in from {
+            guard let prios = priorities[key.terminalIndex] else { continue }
+            forbidden.formUnion(prios)
+        }
+        var selected : Tokens<Param, Result> = [:]
         next_token:
-        for (key1, tokens1) in from {
-            guard let prios = priorities[key1.terminalIndex] else { continue }
-            for (key2, tokens2) in from {
-                guard let prios = prios[key2.terminalIndex] else { continue }
-                for token1 in tokens1 {
-                    for token2 in tokens2 {
-                        guard prios(key1.inputParam, token1.outputParam, key2.inputParam, token2.outputParam) else { continue }
-                        discarded.insert(T(terminalIndex: key1.terminalIndex, inputParam: key1.inputParam, outputParam: token1.outputParam))
-                        continue next_token
-                    }
-                }
-            }
-            for (key2, tokens2) in alreadySelected {
-                guard let prios = prios[key2.terminalIndex] else { continue }
-                for token1 in tokens1 {
-                    for token2 in tokens2 {
-                        guard prios(key1.inputParam, token1.outputParam, key2.inputParam, token2.outputParam) else { continue }
-                        discarded.insert(T(terminalIndex: key1.terminalIndex, inputParam: key1.inputParam, outputParam: token1.outputParam))
-                        continue next_token
-                    }
-                }
+        for (key, tokens) in from {
+            if !forbidden.contains(key.terminalIndex) {
+                selected[key] = tokens
             }
         }
-        
-        return alreadySelected.merging(discard(tokens: from, discarded: discarded)) { t1, t2 in t1.union(t2) }
+        return alreadySelected.merging(selected) { t1, t2 in t1.union(t2) }
     }
     
 }
@@ -389,25 +380,15 @@ class Parsing<Char> {
         return L(lexers: terminalLexers)
     }
     
-    private enum ConditionVar : Hashable {
-        case in1, out1, in2, out2
-    }
-    
     private func convert(terminalPriorities : Set<TerminalPriority>) -> S.Priorities {
-        var priorities : [Int : [Int : [Term]]] = [:]
-        func addCondition(_ t1 : Int, _ t2 : Int, _ cond : Term) {
-            guard var prios1 = priorities[t1] else {
-                priorities[t1] = [t2 : [cond]]
+        var priorities : [Int : Set<Int>] = [:]
+        func addCondition(_ lower : Int, _ higher : Int) {
+            guard var prios = priorities[higher] else {
+                priorities[higher] = [lower]
                 return
             }
-            guard var prios2 = prios1[t2] else {
-                prios1[t2] = [cond]
-                priorities[t1] = prios1
-                return
-            }
-            prios2.append(cond)
-            prios1[t2] = prios2
-            priorities[t1] = prios1
+            prios.insert(lower)
+            priorities[higher] = prios
         }
         for terminalPriority in terminalPriorities {
             let terminal1 : Int
@@ -420,58 +401,13 @@ class Parsing<Char> {
             case let .terminal(index: index): terminal2 = index
             case .nonterminal: fatalError()
             }
-            let store = TermStore()
-            let conditionId = store.store(terminalPriority.condition.inhabitant)
-            let substitution = Substitution { varname in
-                let symbolVar = varname as! SymbolVar
-                let symbol = symbolVar.symbol
-                let v : ConditionVar
-                if symbol == terminalPriority.terminal1 {
-                    switch symbolVar {
-                    case .In: v = .in1
-                    case .Out: v = .out1
-                    }
-                } else if symbol == terminalPriority.terminal2 {
-                    switch symbolVar {
-                    case .In: v = .in2
-                    case .Out: v = .out2
-                    }
-                } else {
-                    fatalError()
-                }
-                return .Var(name: v)
-            }
-            let condition = store.compute(substitution, id: conditionId)
-            addCondition(terminal1, terminal2, condition)
+            addCondition(terminal1, terminal2)
         }
-        func transform(conditions : [Term]) -> S.Priority {
-            let store = TermStore()
-            var conditionIds : Set<TermStore.Id> = []
-            for condition in conditions {
-                conditionIds.insert(store.store(condition))
-            }
-            func eval(in1 : Param, out1 : Param, in2 : Param, out2 : Param) -> Bool {
-                func evalEnv(varname : VarName) -> Param {
-                    switch varname as! ConditionVar {
-                    case .in1: return in1
-                    case .out1: return out1
-                    case .in2: return in2
-                    case .out2: return out2
-                    }
-                }
-                let computation = Eval(language: language, environment: evalEnv)
-                for id in conditionIds {
-                    if store.compute(computation, id: id) as! Bool { return true }
-                }
-                return false
-            }
-            return eval
-        }
-        return priorities.mapValues { prios in prios.mapValues(transform(conditions:)) }
+        return priorities
     }
         
     func parse<In : ASort, Out : ASort>(input : Input<Char>, position : Int, symbol : Symbol<In, Out>, param : In.Native) -> ParseResult<Out.Native> {
-        let result = g.parse(input: input, position: position, symbol: symbolMap[symbol.name.name]!, param: param, semantics: .modified)
+        let result = g.parse(input: input, position: position, symbol: symbolMap[symbol.name.name]!, param: param)
         switch result {
         case let .failed(position: position): return .failed(position: position)
         case let .success(length: length, results: results):

@@ -22,18 +22,15 @@ public struct TerminalPriority : GrammarElement, HasPosition, Hashable {
     
     public let position : Position
     
-    public let terminal1 : IndexedSymbolName
+    public let terminal1 : IndexedSymbolName // lower priority terminal
     
-    public let terminal2 : IndexedSymbolName
-        
-    public let condition : BOOL
-    
-    internal init(position : Position, terminal1 : IndexedSymbolName, terminal2 : IndexedSymbolName, condition : BOOL) {
+    public let terminal2 : IndexedSymbolName // higher priority terminal
+            
+    internal init(position : Position, terminal1 : IndexedSymbolName, terminal2 : IndexedSymbolName) {
         self.id = TerminalPriorityId()
         self.position = position
         self.terminal1 = terminal1
         self.terminal2 = terminal2
-        self.condition = condition
     }
     
     public static func == (left : TerminalPriority, right : TerminalPriority) -> Bool {

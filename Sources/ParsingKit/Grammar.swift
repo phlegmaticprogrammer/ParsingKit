@@ -331,12 +331,10 @@ open class Grammar {
     public func prioritise<In1 : Sort, Out1 : Sort, In2 : Sort, Out2 : Sort>(
         terminal terminal2 : Terminal<In1, Out1>,
         over terminal1 : Terminal<In2, Out2>,
-        when : BOOL = true,
         file : String = #file, line : Int = #line) -> TerminalPriority
     {
         return TerminalPriority(position: .position(file: file, line: line),
-                                terminal1: terminal1.name, terminal2: terminal2.name,
-                                condition: when)
+                                terminal1: terminal1.name, terminal2: terminal2.name)
     }
     
     // Do not provide a lexer for the terminal returned here!!!
@@ -496,12 +494,6 @@ open class Grammar {
         }
         guard terminalPriority.terminal1 != terminalPriority.terminal2 else {
             failedCheck(terminalPriority, "Symbols '\(terminalPriority.terminal1)' are identical, must be distinguished.")
-        }
-        let store = TermStore()
-        let computation = SortOf(language: language, environment: terminalPriority.typingEnvironment(grammar: self))
-        let id = store.store(terminalPriority.condition.inhabitant)
-        guard let sortname = store.compute(computation, id: id), sortname == BOOL().sortname else {
-            failedCheck(terminalPriority, "Condition '\(terminalPriority.condition)' does not type check as a BOOL.")
         }
         _terminalPriorities.insert(terminalPriority)
     }
