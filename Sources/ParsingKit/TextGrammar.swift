@@ -48,5 +48,10 @@ extension Parser where Char == Character {
     public func parse<Out : ASort>(input : String, position : Int = 0, start : Nonterminal<UNIT, Out>) -> ParseResult<Out.Native> {
         return parse(input: ArrayInput(input), position: position, start: start, param: UNIT.singleton)
     }
+
+    public func parse<Out : ASort>(input : ArrayInput<Char>, position : Int = 0, start : Nonterminal<UNIT, Out>) -> ParseResult<Out.Native> {
+        return parse(input: input, position: position, start: start, param: UNIT.singleton)
+    }
+
     
 }

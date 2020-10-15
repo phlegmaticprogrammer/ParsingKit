@@ -5,7 +5,7 @@ public typealias Input = EarleyLocalLexing.Input
 
 public final class ArrayInput<Char> : Input<Char> {
     
-    private let characters : [Char]
+    public let characters : [Char]
     
     public init<S : Sequence>(_ characters : S) where S.Element == Char {
         self.characters = Array(characters)

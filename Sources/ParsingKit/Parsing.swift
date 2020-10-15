@@ -124,32 +124,20 @@ fileprivate class C<Char> : EarleyLocalLexing.ConstructResult {
                              outputParam: key.outputParam)
     }
 
-    func evalRule<RHS>(input: Input<Char>, key: ItemKey<Param>, completed: RHS) -> Result? where RHS : CompletedRightHandSide, Param == RHS.Param, Result == RHS.Result {
+    func evalRule<RHS>(input: Input<Char>, key: ItemKey<Param>, completed: RHS) -> Result where RHS : CompletedRightHandSide, Param == RHS.Param, Result == RHS.Result {
         let k = transform(key: key)
         guard deepSymbols.contains(k.symbol) else { return ParseTree.leaf(key: k) }
         let id = ruleIds[completed.ruleIndex]
         let count = completed.count
-        for i in 0 ..< count {
-            if completed.rhs(i+1).result == nil {
-                return nil
-            }
-        }
-        let rhs = (0 ..< count).map { i in completed.rhs(i+1).result! }
+        let rhs = (0 ..< count).map { i in completed.rhs(i+1).result }
         return .rule(id: id, key: k, rhs: rhs)
     }
     
-    func terminal(key: ItemKey<AnyHashable>, result: ParseTree?) -> ParseTree? {
+    func terminal(key: ItemKey<AnyHashable>, result: ParseTree?) -> ParseTree {
         return result ?? ParseTree.leaf(key: transform(key: key))
     }
-    
-    func bailout(key: ItemKey<AnyHashable>) -> ParseTree? {
-        //print("bailout = \(key)")
-        return nil
-        //fatalError()
-        //return ParseTree.leaf(key: transform(key: key))
-    }
-    
-    func merge(key: ItemKey<Param>, results: [Result]) -> Result? {
+        
+    func merge(key: ItemKey<Param>, results: [Result]) -> Result {
         let k = transform(key: key)
         guard deepSymbols.contains(k.symbol) else { return ParseTree.leaf(key: k) }
 
