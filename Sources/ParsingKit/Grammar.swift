@@ -67,6 +67,39 @@ internal protocol SettableSymbol {
 
 open class Grammar {
     
+    public enum Visibility : Hashable {
+        case Hidden
+        case Auxiliary
+        case Visible
+    }
+    
+    public enum Structure : Hashable {
+        case Flat
+        case Deep
+    }
+    
+    public enum Availability : Hashable {
+        case Private
+        case Public
+        case Open
+    }
+    
+    public struct Properties : Hashable {
+        public let visibility : Visibility
+        public let structure : Structure
+        public let availability : Availability
+        public let kind : SymbolKind
+        
+        func makeFlat() -> Properties {
+            return Properties(visibility: visibility, structure: .Flat, availability: availability, kind: kind)
+        }
+
+        func makeDeep() -> Properties {
+            return Properties(visibility: visibility, structure: .Deep, availability: availability, kind: kind)
+        }
+
+    }
+    
     @propertyWrapper
     public class Sym<In : Sort, Out : Sort, S : Symbol<In, Out>> : SettableSymbol {
         
@@ -79,20 +112,20 @@ open class Grammar {
         }
         
         internal func setSymbol(grammar : Grammar, name : SymbolName) {
-            let sym = S(name: IndexedSymbolName(name))
-            precondition(grammar.install(symbol: sym))
+            let provisionalSym = S(name: IndexedSymbolName(name))
+            let (symbolName, properties) = grammar.defaultProperties(name: name, kind: provisionalSym.kind)
+            let sym = S(name: IndexedSymbolName(symbolName))
+            precondition(grammar.install(symbol: sym, properties: properties))
             self.symbol = sym
         }
     }
 
-    public typealias Symbols = [SymbolName : SymbolKind]
+    public typealias Symbols = [SymbolName : Properties]
     
     public typealias Rules = [SymbolName : Set<Rule>]
     
     private var _symbols : Symbols
-    
-    private var _deepSymbols : Set<SymbolName>
-    
+        
     private var _lookaheadSymbols : [SymbolName : Bool]
     
     private var _rules : Rules
@@ -110,11 +143,7 @@ open class Grammar {
     public var symbols : Symbols {
         return _symbols
     }
-    
-    public var deepSymbols : Set<SymbolName> {
-        return _deepSymbols
-    }
-    
+        
     public var rules : Rules {
         return _rules
     }
@@ -128,11 +157,11 @@ open class Grammar {
     }
         
     private static func add(symbols : inout Symbols, moreSymbols : Symbols) {
-        for (name, kind) in moreSymbols {
-            if let oldKind = symbols[name] {
-                if oldKind != kind { fatalError("conflicting declaration of symbol \(name)") }
+        for (name, props) in moreSymbols {
+            if let oldProps = symbols[name] {
+                if oldProps != props { fatalError("conflicting declaration of symbol \(name)") }
             } else {
-                symbols[name] = kind
+                symbols[name] = props
             }
         }
     }
@@ -148,9 +177,11 @@ open class Grammar {
     }
     
     public init(parents : [Grammar] = [], sealed : Bool = true) {
+        guard parents.count <= 1 else {
+            fatalError("no multiple inheritance allowed")
+        }
         var symbols : Symbols = [:]
         var rules : Rules = [:]
-        var deepSymbols : Set<SymbolName> = []
         var priorities : Set<TerminalPriority> = []
         var lookaheads : [SymbolName : Bool] = [:]
         var l = Language.standard
@@ -167,13 +198,11 @@ open class Grammar {
             }
             Grammar.add(symbols: &symbols, moreSymbols: parent._symbols)
             Grammar.add(rules: &rules, moreRules: parent._rules)
-            deepSymbols.formUnion(parent._deepSymbols)
             priorities.formUnion(parent._terminalPriorities)
             l = Language.join(l, parent.language)
         }
         self._language = l
         self._symbols = symbols
-        self._deepSymbols = deepSymbols
         self._rules = rules
         self._terminalPriorities = priorities
         self._sealed = false
@@ -217,6 +246,10 @@ open class Grammar {
     }
     
     public func kindOf(_ name : SymbolName) -> SymbolKind? {
+        return _symbols[name]?.kind
+    }
+    
+    public func propertiesOf(_ name : SymbolName) -> Properties? {
         return _symbols[name]
     }
 
@@ -225,23 +258,25 @@ open class Grammar {
     }
     
     public func isDeep(_ name : SymbolName) -> Bool {
-        return _deepSymbols.contains(name)
+        guard let props = _symbols[name] else { return false }
+        return props.structure == .Deep
     }
     
     public func isFlat(_ name : SymbolName) -> Bool {
-        return _symbols[name] != nil && !_deepSymbols.contains(name)
+        guard let props = _symbols[name] else { return false }
+        return props.structure == .Flat
     }
     
     public func makeFlat(_ name : SymbolName) {
         checkSeal()
         precondition(exists(name))
-        _deepSymbols.remove(name)
+        _symbols[name] = _symbols[name]!.makeFlat()
     }
     
     private func makeDeep(_ name : SymbolName) {
         checkSeal()
         precondition(exists(name))
-        _deepSymbols.insert(name)
+        _symbols[name] = _symbols[name]!.makeDeep()
     }
     
     public func makeDeep<I,O>(_ terminal : Terminal<I, O>) {
@@ -249,10 +284,11 @@ open class Grammar {
     }
         
     private func freshSymbol(basedOn : SymbolName) -> SymbolName {
-        guard _symbols[basedOn] != nil else { return basedOn }
+        let base = stripName(name: basedOn)
+        guard _symbols[base] != nil else { return basedOn }
         for i in 0 ... Int.max {
-            let name = SymbolName("\(basedOn)-\(i)")
-            if _symbols[name] == nil { return name }
+            let name = SymbolName("\(base)-\(i)")
+            if _symbols[name] == nil { return SymbolName("\(basedOn)-\(i)") }
         }
         fatalError("could not create fresh symbol based on '\(basedOn)'")
     }
@@ -263,26 +299,56 @@ open class Grammar {
         _language.add(sort: sort)
     }
     
-    public func install<In : Sort, Out : Sort>(symbol : Symbol<In, Out>) -> Bool {
+    private func stripName(name : SymbolName) -> SymbolName {
+        let n = name.name
+        if n.hasPrefix("__") {
+            return SymbolName(String(n.dropFirst(2)))
+        } else if n.hasPrefix("_") {
+            return SymbolName(String(n.dropFirst()))
+        } else {
+            return name
+        }
+    }
+    
+    private func defaultProperties(name : SymbolName, kind : SymbolKind) -> (SymbolName, Properties) {
+        var n = name.name
+        let visibility : Grammar.Visibility
+        if n.hasPrefix("__") {
+            n = String(n.dropFirst(2))
+            visibility = .Hidden
+        } else if n.hasPrefix("_") {
+            n = String(n.dropFirst())
+            visibility = .Auxiliary
+        } else {
+            visibility = .Visible
+        }
+        let structure : Grammar.Structure = kind.isNonterminal ? .Deep : .Flat
+        let availability : Grammar.Availability = .Open
+        let properties = Properties(visibility: visibility, structure: structure, availability: availability, kind: kind)
+        return (SymbolName(n), properties)
+    }
+    
+    public func install<In : Sort, Out : Sort>(symbol : Symbol<In, Out>, properties : Grammar.Properties) -> Bool {
+        guard !symbol.name.name.name.hasPrefix("_") else {
+            fatalError("symbol name cannot start with underscore: \(symbol.name)")
+        }
         let name = symbol.name.name
-        if let existing = kindOf(name) {
-            return existing == symbol.kind
+        if let existing = _symbols[name] {
+            return existing == properties
         } else {
             checkSeal()
             let kind = symbol.kind
             install(sort: kind.in)
             install(sort: kind.out)
-            _symbols[name] = kind
-            if kind.isNonterminal {
-                _deepSymbols.insert(name)
-            }
+            _symbols[name] = properties
             return true
         }
     }
     
     public func terminal<In : Sort, Out : Sort>(_ name : SymbolName, in : In = In(), out : Out = Out()) -> Terminal<In, Out> {
-        let symbol = Terminal<In, Out>(name: IndexedSymbolName(name), kind: .terminal(in: `in`, out: out))
-        precondition(install(symbol: symbol))
+        let (symbolName, properties) = defaultProperties(name: name, kind: .terminal(in: `in`, out: out))
+        let symbol = Terminal<In, Out>(name: IndexedSymbolName(symbolName), kind: properties.kind)
+        precondition(install(symbol: symbol, properties: properties))
         return symbol
     }
     
@@ -303,8 +369,9 @@ open class Grammar {
     }
     
     public func nonterminal<In : Sort, Out : Sort>(_ name : SymbolName, in : In = In(), out : Out = Out()) -> Nonterminal<In, Out> {
-        let symbol = Nonterminal<In, Out>(name: IndexedSymbolName(name), kind: .nonterminal(in: `in`, out: out))
-        precondition(install(symbol: symbol))
+        let (symbolName, properties) = defaultProperties(name: name, kind: .nonterminal(in: `in`, out: out))
+        let symbol = Nonterminal<In, Out>(name: IndexedSymbolName(symbolName), kind: properties.kind)
+        precondition(install(symbol: symbol, properties: properties))
         return symbol
     }
     

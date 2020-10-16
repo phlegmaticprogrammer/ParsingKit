@@ -96,14 +96,14 @@ fileprivate class C<Char> : EarleyLocalLexing.ConstructResult {
     
     let nonterminals : [SymbolName]
     
-    let deepSymbols : Set<SymbolName>
+    let symbols : Grammar.Symbols
     
     let ruleIds : [RuleId]
     
-    init(terminals : [SymbolName], nonterminals : [SymbolName], deepSymbols : Set<SymbolName>, ruleIds : [RuleId]) {
+    init(terminals : [SymbolName], nonterminals : [SymbolName], symbols : Grammar.Symbols, ruleIds : [RuleId]) {
         self.terminals = terminals
         self.nonterminals = nonterminals
-        self.deepSymbols = deepSymbols
+        self.symbols = symbols
         self.ruleIds = ruleIds
     }
 
@@ -123,10 +123,14 @@ fileprivate class C<Char> : EarleyLocalLexing.ConstructResult {
                              inputParam: key.inputParam,
                              outputParam: key.outputParam)
     }
+    
+    func isDeep(symbol : SymbolName) -> Bool {
+        return symbols[symbol]!.structure == .Deep
+    }
 
     func evalRule<RHS>(input: Input<Char>, key: ItemKey<Param>, completed: RHS) -> Result where RHS : CompletedRightHandSide, Param == RHS.Param, Result == RHS.Result {
         let k = transform(key: key)
-        guard deepSymbols.contains(k.symbol) else { return ParseTree.leaf(key: k) }
+        guard isDeep(symbol: k.symbol) else { return ParseTree.leaf(key: k) }
         let id = ruleIds[completed.ruleIndex]
         let count = completed.count
         let rhs = (0 ..< count).map { i in completed.rhs(i+1).result }
@@ -139,7 +143,7 @@ fileprivate class C<Char> : EarleyLocalLexing.ConstructResult {
         
     func merge(key: ItemKey<Param>, results: [Result]) -> Result {
         let k = transform(key: key)
-        guard deepSymbols.contains(k.symbol) else { return ParseTree.leaf(key: k) }
+        guard isDeep(symbol: k.symbol) else { return ParseTree.leaf(key: k) }
 
         var collectedResults : Set<Result> = []
         for result in results {
@@ -240,14 +244,14 @@ class Parsing<Char> {
         let lexer = makeLexer(lexers)
         let priorities = convert(terminalPriorities: grammar.terminalPriorities)
         let selector = S(priorities: priorities)
-        let constructResult = C<Char>(terminals: terminals, nonterminals: nonterminals, deepSymbols: grammar.deepSymbols, ruleIds: ruleIds)
+        let constructResult = C<Char>(terminals: terminals, nonterminals: nonterminals, symbols: grammar.symbols, ruleIds: ruleIds)
         let terminalParseModes = convert(grammar.lookaheads)
         g = EarleyLocalLexing.Grammar(rules: rules, lexer: lexer, selector: selector, constructResult: constructResult, terminalParseModes: terminalParseModes)
     }
     
     private func addSymbols(_ symbols : Grammar.Symbols) {
-        for (symbolname, kind) in symbols {
-            switch kind {
+        for (symbolname, props) in symbols {
+            switch props.kind {
             case .nonterminal:
                 let index = nonterminals.count
                 nonterminals.append(symbolname)
@@ -256,7 +260,6 @@ class Parsing<Char> {
                 let index = terminals.count
                 terminals.append(symbolname)
                 symbolMap[symbolname] = .terminal(index: index)
-                print("terminal \(symbolname) --> \(index)")
             }
         }
     }
