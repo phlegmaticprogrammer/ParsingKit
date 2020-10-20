@@ -1,7 +1,7 @@
 import FirstOrderDeepEmbedding
 
 /// The type of the name of a `Symbol`.
-public struct SymbolName : Hashable, ExpressibleByStringLiteral, CustomStringConvertible {
+public struct SymbolName : Hashable, ExpressibleByStringLiteral, CustomStringConvertible, Codable {
     
     public typealias StringLiteralType = String
     
