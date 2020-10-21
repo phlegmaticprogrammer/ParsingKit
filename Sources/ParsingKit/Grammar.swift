@@ -267,6 +267,21 @@ open class Grammar {
         return props.structure == .Flat
     }
     
+    public func isVisible(_ name : SymbolName) -> Bool {
+        guard let props = _symbols[name] else { return false }
+        return props.visibility == .Visible
+    }
+
+    public func isAuxiliary(_ name : SymbolName) -> Bool {
+        guard let props = _symbols[name] else { return false }
+        return props.visibility == .Auxiliary
+    }
+
+    public func isHidden(_ name : SymbolName) -> Bool {
+        guard let props = _symbols[name] else { return false }
+        return props.visibility == .Hidden
+    }
+    
     public func makeFlat(_ name : SymbolName) {
         checkSeal()
         precondition(exists(name))
