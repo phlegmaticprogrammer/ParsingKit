@@ -1,32 +1,19 @@
 import FirstOrderDeepEmbedding
+import Foundation
 
-/// The unique identifier of a rule.
-public final class RuleId: Hashable {
+/// The name of a rule. Must be either anonymous or unique among the rules for a given symbol.
+public struct RuleName: Hashable {
     
-    private var fresh : Bool
-    
-    public static func == (left: RuleId, right: RuleId) -> Bool {
-        return left === right
+    public let name : String?
+        
+    /// Creates a RuleName.
+    public init(name : String?) {
+        self.name = name
     }
     
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(self))
-    }
-    
-    /// Creates an unused unique rule identifier.
-    public init() {
-        fresh = true
-    }
-    
-    /// Returns whether the identifier has been marked as used already.
-    public var isUsed : Bool {
-        return !fresh
-    }
-    
-    /// Marks this identifier as used.
-    internal func markAsUsed() {
-        guard fresh else { fatalError("the identifier has already been used") }
-        fresh = false
+    /// Whether this name is anonymous.
+    public var isAnonymous : Bool {
+        return name == nil
     }
 }
 
@@ -110,9 +97,9 @@ public func collectRuleBody(@RuleBodyBuilder _ ruleBodyBuilder : () -> RuleBody)
     return ruleBodyBuilder()
 }
 
-public struct Rule : GrammarElement, HasPosition, Hashable {
+public struct Rule : GrammarElement, HasPosition {
     
-    public let id : RuleId
+    public let name : RuleName
 
     public let position : Position
 
@@ -120,22 +107,13 @@ public struct Rule : GrammarElement, HasPosition, Hashable {
 
     public let body : [RuleBodyElem]
 
-    internal init(id : RuleId, position : Position, symbol : IndexedSymbolName, body : [RuleBodyElem]) {
-        id.markAsUsed()
-        self.id = id
+    internal init(name : RuleName, position : Position, symbol : IndexedSymbolName, body : [RuleBodyElem]) {
+        self.name = name
         self.position = position
         self.symbol = symbol
         self.body = body
     }
-    
-    public static func == (left : Rule, right : Rule) -> Bool {
-        return left.id == right.id
-    }
         
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
     public func grammarComponents() -> [GrammarComponent] {
         return [.rule(rule: self)]
     }
