@@ -98,13 +98,13 @@ fileprivate class C<Char> : EarleyLocalLexing.ConstructResult {
     
     let symbols : Grammar.Symbols
     
-    let rules : [Rule]
+    let ruleIds : [RuleId]
     
-    init(terminals : [SymbolName], nonterminals : [SymbolName], symbols : Grammar.Symbols, rules : [Rule]) {
+    init(terminals : [SymbolName], nonterminals : [SymbolName], symbols : Grammar.Symbols, ruleIds : [RuleId]) {
         self.terminals = terminals
         self.nonterminals = nonterminals
         self.symbols = symbols
-        self.rules = rules
+        self.ruleIds = ruleIds
     }
 
     func transform(symbol : EarleyLocalLexing.Symbol) -> SymbolName {
@@ -235,7 +235,7 @@ class Parsing<Char> {
     private var nonterminals : [SymbolName] = []
     
     private var rules : [ERule<Param>] = []
-    //private var ruleIds : [RuleId] = []
+    private var ruleIds : [RuleId] = []
     
     init(grammar : Grammar, lexers : Lexers<Char>) {
         self.language = grammar.language
@@ -267,7 +267,7 @@ class Parsing<Char> {
     private func addRules(_ rules : Grammar.Rules) {
         for (_, rules) in rules {
             for rule in rules {
-                //ruleIds.append(rule.id)
+                ruleIds.append(rule.id)
                 self.rules.append(convertRule(rule))
             }
         }
