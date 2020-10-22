@@ -3,30 +3,27 @@ import FirstOrderDeepEmbedding
 /// The unique identifier of a rule.
 public final class RuleId: Hashable {
     
-    private var fresh : Bool
+    private var id : Int?
     
     public static func == (left: RuleId, right: RuleId) -> Bool {
+        if left.id == nil || right.id == nil { fatalError("rule identifier not initialized yet") }
         return left === right
     }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(self))
+        if id == nil { fatalError("rule identifier not initialized yet") }
+        hasher.combine(id!)
     }
     
-    /// Creates an unused unique rule identifier.
+    /// Creates an unitialized rule identifier.
     public init() {
-        fresh = true
+        id = nil
     }
-    
-    /// Returns whether the identifier has been marked as used already.
-    public var isUsed : Bool {
-        return !fresh
-    }
-    
-    /// Marks this identifier as used.
-    internal func markAsUsed() {
-        guard fresh else { fatalError("the identifier has already been used") }
-        fresh = false
+        
+    /// Initializes this identifier with the given id.
+    internal func set(id : Int) {
+        guard self.id == nil else { fatalError("the rule identifier has already been initialized") }
+        self.id = id
     }
 }
 
@@ -120,9 +117,8 @@ public struct Rule : GrammarElement, HasPosition, Hashable {
 
     public let body : [RuleBodyElem]
 
-    internal init(id : RuleId, position : Position, symbol : IndexedSymbolName, body : [RuleBodyElem]) {
-        id.markAsUsed()
-        self.id = id
+    internal init(position : Position, symbol : IndexedSymbolName, body : [RuleBodyElem]) {
+        self.id = RuleId()
         self.position = position
         self.symbol = symbol
         self.body = body

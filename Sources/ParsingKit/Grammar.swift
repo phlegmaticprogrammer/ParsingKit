@@ -557,6 +557,7 @@ open class Grammar {
     
     private func add(rule : Rule) {
         checkSeal()
+        rule.id.set(id: _rules.count)
         check(rule: rule)
         let name = rule.symbol.name
         if _rules[name] != nil {
