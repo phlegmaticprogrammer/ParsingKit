@@ -627,11 +627,21 @@ open class Grammar {
     }
     
     private func checkGrammar() {
-        let dependencies = computeSymbolDependencies()
+        /*let dependencies = computeSymbolDependencies()
         for (symbol, deps) in dependencies {
             if kindOf(symbol)!.isTerminal && deps.contains(symbol) {
                 print("warning: terminal '\(symbol)' depends on itself")
                 //failedCheck(Position.unknown, "terminal '\(symbol)' depends on itself")
+            }
+        }*/
+        for (symbol, rulesOfSymbol) in rules {
+            var names : Set<String> = []
+            for rule in rulesOfSymbol {
+                if !rule.name.isAnonymous {
+                    if !names.insert(rule.name.name!).inserted {
+                        failedCheck(rule, "rule has duplicate name '\(rule.name.name!)' for symbol '\(symbol)'")
+                    }
+                }
             }
         }
     }

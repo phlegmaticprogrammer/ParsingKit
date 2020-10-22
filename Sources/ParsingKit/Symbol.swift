@@ -183,13 +183,13 @@ public class Symbol<In : Sort, Out : Sort> : RuleBody {
         return elems
     }
 
-    public func rule(file : String = #file, line : Int = #line, @RuleBodyBuilder _ ruleBodyBuilder : () -> RuleBody) -> GrammarElement {
-        return Rule(position : .position(file: file, line: line), symbol: self.name, body: ruleBodyBuilder().ruleBodyElems)
+    public func rule(name : RuleName = RuleName(), file : String = #file, line : Int = #line, @RuleBodyBuilder _ ruleBodyBuilder : () -> RuleBody) -> GrammarElement {
+        return Rule(name : name, position : .position(file: file, line: line), symbol: self.name, body: ruleBodyBuilder().ruleBodyElems)
     }
 
-    public func rule(file : String = #file, line : Int = #line, _ ruleBodies : [RuleBody]) -> GrammarElement {
+    public func rule(name : RuleName = RuleName(), file : String = #file, line : Int = #line, _ ruleBodies : [RuleBody]) -> GrammarElement {
         let elems = extractRuleBodyElements(ruleBodies)
-        return Rule(position : .position(file: file, line: line), symbol: self.name, body: elems)
+        return Rule(name : name, position : .position(file: file, line: line), symbol: self.name, body: elems)
     }
     
     public var ruleBodyElems: [RuleBodyElem] {

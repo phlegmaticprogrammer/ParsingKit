@@ -3,28 +3,48 @@ import FirstOrderDeepEmbedding
 /// The unique identifier of a rule.
 public final class RuleId: Hashable {
     
-    private var id : Int?
+    private var _id : Int?
     
     public static func == (left: RuleId, right: RuleId) -> Bool {
-        if left.id == nil || right.id == nil { fatalError("rule identifier not initialized yet") }
+        if left._id == nil || right._id == nil { fatalError("rule identifier not initialized yet") }
         return left === right
     }
     
     public func hash(into hasher: inout Hasher) {
-        if id == nil { fatalError("rule identifier not initialized yet") }
-        hasher.combine(id!)
+        if _id == nil { fatalError("rule identifier not initialized yet") }
+        hasher.combine(_id!)
     }
     
     /// Creates an unitialized rule identifier.
     public init() {
-        id = nil
+        _id = nil
     }
         
     /// Initializes this identifier with the given id.
     internal func set(id : Int) {
-        guard self.id == nil else { fatalError("the rule identifier has already been initialized") }
-        self.id = id
+        guard self._id == nil else { fatalError("the rule identifier has already been initialized") }
+        self._id = id
     }
+    
+    public var id : Int {
+        return _id!
+    }
+}
+
+/// The name of a rule. Must be anonymous or otherwise unique among the other names of rules belonging to the same symbol.
+public struct RuleName : Hashable {
+    
+    /// The name
+    public let name : String?
+    
+    public init(_ name : String? = nil) {
+        self.name = name
+    }
+    
+    public var isAnonymous : Bool {
+        return name == nil
+    }
+    
 }
 
 public enum RuleBodyElem : HasPosition {
@@ -110,6 +130,8 @@ public func collectRuleBody(@RuleBodyBuilder _ ruleBodyBuilder : () -> RuleBody)
 public struct Rule : GrammarElement, HasPosition, Hashable {
     
     public let id : RuleId
+    
+    public let name : RuleName
 
     public let position : Position
 
@@ -117,8 +139,9 @@ public struct Rule : GrammarElement, HasPosition, Hashable {
 
     public let body : [RuleBodyElem]
 
-    internal init(position : Position, symbol : IndexedSymbolName, body : [RuleBodyElem]) {
+    internal init(name : RuleName, position : Position, symbol : IndexedSymbolName, body : [RuleBodyElem]) {
         self.id = RuleId()
+        self.name = name
         self.position = position
         self.symbol = symbol
         self.body = body
