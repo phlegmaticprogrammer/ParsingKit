@@ -148,6 +148,10 @@ open class Grammar {
         return _rules
     }
     
+    public func rulesOf(symbol : SymbolName) -> Set<Rule> {
+        return _rules[symbol] ?? []
+    }
+    
     public var terminalPriorities : Set<TerminalPriority> {
         return _terminalPriorities
     }
