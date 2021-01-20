@@ -68,7 +68,6 @@ internal protocol SettableSymbol {
 open class Grammar {
     
     public enum Visibility : Hashable {
-        //case Hidden
         case Auxiliary
         case Visible
     }
