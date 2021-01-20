@@ -68,7 +68,7 @@ internal protocol SettableSymbol {
 open class Grammar {
     
     public enum Visibility : Hashable {
-        case Hidden
+        //case Hidden
         case Auxiliary
         case Visible
     }
@@ -96,6 +96,10 @@ open class Grammar {
 
         func makeDeep() -> Properties {
             return Properties(visibility: visibility, structure: .Deep, availability: availability, kind: kind)
+        }
+        
+        public var isHidden : Bool {
+            return visibility == .Auxiliary && structure == .Flat
         }
 
     }
@@ -283,7 +287,7 @@ open class Grammar {
 
     public func isHidden(_ name : SymbolName) -> Bool {
         guard let props = _symbols[name] else { return false }
-        return props.visibility == .Hidden
+        return props.isHidden
     }
     
     public func makeFlat(_ name : SymbolName) {
@@ -332,16 +336,17 @@ open class Grammar {
     private func defaultProperties(name : SymbolName, kind : SymbolKind) -> (SymbolName, Properties) {
         var n = name.name
         let visibility : Grammar.Visibility
+        var structure : Grammar.Structure = kind.isNonterminal ? .Deep : .Flat
         if n.hasPrefix("__") {
             n = String(n.dropFirst(2))
-            visibility = .Hidden
+            visibility = .Auxiliary
+            structure = .Flat
         } else if n.hasPrefix("_") {
             n = String(n.dropFirst())
             visibility = .Auxiliary
         } else {
             visibility = .Visible
         }
-        let structure : Grammar.Structure = kind.isNonterminal ? .Deep : .Flat
         let availability : Grammar.Availability = .Open
         let properties = Properties(visibility: visibility, structure: structure, availability: availability, kind: kind)
         return (SymbolName(n), properties)
