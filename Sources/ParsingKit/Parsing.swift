@@ -22,6 +22,8 @@ fileprivate class L<Char> : EarleyLocalLexing.Lexer {
     
 }
 
+//public enum
+
 fileprivate class S : EarleyLocalLexing.Selector {
         
     typealias Param = AnyHashable
@@ -36,11 +38,11 @@ fileprivate class S : EarleyLocalLexing.Selector {
         self.priorities = S.transitiveClosure(priorities)
     }
 
-    struct T : Hashable {
+    /*struct T : Hashable {
         let terminalIndex : Int
         let inputParam : Param
         let outputParam : Param
-    }
+    }*/
     
     private static func transitiveClosure(_ priorities : Priorities) -> Priorities {
         var currentClosure : Priorities = priorities
@@ -61,10 +63,21 @@ fileprivate class S : EarleyLocalLexing.Selector {
             changed = false
             currentClosure = currentClosure.mapValues(step)
         } while changed
-        return priorities
+        return currentClosure
     }
         
+    func tokensCount(_ tokens : Tokens<Param, Result>) -> Int {
+        var count = 0
+        for (_, ts) in tokens {
+            count += ts.count
+        }
+        return count
+    }
+    
     func select(from: Tokens<Param, Result>, alreadySelected: Tokens<Param, Result>) -> Tokens<Param, Result> {
+        if tokensCount(from) >= 4 {
+            print("select from \(tokensCount(from)), already selected \(tokensCount(alreadySelected))")
+        }
         var forbidden : Set<Int> = []
         for (key, _) in alreadySelected {
             guard let prios = priorities[key.terminalIndex] else { continue }
