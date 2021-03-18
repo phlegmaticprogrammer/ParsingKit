@@ -25,12 +25,21 @@ public struct TerminalPriority : GrammarElement, HasPosition, Hashable {
     public let terminal1 : IndexedSymbolName // lower priority terminal
     
     public let terminal2 : IndexedSymbolName // higher priority terminal
+    
+    public struct Attributes : Hashable {
+        let paramIn : AnyHashable
+        let paramOut : AnyHashable
+        let length : Int
+    }
+    
+    public let when : (_ lower : Attributes, _ higher : Attributes) -> Bool
             
-    internal init(position : Position, terminal1 : IndexedSymbolName, terminal2 : IndexedSymbolName) {
+    internal init(position : Position, terminal1 : IndexedSymbolName, terminal2 : IndexedSymbolName, when : @escaping (Attributes, Attributes) -> Bool = { x, y in true }) {
         self.id = TerminalPriorityId()
         self.position = position
         self.terminal1 = terminal1
         self.terminal2 = terminal2
+        self.when = when
     }
     
     public static func == (left : TerminalPriority, right : TerminalPriority) -> Bool {
