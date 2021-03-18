@@ -135,6 +135,22 @@ extension Grammar {
         return MAYBE
     }
 
+    public func MaybeGreedy<S>(_ symbol : Symbol<S, UNIT>) -> Nonterminal<S, UNIT> {
+        let MAYBE : Nonterminal<S, UNIT> = freshNonterminal("_MaybeGreedy-\(symbol.name.name)")
+        let caseSome : Terminal<S, UNIT> = freshTerminal("_caseSome")
+        let caseNone : Terminal<S, UNIT> = freshTerminal("_caseNone")
+        add {
+            caseNone.rule {
+                EMPTY
+            }
+            assign(caseSome, symbol)
+            assign(MAYBE, caseSome)
+            assign(MAYBE, caseNone)
+            prioritise(terminal: caseSome, over: caseNone)
+        }
+        return MAYBE
+    }
+    
     public func Or<S, T>(_ symbols : Symbol<S, T>...) -> Nonterminal<S, T> {
         let OR : Nonterminal<S, T> = freshNonterminal("_Or")
         for symbol in symbols {
