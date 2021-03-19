@@ -32,9 +32,11 @@ public struct TerminalPriority : GrammarElement, HasPosition, Hashable {
         let length : Int
     }
     
-    public let when : (_ lower : Attributes, _ higher : Attributes) -> Bool
+    public typealias Condition = (_ lower : Attributes, _ higher : Attributes) -> Bool
+    
+    public let when : Condition
             
-    internal init(position : Position, terminal1 : IndexedSymbolName, terminal2 : IndexedSymbolName, when : @escaping (Attributes, Attributes) -> Bool = { x, y in true }) {
+    internal init(position : Position, terminal1 : IndexedSymbolName, terminal2 : IndexedSymbolName, when : @escaping Condition = { x, y in true }) {
         self.id = TerminalPriorityId()
         self.position = position
         self.terminal1 = terminal1

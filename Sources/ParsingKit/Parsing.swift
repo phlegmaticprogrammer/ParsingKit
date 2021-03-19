@@ -30,40 +30,48 @@ fileprivate class S : EarleyLocalLexing.Selector {
     
     typealias Result = ParseTree
         
-    typealias Priorities = [Int : Set<Int>] // maps each terminal to the set of terminals with LOWER priority
+    typealias Priorities = [Int : [Int : TerminalPriority.Condition]] // maps each terminal to the set of terminals with LOWER priority
     
     let priorities : Priorities
     
     init(priorities : Priorities) {
-        self.priorities = S.transitiveClosure(priorities)
+        self.priorities = priorities
     }
-
-    /*struct T : Hashable {
-        let terminalIndex : Int
-        let inputParam : Param
-        let outputParam : Param
-    }*/
     
-    private static func transitiveClosure(_ priorities : Priorities) -> Priorities {
-        var currentClosure : Priorities = priorities
-        var changed : Bool = false
-        func step(_ terminals : Set<Int>) -> Set<Int> {
-            var result = terminals
-            for t in terminals {
-                if let ts = currentClosure[t] {
-                    result.formUnion(ts)
+    private struct T {
+        let terminalIndex : Int
+        let attributes : TerminalPriority.Attributes
+        let result : Result?
+        var use : Bool
+        
+        func key() -> TerminalKey<Param> {
+            return TerminalKey(terminalIndex: terminalIndex, inputParam: attributes.paramIn)
+        }
+        func token() -> Token<Param, Result> {
+            return Token(length: attributes.length, outputParam: attributes.paramOut, result: result)
+        }
+        
+        static func from(_ tokens : Tokens<Param, Result>) -> [T] {
+            var ts : [T] = []
+            for (key, results) in tokens {
+                for token in results {
+                    let attr = TerminalPriority.Attributes(paramIn: key.inputParam, paramOut: token.outputParam, length: token.length)
+                    let t = T(terminalIndex: key.terminalIndex, attributes: attr, result: token.result, use: true)
+                    ts.append(t)
                 }
             }
-            if result.count != terminals.count {
-                changed = true
-            }
-            return result
+            return ts
         }
-        repeat {
-            changed = false
-            currentClosure = currentClosure.mapValues(step)
-        } while changed
-        return currentClosure
+        
+        static func to(_ ts : [T]) -> Tokens<Param, Result> {
+            var tokens : Tokens<Param, Result> = [:]
+            for t in ts {
+                if t.use {
+                    tokens[t.key(), default: []].insert(t.token())
+                }
+            }
+            return tokens
+        }
     }
         
     func tokensCount(_ tokens : Tokens<Param, Result>) -> Int {
@@ -74,26 +82,26 @@ fileprivate class S : EarleyLocalLexing.Selector {
         return count
     }
     
+    func conditionOf(lower : Int, higher : Int) -> TerminalPriority.Condition? {
+        guard let prios = priorities[higher] else { return nil }
+        return prios[lower]
+    }
+    
     func select(from: Tokens<Param, Result>, alreadySelected: Tokens<Param, Result>) -> Tokens<Param, Result> {
-        if tokensCount(from) >= 4 {
-            print("select from \(tokensCount(from)), already selected \(tokensCount(alreadySelected))")
-        }
-        var forbidden : Set<Int> = []
-        for (key, _) in alreadySelected {
-            guard let prios = priorities[key.terminalIndex] else { continue }
-            forbidden.formUnion(prios)
-        }
-        for (key, _) in from {
-            guard let prios = priorities[key.terminalIndex] else { continue }
-            forbidden.formUnion(prios)
-        }
-        var selected : Tokens<Param, Result> = [:]
-        next_token:
-        for (key, tokens) in from {
-            if !forbidden.contains(key.terminalIndex) {
-                selected[key] = tokens
+        var ts = T.from(from)
+        for l in 0 ..< ts.count {
+            let lower = ts[l]
+            for h in 0 ..< ts.count {
+                let higher = ts[h]
+                guard let cond = conditionOf(lower: lower.terminalIndex, higher: higher.terminalIndex) else { continue }
+                if cond(lower.attributes, higher.attributes) {
+                    ts[l].use = false
+                }
             }
         }
+        let selected = T.to(ts)
+        
+        // is everything alright with the merging here???
         return alreadySelected.merging(selected) { t1, t2 in t1.union(t2) }
     }
     
@@ -385,13 +393,16 @@ class Parsing<Char> {
     }
     
     private func convert(terminalPriorities : Set<TerminalPriority>) -> S.Priorities {
-        var priorities : [Int : Set<Int>] = [:]
-        func addCondition(_ lower : Int, _ higher : Int) {
+        var priorities : [Int : [Int : TerminalPriority.Condition]] = [:]
+        func addCondition(_ lower : Int, _ higher : Int, _ condition : @escaping TerminalPriority.Condition) {
             guard var prios = priorities[higher] else {
-                priorities[higher] = [lower]
+                priorities[higher] = [lower : condition]
                 return
             }
-            prios.insert(lower)
+            guard prios[lower] == nil else {
+                fatalError("there is already an existing relation between terminals \(lower) and \(higher)")
+            }
+            prios[lower] = condition
             priorities[higher] = prios
         }
         for terminalPriority in terminalPriorities {
@@ -405,7 +416,7 @@ class Parsing<Char> {
             case let .terminal(index: index): terminal2 = index
             case .nonterminal: fatalError()
             }
-            addCondition(terminal1, terminal2)
+            addCondition(terminal1, terminal2, terminalPriority.when)
         }
         return priorities
     }
