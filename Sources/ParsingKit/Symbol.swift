@@ -148,7 +148,13 @@ internal enum SymbolVar : Hashable, CustomStringConvertible {
 
 postfix operator ~
 
-public class Symbol<In : Sort, Out : Sort> : RuleBody {
+public protocol SymbolWithName {
+    
+    var name : IndexedSymbolName { get }
+    
+}
+
+public class Symbol<In : Sort, Out : Sort> : RuleBody, SymbolWithName {
 
     public let name : IndexedSymbolName
     
