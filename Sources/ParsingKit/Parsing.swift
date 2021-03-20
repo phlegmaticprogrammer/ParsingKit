@@ -177,6 +177,13 @@ fileprivate class C<Char> : EarleyLocalLexing.ConstructResult {
         }
     }
     
+    func nameOf(symbol: EarleyLocalLexing.Symbol) -> String {
+        switch symbol {
+        case .terminal(let index): return terminals[index].name
+        case .nonterminal(let index): return nonterminals[index].name
+        }
+    }
+    
 }
 
 fileprivate class E : EarleyLocalLexing.EvalEnv {
