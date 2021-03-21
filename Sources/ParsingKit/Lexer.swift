@@ -6,17 +6,21 @@ public typealias Input = EarleyLocalLexing.Input
 public final class ArrayInput<Char> : Input<Char> {
     
     public let characters : [Char]
+    public let offset : Int
     
-    public init<S : Sequence>(_ characters : S) where S.Element == Char {
+    public init<S : Sequence>(_ characters : S, offset : Int = 0) where S.Element == Char {
         self.characters = Array(characters)
+        self.offset = offset
     }
     
     public override subscript(position: Int) -> Char? {
-        guard position < characters.count else { return nil }
-        return characters[position]
+        let i = position - offset
+        guard i < characters.count else { return nil }
+        return characters[i]
     }
     
 }
+
 
 public protocol Lexer {
     
