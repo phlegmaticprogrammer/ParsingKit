@@ -112,7 +112,7 @@ public enum SymbolKind : Hashable {
     
 }
 
-internal enum SymbolVar : Hashable, CustomStringConvertible {
+public enum SymbolVar : Hashable, CustomStringConvertible {
     case In(symbol : IndexedSymbolName)
     case Out(symbol : IndexedSymbolName)
     
@@ -123,7 +123,7 @@ internal enum SymbolVar : Hashable, CustomStringConvertible {
         }
     }
     
-    var description : String {
+    public var description : String {
         switch self {
         case let .In(symbol: symbol): return "\(symbol).in"
         case let .Out(symbol: symbol): return "\(symbol).out"

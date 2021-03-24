@@ -94,7 +94,7 @@ fileprivate class S : EarleyLocalLexing.Selector {
             for h in 0 ..< ts.count {
                 let higher = ts[h]
                 guard let cond = conditionOf(lower: lower.terminalIndex, higher: higher.terminalIndex) else { continue }
-                if cond(lower.attributes, higher.attributes) {
+                if cond.eval(lower: lower.attributes, higher: higher.attributes) {
                     ts[l].use = false
                 }
             }
@@ -401,7 +401,7 @@ class Parsing<Char> {
     
     private func convert(terminalPriorities : Set<TerminalPriority>) -> S.Priorities {
         var priorities : [Int : [Int : TerminalPriority.Condition]] = [:]
-        func addCondition(_ lower : Int, _ higher : Int, _ condition : @escaping TerminalPriority.Condition) {
+        func addCondition(_ lower : Int, _ higher : Int, _ condition : TerminalPriority.Condition) {
             guard var prios = priorities[higher] else {
                 priorities[higher] = [lower : condition]
                 return

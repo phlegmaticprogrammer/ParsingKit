@@ -430,21 +430,12 @@ open class Grammar {
     public func prioritise<In1 : ASort, Out1 : ASort, In2 : ASort, Out2 : ASort>(
         terminal terminal2 : Terminal<In1, Out1>,
         over terminal1 : Terminal<In2, Out2>,
-        when : @escaping (In1.Native, Out1.Native, Int, In2.Native, Out2.Native, Int) -> Bool,
+        when : TerminalPriority.Condition,
         file : String = #file, line : Int = #line) -> TerminalPriority
     {
-        func w(lower : TerminalPriority.Attributes, upper : TerminalPriority.Attributes) -> Bool {
-            let in1 = upper.paramIn as! In1.Native
-            let out1 = upper.paramOut as! Out1.Native
-            let len1 = upper.length
-            let in2 = lower.paramIn as! In2.Native
-            let out2 = lower.paramOut as! Out2.Native
-            let len2 = lower.length
-            return when(in1, out1, len1, in2, out2, len2)
-        }
         return TerminalPriority(position: .position(file: file, line: line),
                                 terminal1: terminal1.name, terminal2: terminal2.name,
-                                when: w)
+                                when: when.reversed)
     }
     
     public func prioritiseLongest(_ terminals : SymbolWithName...,
@@ -459,20 +450,41 @@ open class Grammar {
     {
         let p = Position.position(file: file, line: line)
         var elems = GrammarElements(_grammarComponents: [])
-        func cond_i_lowerPriorityThan_j(_ i : TerminalPriority.Attributes, _ j : TerminalPriority.Attributes) -> Bool {
-            return i.length < j.length
-        }
-        func cond_j_lowerPriorityThan_i(_ j : TerminalPriority.Attributes, _ i : TerminalPriority.Attributes) -> Bool {
-            return j.length <= i.length
-        }
         for i in 0 ..< terminalNames.count {
             let iName = terminalNames[i]
             for j in i+1 ..< terminalNames.count {
                 let jName = terminalNames[j]
                 let i_lowerPriorityThan_j = TerminalPriority(position: p, terminal1: iName, terminal2: jName,
-                                                             when: cond_i_lowerPriorityThan_j)
+                                                             when: .ifLessLength)
                 let j_lowerPriorityThan_i = TerminalPriority(position: p, terminal1: jName, terminal2: iName,
-                                                             when: cond_j_lowerPriorityThan_i)
+                                                             when: .ifLessOrEqualLength)
+                elems.add(i_lowerPriorityThan_j)
+                elems.add(j_lowerPriorityThan_i)
+            }
+        }
+        return elems
+    }
+    
+    public func prioritiseExclusionary(_ terminals : SymbolWithName...,
+                                  file : String = #file, line : Int = #line) -> GrammarElement
+    {
+        let names = terminals.map { $0.name }
+        return prioritiseExclusionary(names)
+    }
+
+    public func prioritiseExclusionary(_ terminalNames : [IndexedSymbolName],
+                                       file : String = #file, line : Int = #line) -> GrammarElement
+    {
+        let p = Position.position(file: file, line: line)
+        var elems = GrammarElements(_grammarComponents: [])
+        for i in 0 ..< terminalNames.count {
+            let iName = terminalNames[i]
+            for j in i+1 ..< terminalNames.count {
+                let jName = terminalNames[j]
+                let i_lowerPriorityThan_j = TerminalPriority(position: p, terminal1: iName, terminal2: jName,
+                                                             when: .True)
+                let j_lowerPriorityThan_i = TerminalPriority(position: p, terminal1: jName, terminal2: iName,
+                                                             when: .True)
                 elems.add(i_lowerPriorityThan_j)
                 elems.add(j_lowerPriorityThan_i)
             }
