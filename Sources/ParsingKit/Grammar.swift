@@ -129,7 +129,7 @@ open class Grammar {
     
     private var _symbols : Symbols
         
-    private var _lookaheadSymbols : [SymbolName : Bool]
+    private var _lookaheadSymbols : [SymbolName : (Bool, SymbolName)]
     
     private var _rules : Rules
     
@@ -159,7 +159,7 @@ open class Grammar {
         return _terminalPriorities
     }
     
-    public var lookaheads :  [SymbolName : Bool] {
+    public var lookaheads :  [SymbolName : (Bool, SymbolName)] {
         return _lookaheadSymbols
     }
         
@@ -190,7 +190,7 @@ open class Grammar {
         var symbols : Symbols = [:]
         var rules : Rules = [:]
         var priorities : Set<TerminalPriority> = []
-        var lookaheads : [SymbolName : Bool] = [:]
+        var lookaheads : [SymbolName : (Bool, SymbolName)] = [:]
         var l = Language.standard
         for parent in parents {
             if !parent.isSealed { fatalError("grammar parents must be sealed") }
@@ -497,14 +497,7 @@ open class Grammar {
         let name = SymbolName("_andNext-\(symbol.name.name)")
         let terminal : Terminal<In, Out> = fresh(terminal: name)
         makeDeep(terminal)
-        add {
-            terminal.rule {
-                symbol
-                symbol <-- terminal.in
-                symbol~ --> terminal
-            }
-        }
-        _lookaheadSymbols[terminal.name.name] = true
+        _lookaheadSymbols[terminal.name.name] = (true, symbol.name.name)
         return terminal
     }
     
@@ -513,13 +506,7 @@ open class Grammar {
         let name = SymbolName("_notNext-\(symbol.name.name)")
         let terminal : Terminal<In, UNIT> = fresh(terminal: name)
         makeDeep(terminal)
-        add {
-            terminal.rule {
-                symbol
-                symbol <-- terminal.in
-            }
-        }
-        _lookaheadSymbols[terminal.name.name] = false
+        _lookaheadSymbols[terminal.name.name] = (false, symbol.name.name)
         return terminal
     }
 

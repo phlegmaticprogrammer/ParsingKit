@@ -7,15 +7,15 @@ fileprivate class L<Char> : EarleyLocalLexing.Lexer {
     
     typealias Result = ParseTree
     
-    let lexers : [Int : AnyLexer<Char>]
+    let lexers : [Int : (LexingMode, AnyLexer<Char>)]
     
-    init(lexers : [Int : AnyLexer<Char>]) {
+    init(lexers : [Int : (LexingMode, AnyLexer<Char>)]) {
         self.lexers = lexers
     }
 
     func parse(input: Input<Char>, position: Int, key: TerminalKey<Param>) -> Set<Token<Param, Result>> {
-        guard let lexer = lexers[key.terminalIndex] else { return [] }
-        guard let result = lexer.lex(input: input, position: position, in: key.inputParam) else { return [] }
+        guard let (mode, lexer) = lexers[key.terminalIndex] else { return [] }
+        guard let result = lexer.lex(input: input, mode: mode, position: position, in: key.inputParam) else { return [] }
         let token = Token<Param, Result>(length: result.length, outputParam: result.out, result: nil)
         return [token]
     }
@@ -269,12 +269,11 @@ class Parsing<Char> {
         self.language = grammar.language
         addSymbols(grammar.symbols)
         addRules(grammar.rules)
-        let lexer = makeLexer(lexers)
+        let lexer = makeLexer(lexers, grammar.lookaheads)
         let priorities = convert(terminalPriorities: grammar.terminalPriorities)
         let selector = S(priorities: priorities)
         let constructResult = C<Char>(terminals: terminals, nonterminals: nonterminals, symbols: grammar.symbols, ruleIds: ruleIds)
-        let terminalParseModes = convert(grammar.lookaheads)
-        g = EarleyLocalLexing.Grammar(rules: rules, lexer: lexer, selector: selector, constructResult: constructResult, terminalParseModes: terminalParseModes)
+        g = EarleyLocalLexing.Grammar(rules: rules, lexer: lexer, selector: selector, constructResult: constructResult)
     }
     
     private func addSymbols(_ symbols : Grammar.Symbols) {
@@ -300,24 +299,7 @@ class Parsing<Char> {
             }
         }
     }
-    
-    private func convert(_ lookaheads : [SymbolName : Bool]) -> [Int : TerminalParseMode<Param>] {
-        var modes :  [Int : TerminalParseMode<Param>] = [:]
-        for (symbolname, positive) in lookaheads {
-            guard let esymbol = symbolMap[symbolname], case let .terminal(index: index) = esymbol else {
-                fatalError("lookahead symbol must be terminal: \(symbolname)")
-            }
-            let mode : TerminalParseMode<Param>
-            if positive {
-                mode = .andNext
-            } else {
-                mode = .notNext(param: UNIT.singleton)
-            }
-            modes[index] = mode
-        }
-        return modes
-    }
-    
+        
     private func convertRule(_ rule : Rule) -> ERule<Param> {
         let lhs = symbolMap[rule.symbol.name]!
         var rhs : [ESymbol] = []
@@ -388,8 +370,8 @@ class Parsing<Char> {
         return ERule(lhs: lhs, rhs: rhs, initialEnv: E(), eval: eval)
     }
     
-    private func makeLexer(_ lexers : Lexers<Char>) -> L<Char> {
-        var terminalLexers : [Int : AnyLexer<Char>] = [:]
+    private func makeLexer(_ lexers : Lexers<Char>, _ lookaheads : [SymbolName : (Bool, SymbolName)]) -> L<Char> {
+        var terminalLexers : [Int : (LexingMode, AnyLexer<Char>)] = [:]
         for (name, lexer) in lexers.lexers {
             switch symbolMap[name]! {
             case let .terminal(index: index): terminalLexers[index] = lexer
