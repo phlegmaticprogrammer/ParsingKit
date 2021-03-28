@@ -21,12 +21,6 @@ public final class ArrayInput<Char> : Input<Char> {
     
 }
 
-public enum LexingMode {
-    case longestMatch
-    case not
-    case andLongestMatch
-}
-
 
 public protocol Lexer {
     
@@ -36,13 +30,13 @@ public protocol Lexer {
     
     associatedtype Out : ASort
 
-    func lex(input : Input<Char>, mode : LexingMode, position : Int, in : In.Native) -> (length : Int, out: Out.Native)?
+    func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Out.Native)?
 
 }
 
 internal class AnyLexer<Char> {
     
-    private typealias AnyLexerFunction = (_ input : Input<Char>, _ mode : LexingMode, _ position : Int, _ in : AnyHashable)  -> (length : Int, out: AnyHashable)?
+    private typealias AnyLexerFunction = (_ input : Input<Char>, _ position : Int, _ in : AnyHashable)  -> (length : Int, out: AnyHashable)?
     
     private let lexerFunction : AnyLexerFunction
     
@@ -51,41 +45,36 @@ internal class AnyLexer<Char> {
     let out : Sort
     
     init<L : Lexer>(lexer : L) where L.Char == Char {
-        func lex(input : Input<Char>, mode : LexingMode, position : Int, in : AnyHashable)  -> (length : Int, out: AnyHashable)? {
-            return lexer.lex(input: input, mode: mode, position: position, in: `in` as! L.In.Native)
+        func lex(input : Input<Char>, position : Int, in : AnyHashable)  -> (length : Int, out: AnyHashable)? {
+            return lexer.lex(input: input, position: position, in: `in` as! L.In.Native)
         }
         self.lexerFunction = lex
         self.in = L.In()
         self.out = L.Out()
     }
     
-    func lex(input : Input<Char>, mode : LexingMode, position : Int, in : AnyHashable) -> (length : Int, out: AnyHashable)? {
-        return lexerFunction(input, mode, position, `in`)
+    func lex(input : Input<Char>, position : Int, in : AnyHashable) -> (length : Int, out: AnyHashable)? {
+        return lexerFunction(input, position, `in`)
     }
         
 }
 
 public class Lexers<Char> {
     
-    private var _lexers : [SymbolName : (LexingMode, AnyLexer<Char>)]
+    private var _lexers : [SymbolName : AnyLexer<Char>]
     
     public init() {
         _lexers = [:]
     }
     
-    public func add<L : Lexer>(lexer : L, for terminal : Terminal<L.In, L.Out>, mode : LexingMode) where L.Char == Char {
+    public func add<L : Lexer>(lexer : L, for terminal : Terminal<L.In, L.Out>) where L.Char == Char {
         let name = terminal.name.name
         guard _lexers[name] == nil else { fatalError("duplicate lexer for terminal '\(name)'") }
-        _lexers[name] = (mode, AnyLexer(lexer: lexer))
+        _lexers[name] = AnyLexer(lexer: lexer)
     }
     
-    internal var lexers : [SymbolName : (LexingMode, AnyLexer<Char>)] { return _lexers }
+    internal var lexers : [SymbolName : AnyLexer<Char>] { return _lexers }
 
-}
-
-fileprivate func adjustLexingResult<R>(mode : LexingMode, result : (length : Int, out: R)?) -> (length : Int, out : R)? {
-    fatalError()
-    //switch
 }
 
 public class ByteLexer : Lexer {
@@ -98,13 +87,9 @@ public class ByteLexer : Lexer {
     
     public init() {}
     
-    private func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Int)? {
+    public func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Int)? {
         guard let char = input[position] else { return nil }
         return (length: 1, out: Int(char))
-    }
-
-    public func lex(input : Input<Char>, mode : LexingMode, position : Int, in : In.Native) -> (length : Int, out: Out.Native)? {
-        return adjustLexingResult(mode: mode, result: lex(input: input, position: position, in: `in`))
     }
 
 }
@@ -119,14 +104,11 @@ public class CharLexer : Lexer {
     
     public init() {}
     
-    private func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Character)? {
+    public func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Character)? {
         guard let char = input[position] else { return nil }
         return (length: 1, out: char)
     }
 
-    public func lex(input : Input<Char>, mode : LexingMode, position : Int, in : In.Native) -> (length : Int, out: Out.Native)? {
-        return adjustLexingResult(mode: mode, result: lex(input: input, position: position, in: `in`))
-    }
 }
 
 public class UTF8CharLexer : Lexer {
@@ -139,7 +121,7 @@ public class UTF8CharLexer : Lexer {
                 
     public init() {}
     
-    private func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Character)? {
+    public func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Character)? {
         // This code works under two assumptions, both of which seem to be true:
         // 1) If a sequence of codepoints does not form a valid character, then appending codepoints to it does not yield a valid character
         // 2) Appending codepoints to a sequence of codepoints does not decrease its length in terms of extended grapheme clusters
@@ -164,8 +146,5 @@ public class UTF8CharLexer : Lexer {
         return value()
     }
     
-    public func lex(input : Input<Char>, mode : LexingMode, position : Int, in : In.Native) -> (length : Int, out: Out.Native)? {
-        return adjustLexingResult(mode: mode, result: lex(input: input, position: position, in: `in`))
-    }
 }
 
