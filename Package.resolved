@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/phlegmaticprogrammer/EarleyLocalLexing",
         "state": {
           "branch": null,
-          "revision": "45f05869d73e733887b4cf2035fe30bff888e041",
-          "version": "0.6.5"
+          "revision": "755d4aa035572deb5245a09ad87570419cce00e9",
+          "version": "0.6.7"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/phlegmaticprogrammer/FirstOrderDeepEmbedding",
         "state": {
           "branch": null,
-          "revision": "c9cad20388b789758ddee36f18d88ce5c63c1dc7",
-          "version": "0.6.0"
+          "revision": "cff8800025fc76e6e5069eae2b4f7452b69fc7e6",
+          "version": "0.6.1"
         }
       }
     ]
