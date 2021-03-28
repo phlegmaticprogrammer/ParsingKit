@@ -1,23 +1,25 @@
 import FirstOrderDeepEmbedding
 import EarleyLocalLexing
 
+
 fileprivate class L<Char> : EarleyLocalLexing.Lexer {
     
+    
+    typealias Lexer = (_ input: Input<Char>, _ position: Int, _ key: TerminalKey<Param>) -> Set<Token<Param, Result>>
+
     typealias Param = AnyHashable
     
     typealias Result = ParseTree
     
-    let lexers : [Int : AnyLexer<Char>]
+    let lexers : [Int : Lexer]
     
-    init(lexers : [Int : AnyLexer<Char>]) {
+    init(lexers : [Int : Lexer]) {
         self.lexers = lexers
     }
 
     func parse(input: Input<Char>, position: Int, key: TerminalKey<Param>) -> Set<Token<Param, Result>> {
-        guard let lexer = lexers[key.terminalIndex] else { return [] }
-        guard let result = lexer.lex(input: input, position: position, in: key.inputParam) else { return [] }
-        let token = Token<Param, Result>(length: result.length, outputParam: result.out, result: nil)
-        return [token]
+        let lexer = lexers[key.terminalIndex]!
+        return lexer(input, position, key)
     }
     
 }
@@ -261,6 +263,7 @@ class Parsing<Char> {
     private var symbolMap : [SymbolName : ESymbol] = [:]
     private var terminals : [SymbolName] = []
     private var nonterminals : [SymbolName] = []
+    private var sorts : [SymbolName : (Sort, Sort)] = [:]
     
     private var rules : [ERule<Param>] = []
     private var ruleIds : [RuleId] = []
@@ -269,25 +272,26 @@ class Parsing<Char> {
         self.language = grammar.language
         addSymbols(grammar.symbols)
         addRules(grammar.rules)
-        let lexer = makeLexer(lexers)
+        let lexer = makeLexer(lexers, grammar.lookaheads)
         let priorities = convert(terminalPriorities: grammar.terminalPriorities)
         let selector = S(priorities: priorities)
         let constructResult = C<Char>(terminals: terminals, nonterminals: nonterminals, symbols: grammar.symbols, ruleIds: ruleIds)
-        let terminalParseModes = convert(grammar.lookaheads)
-        g = EarleyLocalLexing.Grammar(rules: rules, lexer: lexer, selector: selector, constructResult: constructResult, terminalParseModes: terminalParseModes)
+        g = EarleyLocalLexing.Grammar(rules: rules, lexer: lexer, selector: selector, constructResult: constructResult)
     }
     
     private func addSymbols(_ symbols : Grammar.Symbols) {
         for (symbolname, props) in symbols {
             switch props.kind {
-            case .nonterminal:
+            case let .nonterminal(in: sin, out: sout):
                 let index = nonterminals.count
                 nonterminals.append(symbolname)
                 symbolMap[symbolname] = .nonterminal(index: index)
-            case .terminal:
+                sorts[symbolname] = (sin, sout)
+            case let .terminal(in: sin, out: sout):
                 let index = terminals.count
                 terminals.append(symbolname)
                 symbolMap[symbolname] = .terminal(index: index)
+                sorts[symbolname] = (sin, sout)
             }
         }
     }
@@ -301,7 +305,7 @@ class Parsing<Char> {
         }
     }
     
-    private func convert(_ lookaheads : [SymbolName : Bool]) -> [Int : TerminalParseMode<Param>] {
+   /* private func convert(_ lookaheads : [SymbolName : Bool]) -> [Int : TerminalParseMode<Param>] {
         var modes :  [Int : TerminalParseMode<Param>] = [:]
         for (symbolname, positive) in lookaheads {
             guard let esymbol = symbolMap[symbolname], case let .terminal(index: index) = esymbol else {
@@ -316,7 +320,7 @@ class Parsing<Char> {
             modes[index] = mode
         }
         return modes
-    }
+    }*/
     
     private func convertRule(_ rule : Rule) -> ERule<Param> {
         let lhs = symbolMap[rule.symbol.name]!
@@ -388,11 +392,97 @@ class Parsing<Char> {
         return ERule(lhs: lhs, rhs: rhs, initialEnv: E(), eval: eval)
     }
     
-    private func makeLexer(_ lexers : Lexers<Char>) -> L<Char> {
-        var terminalLexers : [Int : AnyLexer<Char>] = [:]
+    private func lookaheadLexer(_ terminalIndex : Int, _ positive : Bool) -> L<Char>.Lexer {
+        if positive {
+            return positiveLookaheadLexer(terminalIndex)
+        } else {
+            return negativeLookaheadLexer(terminalIndex)
+        }
+    }
+    
+    private func positiveLookaheadLexer(_ terminalIndex : Int) -> L<Char>.Lexer {
+        func parse(input: Input<Char>, position: Int, key: TerminalKey<Param>) -> Set<Token<Param, Result>> {
+            guard key.terminalIndex == terminalIndex else { fatalError() }
+            switch g.parse(input: input, position: position, symbol: .terminal(index: key.terminalIndex), param: key.inputParam) {
+            case .failed(position: _): return []
+            case let .success(length: _, results: results):
+                var tokens : Set<Token<Param, Result>> = []
+                for (value, result) in results {
+                    tokens.insert(Token(length: 0, outputParam: value, result: result))
+                }
+                return tokens
+            }
+        }
+        return parse
+    }
+    
+    private func negativeLookaheadLexer(_ terminalIndex : Int) -> L<Char>.Lexer {
+        func parse(input: Input<Char>, position: Int, key: TerminalKey<Param>) -> Set<Token<Param, Result>> {
+            guard key.terminalIndex == terminalIndex else { fatalError() }
+            switch g.parse(input: input, position: position, symbol: .terminal(index: key.terminalIndex), param: key.inputParam) {
+            case .failed:
+                let candidateSymbol : ESymbol = .terminal(index: terminalIndex)
+                let k = position
+                let result = g.constructResult.terminal(key: .init(symbol: candidateSymbol, inputParam: key.inputParam, outputParam: UNIT.singleton, startPosition: k, endPosition: k), result: nil)
+                let tr = Token<Param, Result>(length: 0, outputParam: UNIT.singleton, result: result)
+                return [tr]
+            case .success:
+                return []
+            }
+        }
+        return parse
+    }
+    
+    private func terminalLexer(_ terminalIndex : Int) -> L<Char>.Lexer {
+        func parse(input: Input<Char>, position: Int, key: TerminalKey<Param>) -> Set<Token<Param, Result>> {
+            guard key.terminalIndex == terminalIndex else { fatalError() }
+            switch g.parse(input: input, position: position, symbol: .terminal(index: key.terminalIndex), param: key.inputParam) {
+            case .failed(position: _): return []
+            case let .success(length: length, results: results):
+                var tokens : Set<Token<Param, Result>> = []
+                for (value, result) in results {
+                    tokens.insert(Token(length: length, outputParam: value, result: result))
+                }
+                return tokens
+            }
+        }
+        return parse
+    }
+    
+    private func customLexer(_ lexer : AnyLexer<Char>) -> L<Char>.Lexer {
+        func parse(input: Input<Char>, position: Int, key: TerminalKey<Param>) -> Set<Token<Param, Result>> {
+            guard let result = lexer.lex(input: input, position: position, in: key.inputParam) else { return [] }
+            let token = Token<Param, Result>(length: result.length, outputParam: result.out, result: nil)
+            return [token]
+        }
+        return parse
+    }
+    
+    private func makeLexer(_ lexers : Lexers<Char>, _ lookahead : [SymbolName : Bool]) -> L<Char> {
+        typealias Lexer = L<Char>.Lexer
+        var terminalLexers : [Int : Lexer] = [:]
+        func add(_ index : Int, _ lexer : @escaping Lexer) {
+            guard terminalLexers[index] == nil else { fatalError() }
+            terminalLexers[index] = lexer
+        }
+        for (name, positive) in lookahead {
+            switch symbolMap[name]! {
+            case let .terminal(index: index):
+                add(index, lookaheadLexer(index, positive))
+            case .nonterminal: fatalError()
+            }
+        }
         for (name, lexer) in lexers.lexers {
             switch symbolMap[name]! {
-            case let .terminal(index: index): terminalLexers[index] = lexer
+            case let .terminal(index: index): add(index, customLexer(lexer))
+            case .nonterminal: fatalError()
+            }
+        }
+        for name in terminals {
+            switch symbolMap[name]! {
+            case let .terminal(index: index):
+                guard terminalLexers[index] == nil else { continue }
+                add(index, terminalLexer(index))
             case .nonterminal: fatalError()
             }
         }
