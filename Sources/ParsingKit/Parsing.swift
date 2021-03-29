@@ -404,13 +404,13 @@ class Parsing<Char> {
         func parse(input: Input<Char>, position: Int, key: TerminalKey<Param>) -> Set<Token<Param, Result>> {
             guard key.terminalIndex == terminalIndex else { fatalError() }
             switch g.parse(input: input, position: position, symbol: .terminal(index: key.terminalIndex), param: key.inputParam) {
-            case .failed(position: _): return []
-            case let .success(length: _, results: results):
-                var tokens : Set<Token<Param, Result>> = []
-                for (value, result) in results {
-                    tokens.insert(Token(length: 0, outputParam: value, result: result))
-                }
-                return tokens
+            case .failed: return []
+            case .success:
+                let candidateSymbol : ESymbol = .terminal(index: terminalIndex)
+                let k = position
+                let result = g.constructResult.terminal(key: .init(symbol: candidateSymbol, inputParam: key.inputParam, outputParam: UNIT.singleton, startPosition: k, endPosition: k), result: nil)
+                let tr = Token<Param, Result>(length: 0, outputParam: UNIT.singleton, result: result)
+                return [tr]
             }
         }
         return parse

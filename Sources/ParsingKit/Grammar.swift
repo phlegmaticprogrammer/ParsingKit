@@ -493,15 +493,14 @@ open class Grammar {
     }
 
     // Do not provide a lexer for the terminal returned here!!!
-    public func andNext<In : Sort, Out : Sort>(_ symbol : Symbol<In, Out>) -> Terminal<In, Out> {
+    public func andNext<In : Sort, Out : Sort>(_ symbol : Symbol<In, Out>) -> Terminal<In, UNIT> {
         let name = SymbolName("_andNext-\(symbol.name.name)")
-        let terminal : Terminal<In, Out> = fresh(terminal: name)
+        let terminal : Terminal<In, UNIT> = fresh(terminal: name)
         makeDeep(terminal)
         add {
             terminal.rule {
                 symbol
                 symbol <-- terminal.in
-                symbol~ --> terminal
             }
         }
         _lookaheadSymbols[terminal.name.name] = true
