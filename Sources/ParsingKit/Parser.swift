@@ -67,19 +67,17 @@ public enum ParseResult<Out : Hashable> {
 
     case failed(position : Int)
     
-    case success(results : [Int : [Out : ParseTree?]])
+    case success(length : Int, results : [Out : ParseTree?])
     
     public func asTokens() -> Set<Token<Out, ParseTree>> {
         switch self {
         case .failed: return []
-        case .success(results: let results):
+        case let .success(length: length, results: results):
             var tokens : Set<Token<Out, ParseTree>> = []
-            for (length, results) in results {
-                for (out, optTree) in results {
-                    //let tree = optTree ?? makeDefaultParseTree(length, out)
-                    let token = Token(length: length, outputParam: out, result: optTree)
-                    tokens.insert(token)
-                }
+            for (out, optTree) in results {
+                //let tree = optTree ?? makeDefaultParseTree(length, out)
+                let token = Token(length: length, outputParam: out, result: optTree)
+                tokens.insert(token)
             }
             return tokens
         }
@@ -88,16 +86,12 @@ public enum ParseResult<Out : Hashable> {
     public func convertOut<NewOut>() -> ParseResult<NewOut> {
         switch self {
         case .failed(position: let position): return .failed(position: position)
-        case .success(results: let results):
-            var converted : [Int : [NewOut : ParseTree?]] = [:]
-            for (length, rs) in results {
-                var newrs : [NewOut : ParseTree?] = [:]
-                for (out, optTree) in rs {
-                    newrs[out as! NewOut] = optTree
-                }
-                converted[length] = newrs
+        case let .success(length: length, results: results):
+            var converted : [NewOut : ParseTree?] = [:]
+            for (out, optTree) in results {
+                converted[out as! NewOut] = optTree
             }
-            return .success(results: converted)
+            return .success(length: length, results: converted)
         }
     }
 

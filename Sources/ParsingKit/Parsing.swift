@@ -526,7 +526,7 @@ class Parsing<Char> {
             for (value, result) in results {
                 typedResults[value as! Out.Native] = result!
             }
-            return .success(results: [length: typedResults])
+            return .success(length: length, results: typedResults)
         }
     }
 

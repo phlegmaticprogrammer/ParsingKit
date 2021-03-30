@@ -90,7 +90,7 @@ public class ByteLexer : Lexer {
     
     public func lex(input : Input<Char>, position : Int, in : In.Native) -> ParseResult<Int> {
         guard let char = input[position] else { return .failed(position: position) }
-        return .success(results: [1 : [Int(char) : nil]])
+        return .success(length: 1, results: [Int(char) : nil])
     }
 
 }
@@ -107,7 +107,7 @@ public class CharLexer : Lexer {
     
     public func lex(input : Input<Char>, position : Int, in : In.Native) -> ParseResult<Character> {
         guard let char = input[position] else { return .failed(position: position) }
-        return .success(results: [1 : [char : nil]])
+        return .success(length: 1, results: [char : nil])
     }
 
 }
@@ -132,8 +132,7 @@ public class UTF8CharLexer : Lexer {
         var resultPosition = position
         func value() -> ParseResult<Character> {
             guard let character = result.first else { return .failed(position: position) }
-            let len = resultPosition - position
-            return .success(results: [len : [character : nil]])
+            return .success(length: resultPosition - position, results: [character : nil])
         }
         var p = position
         while p - resultPosition <= 4 {

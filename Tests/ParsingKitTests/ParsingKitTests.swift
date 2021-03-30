@@ -23,10 +23,8 @@ final class ParsingKitTests: XCTestCase {
     func convertResult<C>(_ p : ParseResult<C>) -> (length: Int, results: [C : ParseTree?])? {
         switch p {
         case .failed: return nil
-        case let .success(results: results):
-            guard results.count == 1 else { return nil }
-            let (length, rs) = results.first!
-            return (length: length, results: rs)
+        case let .success(length: length, results: results):
+            return (length: length, results: results)
         }
     }
     
