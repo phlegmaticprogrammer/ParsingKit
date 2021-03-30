@@ -451,9 +451,8 @@ class Parsing<Char> {
     
     private func customLexer(_ lexer : AnyLexer<Char>) -> L<Char>.Lexer {
         func parse(input: Input<Char>, position: Int, key: TerminalKey<Param>) -> Set<Token<Param, Result>> {
-            guard let result = lexer.lex(input: input, position: position, in: key.inputParam) else { return [] }
-            let token = Token<Param, Result>(length: result.length, outputParam: result.out, result: nil)
-            return [token]
+            let results = lexer.lex(input: input, position: position, in: key.inputParam)
+            return results.asTokens()
         }
         return parse
     }
@@ -519,15 +518,15 @@ class Parsing<Char> {
     }
         
     func parse<In : ASort, Out : ASort>(input : Input<Char>, position : Int, symbol : Symbol<In, Out>, param : In.Native) -> ParseResult<Out.Native> {
-        let result = g.parse(input: input, position: position, symbol: symbolMap[symbol.name.name]!, param: param)
-        switch result {
-        case let .failed(position: position): return .failed(position: position)
+        switch g.parse(input: input, position: position, symbol: symbolMap[symbol.name.name]!, param: param) {
+        case let .failed(position: position):
+            return .failed(position: position)
         case let .success(length: length, results: results):
             var typedResults : [Out.Native : ParseTree] = [:]
             for (value, result) in results {
                 typedResults[value as! Out.Native] = result!
             }
-            return .success(length: length, results: typedResults)
+            return .success(results: [length: typedResults])
         }
     }
 

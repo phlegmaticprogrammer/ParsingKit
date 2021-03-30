@@ -1,4 +1,5 @@
 import FirstOrderDeepEmbedding
+import EarleyLocalLexing
 
 public indirect enum ParseTree : Hashable {
     
@@ -66,7 +67,39 @@ public enum ParseResult<Out : Hashable> {
 
     case failed(position : Int)
     
-    case success(length : Int, results : [Out : ParseTree])
+    case success(results : [Int : [Out : ParseTree?]])
+    
+    public func asTokens() -> Set<Token<Out, ParseTree>> {
+        switch self {
+        case .failed: return []
+        case .success(results: let results):
+            var tokens : Set<Token<Out, ParseTree>> = []
+            for (length, results) in results {
+                for (out, optTree) in results {
+                    //let tree = optTree ?? makeDefaultParseTree(length, out)
+                    let token = Token(length: length, outputParam: out, result: optTree)
+                    tokens.insert(token)
+                }
+            }
+            return tokens
+        }
+    }
+    
+    public func convertOut<NewOut>() -> ParseResult<NewOut> {
+        switch self {
+        case .failed(position: let position): return .failed(position: position)
+        case .success(results: let results):
+            var converted : [Int : [NewOut : ParseTree?]] = [:]
+            for (length, rs) in results {
+                var newrs : [NewOut : ParseTree?] = [:]
+                for (out, optTree) in rs {
+                    newrs[out as! NewOut] = optTree
+                }
+                converted[length] = newrs
+            }
+            return .success(results: converted)
+        }
+    }
 
 }
 

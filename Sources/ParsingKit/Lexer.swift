@@ -30,13 +30,13 @@ public protocol Lexer {
     
     associatedtype Out : ASort
 
-    func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Out.Native)?
+    func lex(input : Input<Char>, position : Int, in : In.Native) -> ParseResult<Out.Native>
 
 }
 
 internal class AnyLexer<Char> {
     
-    private typealias AnyLexerFunction = (_ input : Input<Char>, _ position : Int, _ in : AnyHashable)  -> (length : Int, out: AnyHashable)?
+    private typealias AnyLexerFunction = (_ input : Input<Char>, _ position : Int, _ in : AnyHashable)  -> ParseResult<AnyHashable>
     
     private let lexerFunction : AnyLexerFunction
     
@@ -45,15 +45,16 @@ internal class AnyLexer<Char> {
     let out : Sort
     
     init<L : Lexer>(lexer : L) where L.Char == Char {
-        func lex(input : Input<Char>, position : Int, in : AnyHashable)  -> (length : Int, out: AnyHashable)? {
-            return lexer.lex(input: input, position: position, in: `in` as! L.In.Native)
+        func lex(input : Input<Char>, position : Int, in : AnyHashable)  -> ParseResult<AnyHashable> {
+            let result = lexer.lex(input: input, position: position, in: `in` as! L.In.Native)
+            return result.convertOut()
         }
         self.lexerFunction = lex
         self.in = L.In()
         self.out = L.Out()
     }
     
-    func lex(input : Input<Char>, position : Int, in : AnyHashable) -> (length : Int, out: AnyHashable)? {
+    func lex(input : Input<Char>, position : Int, in : AnyHashable) -> ParseResult<AnyHashable> {
         return lexerFunction(input, position, `in`)
     }
         
@@ -87,9 +88,9 @@ public class ByteLexer : Lexer {
     
     public init() {}
     
-    public func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Int)? {
-        guard let char = input[position] else { return nil }
-        return (length: 1, out: Int(char))
+    public func lex(input : Input<Char>, position : Int, in : In.Native) -> ParseResult<Int> {
+        guard let char = input[position] else { return .failed(position: position) }
+        return .success(results: [1 : [Int(char) : nil]])
     }
 
 }
@@ -104,9 +105,9 @@ public class CharLexer : Lexer {
     
     public init() {}
     
-    public func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Character)? {
-        guard let char = input[position] else { return nil }
-        return (length: 1, out: char)
+    public func lex(input : Input<Char>, position : Int, in : In.Native) -> ParseResult<Character> {
+        guard let char = input[position] else { return .failed(position: position) }
+        return .success(results: [1 : [char : nil]])
     }
 
 }
@@ -121,7 +122,7 @@ public class UTF8CharLexer : Lexer {
                 
     public init() {}
     
-    public func lex(input : Input<Char>, position : Int, in : In.Native) -> (length : Int, out: Character)? {
+    public func lex(input : Input<Char>, position : Int, in : In.Native) -> ParseResult<Character> {
         // This code works under two assumptions, both of which seem to be true:
         // 1) If a sequence of codepoints does not form a valid character, then appending codepoints to it does not yield a valid character
         // 2) Appending codepoints to a sequence of codepoints does not decrease its length in terms of extended grapheme clusters
@@ -129,9 +130,10 @@ public class UTF8CharLexer : Lexer {
         var chars : [UInt8] = []
         var result : String = ""
         var resultPosition = position
-        func value() -> (length : Int, out : Character)? {
-            guard let character = result.first else { return nil }
-            return (length: resultPosition - position, out: character)
+        func value() -> ParseResult<Character> {
+            guard let character = result.first else { return .failed(position: position) }
+            let len = resultPosition - position
+            return .success(results: [len : [character : nil]])
         }
         var p = position
         while p - resultPosition <= 4 {
