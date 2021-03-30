@@ -20,6 +20,16 @@ final class ParsingKitTests: XCTestCase {
         XCTAssertEqual("\(s1)", "S[1]")
     }
     
+    func convertResult<C>(_ p : ParseResult<C>) -> (length: Int, results: [C : ParseTree?])? {
+        switch p {
+        case .failed: return nil
+        case let .success(results: results):
+            guard results.count == 1 else { return nil }
+            let (length, rs) = results.first!
+            return (length: length, results: rs)
+        }
+    }
+    
     func testUTF8CharLexer() {
         let scalars: [UInt8] = [
             0xF0, 0x9F, 0x91, 0xA8, // man
@@ -34,7 +44,8 @@ final class ParsingKitTests: XCTestCase {
         var indices = [Int]()
         var position = 0
         repeat {
-            guard let result = UTF8CharLexer().lex(input: s, position: position, in: UNIT.singleton) else { break }
+            let _result = UTF8CharLexer().lex(input: s, position: position, in: UNIT.singleton)
+            guard let result = convertResult(_result) else { break }
             indices.append(result.length)
             position += result.length
         } while true
@@ -49,7 +60,8 @@ final class ParsingKitTests: XCTestCase {
             let parseResult = parser.parse(input: input, start: calculator.Expr)
             switch parseResult {
             case .failed: XCTAssert(results.isEmpty)
-            case let .success(length: length, results: parseResults):
+            case .success:
+                let (length, parseResults) = convertResult(parseResult)!
                 XCTAssertEqual(length, input.count)
                 XCTAssertEqual(Set(parseResults.keys), Set(results))
             }
@@ -99,7 +111,8 @@ final class ParsingKitTests: XCTestCase {
             let parseResult = parser.parse(input: input, start: S)
             switch parseResult {
             case .failed: XCTAssertFalse(matches)
-            case let .success(length: length, results: parseResults):
+            case .success:
+                let (length, parseResults) = convertResult(parseResult)!
                 XCTAssertEqual(parseResults.count, 1)
                 XCTAssertTrue(matches)
                 XCTAssertEqual(length, input.count)
@@ -119,7 +132,8 @@ final class ParsingKitTests: XCTestCase {
             let parseResult = parser.parse(input: input, start: S)
             switch parseResult {
             case .failed: XCTAssertFalse(matches)
-            case let .success(length: length, results: parseResults):
+            case .success:
+                let (length, parseResults) = convertResult(parseResult)!
                 if matches {
                     XCTAssertEqual(length, input.count)
                     XCTAssertEqual(parseResults.count, 1)
