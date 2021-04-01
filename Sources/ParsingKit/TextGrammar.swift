@@ -35,7 +35,7 @@ open class TextGrammar : Grammar {
         return c
     }
 
-    public func parser() -> Parser<Character> {
+    open func parser() -> Parser<Character> {
         let lexers = Lexers<Character>()
         lexers.add(lexer: CharLexer(), for: Char)
         return Parser(grammar: self, lexers: lexers)

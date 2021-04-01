@@ -106,6 +106,7 @@ public class Parser<Char> {
         for (name, lexer) in lexers.lexers {
             guard let kind = grammar.kindOf(name), kind.isTerminal else { fatalError("A lexer is associated with terminal '\(name)' which is not part of the grammar.") }
             guard kind.in.sortname == lexer.in.sortname && kind.out.sortname == lexer.out.sortname else { fatalError("The lexer associated with terminal '\(name)' has incompatible input or output sorts.") }
+            guard grammar.lookaheads[name] == nil else { fatalError("Lookahead terminal cannot have custom lexer.")}
         }
         parsing = Parsing(grammar: grammar, lexers: lexers)
     }

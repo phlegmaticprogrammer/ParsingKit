@@ -74,6 +74,11 @@ public class Lexers<Char> {
         _lexers[name] = AnyLexer(lexer: lexer)
     }
     
+    public func add<L : Lexer>(lexer : L, for name : SymbolName) where L.Char == Char {
+        guard _lexers[name] == nil else { fatalError("duplicate lexer for terminal '\(name)'") }
+        _lexers[name] = AnyLexer(lexer: lexer)
+    }
+
     internal var lexers : [SymbolName : AnyLexer<Char>] { return _lexers }
 
 }
@@ -108,6 +113,30 @@ public class CharLexer : Lexer {
     public func lex(input : Input<Char>, position : Int, in : In.Native) -> ParseResult<Character> {
         guard let char = input[position] else { return .failed(position: position) }
         return .success(length: 1, results: [char : nil])
+    }
+
+}
+
+public class LiteralCharLexer : Lexer {
+    
+    public typealias Char = Character
+    
+    public typealias In = UNIT
+    
+    public typealias Out = UNIT
+    
+    private let literal : [Character]
+    
+    public init(literal : String) {
+        self.literal = Array(literal)
+    }
+    
+    public func lex(input : Input<Char>, position : Int, in : In.Native) -> ParseResult<Out.Native> {
+        let count = literal.count
+        for i in 0 ..< count {
+            guard let char = input[position + i], char == literal[i] else { return .failed(position: position + i) }
+        }
+        return .success(length: count, results: [UNIT.singleton : nil])
     }
 
 }
