@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "DynamicCodable",
+        "repositoryURL": "https://github.com/phlegmaticprogrammer/DynamicCodable",
+        "state": {
+          "branch": null,
+          "revision": "e171c7596223a43b0e0f1d876feb00659a691ae6",
+          "version": "0.0.3"
+        }
+      },
+      {
         "package": "EarleyLocalLexing",
         "repositoryURL": "https://github.com/phlegmaticprogrammer/EarleyLocalLexing",
         "state": {
