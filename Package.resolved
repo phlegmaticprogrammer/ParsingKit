@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/phlegmaticprogrammer/DynamicCodable",
         "state": {
           "branch": null,
-          "revision": "e171c7596223a43b0e0f1d876feb00659a691ae6",
-          "version": "0.0.3"
+          "revision": "156418e70f7accff06c7bae5a046654c9b78b0a7",
+          "version": "0.0.4"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/phlegmaticprogrammer/FirstOrderDeepEmbedding",
         "state": {
           "branch": null,
-          "revision": "cff8800025fc76e6e5069eae2b4f7452b69fc7e6",
-          "version": "0.6.1"
+          "revision": "c3a9e251a193576941655291384b1e54ba9fa899",
+          "version": "0.6.2"
         }
       }
     ]
