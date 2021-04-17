@@ -627,9 +627,17 @@ open class Grammar {
         return stack
     }
     
+    private func countRules() -> Int {
+        var count = 0
+        for (_, rs) in _rules {
+            count += rs.count
+        }
+        return count
+    }
+    
     private func add(rule : Rule) {
         checkSeal()
-        rule.id.set(id: _rules.count)
+        rule.id.set(id: countRules())
         check(rule: rule)
         let name = rule.symbol.name
         if _rules[name] != nil {

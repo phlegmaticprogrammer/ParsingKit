@@ -7,7 +7,7 @@ public final class RuleId: Hashable, Codable {
     
     public static func == (left: RuleId, right: RuleId) -> Bool {
         if left._id == nil || right._id == nil { fatalError("rule identifier not initialized yet") }
-        return left === right
+        return left._id! == right._id!
     }
     
     public func hash(into hasher: inout Hasher) {
