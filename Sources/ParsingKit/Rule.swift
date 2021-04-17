@@ -1,7 +1,7 @@
 import FirstOrderDeepEmbedding
 
 /// The unique identifier of a rule.
-public final class RuleId: Hashable {
+public final class RuleId: Hashable, Codable {
     
     private var _id : Int?
     
@@ -28,6 +28,16 @@ public final class RuleId: Hashable {
     
     public var id : Int {
         return _id!
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        _id = try container.decode(Int.self)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(_id!)
     }
 }
 
