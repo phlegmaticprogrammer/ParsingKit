@@ -29,6 +29,16 @@ extension Grammar {
         return E
     }
     
+    public func Mute<S,T>(_ symbol : Symbol<S,T>) -> Nonterminal<S, UNIT> {
+        let mute : Nonterminal<S, UNIT> = freshNonterminal("_Mute-\(symbol.name.name)")
+        add {
+            mute.rule {
+                symbol
+            }
+        }
+        return mute
+    }
+    
     public func Repeat<S>(_ symbol : Symbol<S, S>) -> Nonterminal<S, S> {
         let STAR : Nonterminal<S, S> = freshNonterminal("_Repeat-\(symbol.name.name)")
         add {
