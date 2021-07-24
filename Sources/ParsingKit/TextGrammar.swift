@@ -4,8 +4,8 @@ open class TextGrammar : Grammar {
     
     @Sym public var Char : Terminal<UNIT, CHAR>
     
-    public init() {
-        super.init()
+    public init(sealed : Bool = true) {
+        super.init(sealed: sealed)
     }
     
     public func literal(_ chars : String) -> RuleBody {
