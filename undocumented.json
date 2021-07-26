@@ -1,0 +1,1993 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 7,
+      "symbol": "CodeOutput",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 9,
+      "symbol": "CodeOutput.indent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 10,
+      "symbol": "CodeOutput.unindent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 11,
+      "symbol": "CodeOutput.resetIndendation(body:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 13,
+      "symbol": "CodeOutput.write(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 15,
+      "symbol": "CodeOutput.newline()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 16,
+      "symbol": "CodeOutput.flush()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 20,
+      "symbol": "CodeOutput",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 22,
+      "symbol": "CodeOutput.writeln(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 29,
+      "symbol": "DefaultCodeOutput",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 36,
+      "symbol": "DefaultCodeOutput.init(printLine:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 41,
+      "symbol": "DefaultCodeOutput.indent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 45,
+      "symbol": "DefaultCodeOutput.unindent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 49,
+      "symbol": "DefaultCodeOutput.resetIndendation(body:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 58,
+      "symbol": "DefaultCodeOutput.write(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 66,
+      "symbol": "DefaultCodeOutput.newline()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/CodeOutput.swift",
+      "line": 75,
+      "symbol": "DefaultCodeOutput.flush()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 3,
+      "symbol": "Grammar",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 3,
+      "symbol": "GrammarComponent",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 5,
+      "symbol": "GrammarComponent.rule(rule:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 7,
+      "symbol": "GrammarComponent.terminalPriority(priority:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 17,
+      "symbol": "GrammarElement",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 18,
+      "symbol": "GrammarElement.grammarComponents()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 35,
+      "symbol": "GrammarBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 37,
+      "symbol": "GrammarBuilder.buildBlock(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 45,
+      "symbol": "GrammarBuilder.buildIf(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 51,
+      "symbol": "collectGrammarElement(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 59,
+      "symbol": "collectGrammarElement(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 68,
+      "symbol": "Grammar",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 70,
+      "symbol": "Grammar.Visibility",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 71,
+      "symbol": "Grammar.Visibility.Auxiliary",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 72,
+      "symbol": "Grammar.Visibility.Visible",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 75,
+      "symbol": "Grammar.Structure",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 76,
+      "symbol": "Grammar.Structure.Flat",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 77,
+      "symbol": "Grammar.Structure.Deep",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 80,
+      "symbol": "Grammar.Availability",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 81,
+      "symbol": "Grammar.Availability.Private",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 82,
+      "symbol": "Grammar.Availability.Public",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 83,
+      "symbol": "Grammar.Availability.Open",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 86,
+      "symbol": "Grammar.Properties",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 87,
+      "symbol": "Grammar.Properties.visibility",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 88,
+      "symbol": "Grammar.Properties.structure",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 89,
+      "symbol": "Grammar.Properties.availability",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 90,
+      "symbol": "Grammar.Properties.kind",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 100,
+      "symbol": "Grammar.Properties.isHidden",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 107,
+      "symbol": "Grammar.Sym",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 111,
+      "symbol": "Grammar.Sym.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 113,
+      "symbol": "Grammar.Sym.wrappedValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 126,
+      "symbol": "Grammar.Symbols",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 128,
+      "symbol": "Grammar.Rules",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 142,
+      "symbol": "Grammar.language",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 146,
+      "symbol": "Grammar.symbols",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 150,
+      "symbol": "Grammar.rules",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 154,
+      "symbol": "Grammar.rulesOf(symbol:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 158,
+      "symbol": "Grammar.terminalPriorities",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 162,
+      "symbol": "Grammar.lookaheads",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 186,
+      "symbol": "Grammar.init(parents:sealed:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 239,
+      "symbol": "Grammar.isSealed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 245,
+      "symbol": "Grammar.seal()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 255,
+      "symbol": "Grammar.kindOf(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 259,
+      "symbol": "Grammar.propertiesOf(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 263,
+      "symbol": "Grammar.exists(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 267,
+      "symbol": "Grammar.isDeep(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 272,
+      "symbol": "Grammar.isFlat(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 277,
+      "symbol": "Grammar.isVisible(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 282,
+      "symbol": "Grammar.isAuxiliary(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 287,
+      "symbol": "Grammar.isHidden(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 292,
+      "symbol": "Grammar.makeFlat(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 304,
+      "symbol": "Grammar.makeDeep(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 318,
+      "symbol": "Grammar.install(sort:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 354,
+      "symbol": "Grammar.install(symbol:properties:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 371,
+      "symbol": "Grammar.terminal(_:in:out:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 378,
+      "symbol": "Grammar.terminal(_:in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 382,
+      "symbol": "Grammar.terminal(_:out:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 386,
+      "symbol": "Grammar.terminal(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 390,
+      "symbol": "Grammar.fresh(terminal:in:out:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 394,
+      "symbol": "Grammar.nonterminal(_:in:out:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 401,
+      "symbol": "Grammar.nonterminal(_:in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 405,
+      "symbol": "Grammar.nonterminal(_:out:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 409,
+      "symbol": "Grammar.nonterminal(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 413,
+      "symbol": "Grammar.fresh(nonterminal:in:out:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 417,
+      "symbol": "Grammar.EMPTY",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 421,
+      "symbol": "Grammar.prioritise(terminal:over:file:line:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 430,
+      "symbol": "Grammar.prioritise(terminal:over:when:file:line:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 441,
+      "symbol": "Grammar.prioritiseLongest(_:file:line:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 448,
+      "symbol": "Grammar.prioritiseLongest(_:file:line:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 468,
+      "symbol": "Grammar.prioritiseExclusionary(_:file:line:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 475,
+      "symbol": "Grammar.prioritiseExclusionary(_:file:line:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 496,
+      "symbol": "Grammar.andNext(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 511,
+      "symbol": "Grammar.notNext(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 525,
+      "symbol": "Grammar.add(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 532,
+      "symbol": "Grammar.add(component:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Grammar.swift",
+      "line": 664,
+      "symbol": "Grammar.build()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 4,
+      "symbol": "Input",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 6,
+      "symbol": "ArrayInput",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 8,
+      "symbol": "ArrayInput.characters",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 9,
+      "symbol": "ArrayInput.offset",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 11,
+      "symbol": "ArrayInput.init(_:offset:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 25,
+      "symbol": "Lexer",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 27,
+      "symbol": "Lexer.Char",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 29,
+      "symbol": "Lexer.In",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 31,
+      "symbol": "Lexer.Out",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 33,
+      "symbol": "Lexer.lex(input:position:in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 63,
+      "symbol": "Lexers",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 67,
+      "symbol": "Lexers.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 71,
+      "symbol": "Lexers.add(lexer:for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 77,
+      "symbol": "Lexers.add(lexer:for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 86,
+      "symbol": "ByteLexer",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 88,
+      "symbol": "ByteLexer.Char",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 90,
+      "symbol": "ByteLexer.In",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 92,
+      "symbol": "ByteLexer.Out",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 94,
+      "symbol": "ByteLexer.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 96,
+      "symbol": "ByteLexer.lex(input:position:in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 103,
+      "symbol": "CharLexer",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 105,
+      "symbol": "CharLexer.Char",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 107,
+      "symbol": "CharLexer.In",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 109,
+      "symbol": "CharLexer.Out",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 111,
+      "symbol": "CharLexer.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 113,
+      "symbol": "CharLexer.lex(input:position:in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 120,
+      "symbol": "LiteralCharLexer",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 122,
+      "symbol": "LiteralCharLexer.Char",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 124,
+      "symbol": "LiteralCharLexer.In",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 126,
+      "symbol": "LiteralCharLexer.Out",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 130,
+      "symbol": "LiteralCharLexer.init(literal:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 134,
+      "symbol": "LiteralCharLexer.lex(input:position:in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 144,
+      "symbol": "UTF8CharLexer",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 146,
+      "symbol": "UTF8CharLexer.Char",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 148,
+      "symbol": "UTF8CharLexer.In",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 150,
+      "symbol": "UTF8CharLexer.Out",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 152,
+      "symbol": "UTF8CharLexer.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Lexer.swift",
+      "line": 154,
+      "symbol": "UTF8CharLexer.lex(input:position:in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 6,
+      "symbol": "ParseTree",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 8,
+      "symbol": "ParseTree.CodingError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 9,
+      "symbol": "ParseTree.CodingError.cannotEncode(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 12,
+      "symbol": "ParseTree.Key",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 14,
+      "symbol": "ParseTree.Key.symbol",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 16,
+      "symbol": "ParseTree.Key.startPosition",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 18,
+      "symbol": "ParseTree.Key.endPosition",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 20,
+      "symbol": "ParseTree.Key.inputParam",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 22,
+      "symbol": "ParseTree.Key.outputParam",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 24,
+      "symbol": "ParseTree.Key.length",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 46,
+      "symbol": "Parser",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 60,
+      "symbol": "ParseTree.Key.init(symbol:startPosition:endPosition:inputParam:outputParam:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 70,
+      "symbol": "ParseTree.rule(id:key:rhs:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 72,
+      "symbol": "ParseTree.forest(key:trees:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 74,
+      "symbol": "ParseTree.key",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 95,
+      "symbol": "ParseTree.isAmbiguous",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 153,
+      "symbol": "ParseTree.mapKey(transform:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 168,
+      "symbol": "ParseResult",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 170,
+      "symbol": "ParseResult.failed(position:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 172,
+      "symbol": "ParseResult.success(length:results:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 174,
+      "symbol": "ParseResult.asTokens()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 188,
+      "symbol": "ParseResult.convertOut()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 202,
+      "symbol": "Parser",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 206,
+      "symbol": "Parser.init(grammar:lexers:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Parser.swift",
+      "line": 216,
+      "symbol": "Parser.parse(input:position:start:param:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Position.swift",
+      "line": 1,
+      "symbol": "Position",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Position.swift",
+      "line": 3,
+      "symbol": "Position.unknown",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Position.swift",
+      "line": 5,
+      "symbol": "Position.position(file:line:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Position.swift",
+      "line": 21,
+      "symbol": "HasPosition.otherwise(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 5,
+      "symbol": "Grammar.assign(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 13,
+      "symbol": "Grammar.freshTerminal(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 17,
+      "symbol": "Grammar.freshNonterminal(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 21,
+      "symbol": "Grammar.Empty()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 32,
+      "symbol": "Grammar.Mute(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 42,
+      "symbol": "Grammar.Repeat(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 60,
+      "symbol": "Grammar.RepeatGreedy(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 69,
+      "symbol": "Grammar.Iterate(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 85,
+      "symbol": "Grammar.IterateGreedy(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 95,
+      "symbol": "Grammar.Repeat1(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 110,
+      "symbol": "Grammar.Repeat1Greedy(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 119,
+      "symbol": "Grammar.Maybe(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 131,
+      "symbol": "Grammar.MaybeGreedy(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 148,
+      "symbol": "Grammar.MaybeGreedy(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 164,
+      "symbol": "Grammar.Or(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 174,
+      "symbol": "Grammar.OrGreedy(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 196,
+      "symbol": "Grammar.Seq(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 212,
+      "symbol": "Grammar.Seq(_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 231,
+      "symbol": "Grammar.Seq(_:_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 254,
+      "symbol": "Grammar.Seq(_:_:_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 280,
+      "symbol": "Grammar.Supply(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/RegularExpressions.swift",
+      "line": 292,
+      "symbol": "Grammar.Greedy(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 29,
+      "symbol": "RuleId.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 50,
+      "symbol": "RuleName.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 54,
+      "symbol": "RuleName.isAnonymous",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 60,
+      "symbol": "RuleBodyElem",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 62,
+      "symbol": "RuleBodyElem.symbol(symbol:position:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 64,
+      "symbol": "RuleBodyElem.assignment(left:right:position:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 66,
+      "symbol": "RuleBodyElem.condition(cond:position:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 78,
+      "symbol": "RuleBody",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 80,
+      "symbol": "RuleBody.ruleBodyElems",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 91,
+      "symbol": "RuleBodyBuilder",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 93,
+      "symbol": "RuleBodyBuilder.buildBlock(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 101,
+      "symbol": "RuleBodyBuilder.buildIf(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 112,
+      "symbol": "<==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 116,
+      "symbol": "-->(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 120,
+      "symbol": "<--(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 124,
+      "symbol": "%?(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 128,
+      "symbol": "collectRuleBody(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 136,
+      "symbol": "collectRuleBody(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 140,
+      "symbol": "Rule",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 142,
+      "symbol": "Rule.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 144,
+      "symbol": "Rule.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 146,
+      "symbol": "Rule.position",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 148,
+      "symbol": "Rule.symbol",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 150,
+      "symbol": "Rule.body",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Rule.swift",
+      "line": 168,
+      "symbol": "Rule.grammarComponents()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 15,
+      "symbol": "SymbolName.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 61,
+      "symbol": "SymbolKind",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 63,
+      "symbol": "SymbolKind.terminal(in:out:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 65,
+      "symbol": "SymbolKind.nonterminal(in:out:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 67,
+      "symbol": "SymbolKind.isTerminal",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 74,
+      "symbol": "SymbolKind.isNonterminal",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 81,
+      "symbol": "SymbolKind.in",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 88,
+      "symbol": "SymbolKind.out",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 115,
+      "symbol": "SymbolVar",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 116,
+      "symbol": "SymbolVar.In(symbol:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 117,
+      "symbol": "SymbolVar.Out(symbol:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 151,
+      "symbol": "SymbolWithName",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 153,
+      "symbol": "SymbolWithName.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 157,
+      "symbol": "Symbol",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 159,
+      "symbol": "Symbol.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 161,
+      "symbol": "Symbol.kind",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 163,
+      "symbol": "Symbol.in",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 167,
+      "symbol": "Symbol.out",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 175,
+      "symbol": "Symbol.~(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 179,
+      "symbol": "Symbol.~(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 183,
+      "symbol": "Symbol.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 196,
+      "symbol": "Symbol.rule(name:file:line:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 200,
+      "symbol": "Symbol.rule(name:file:line:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 205,
+      "symbol": "Symbol.ruleBodyElems",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 220,
+      "symbol": "Terminal",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 232,
+      "symbol": "Nonterminal",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 244,
+      "symbol": "TERMINAL",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 246,
+      "symbol": "NONTERMINAL",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/Symbol.swift",
+      "line": 248,
+      "symbol": "SYMBOL",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 9,
+      "symbol": "SyntaxTree",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 11,
+      "symbol": "SyntaxTree.symbol",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 13,
+      "symbol": "SyntaxTree.from",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 15,
+      "symbol": "SyntaxTree.to",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 17,
+      "symbol": "SyntaxTree.alternatives",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 19,
+      "symbol": "SyntaxTree.paramIn",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 21,
+      "symbol": "SyntaxTree.paramOut",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 23,
+      "symbol": "SyntaxTree.children",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 25,
+      "symbol": "SyntaxTree.init(symbol:from:to:children:paramIn:paramOut:alternatives:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 54,
+      "symbol": "SyntaxTree.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 58,
+      "symbol": "SyntaxTree.explode()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 81,
+      "symbol": "SyntaxTree.countCases",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 85,
+      "symbol": "SyntaxTree.isAmbiguous",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 93,
+      "symbol": "SyntaxTree.case(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 101,
+      "symbol": "SyntaxTree.debug(output:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/SyntaxTree.swift",
+      "line": 127,
+      "symbol": "SyntaxTree.from(parseTree:grammar:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 19,
+      "symbol": "TerminalPriority",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 21,
+      "symbol": "TerminalPriority.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 23,
+      "symbol": "TerminalPriority.position",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 25,
+      "symbol": "TerminalPriority.terminal1",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 27,
+      "symbol": "TerminalPriority.terminal2",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 29,
+      "symbol": "TerminalPriority.Attributes",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 35,
+      "symbol": "TerminalPriority.Condition",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 36,
+      "symbol": "TerminalPriority.Condition.True",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 37,
+      "symbol": "TerminalPriority.Condition.False",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 38,
+      "symbol": "TerminalPriority.Condition.ifGreaterLength",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 39,
+      "symbol": "TerminalPriority.Condition.ifGreaterOrEqualLength",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 40,
+      "symbol": "TerminalPriority.Condition.ifLessLength",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 41,
+      "symbol": "TerminalPriority.Condition.ifLessOrEqualLength",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 42,
+      "symbol": "TerminalPriority.Condition.ifSameLength",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 43,
+      "symbol": "TerminalPriority.Condition.ifDifferentLength",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 45,
+      "symbol": "TerminalPriority.Condition.from(less:equal:greater:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 58,
+      "symbol": "TerminalPriority.Condition.split()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 71,
+      "symbol": "TerminalPriority.Condition.eval(lower:higher:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 84,
+      "symbol": "TerminalPriority.Condition.reversed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 95,
+      "symbol": "TerminalPriority.Condition.or(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 103,
+      "symbol": "TerminalPriority.Condition.and(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 112,
+      "symbol": "TerminalPriority.when",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TerminalPriority.swift",
+      "line": 130,
+      "symbol": "TerminalPriority.grammarComponents()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TextGrammar.swift",
+      "line": 3,
+      "symbol": "TextGrammar",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TextGrammar.swift",
+      "line": 5,
+      "symbol": "TextGrammar.Char",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TextGrammar.swift",
+      "line": 7,
+      "symbol": "TextGrammar.init(sealed:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TextGrammar.swift",
+      "line": 11,
+      "symbol": "TextGrammar.literal(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TextGrammar.swift",
+      "line": 24,
+      "symbol": "TextGrammar.const(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TextGrammar.swift",
+      "line": 28,
+      "symbol": "TextGrammar.const(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TextGrammar.swift",
+      "line": 38,
+      "symbol": "TextGrammar.parser()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TextGrammar.swift",
+      "line": 48,
+      "symbol": "Parser.parse(input:position:start:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/ParsingKit/ParsingKit/Sources/ParsingKit/TextGrammar.swift",
+      "line": 52,
+      "symbol": "Parser.parse(input:position:start:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/runner/work/ParsingKit/ParsingKit"
+}

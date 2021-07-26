@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Grammar Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Grammar" class="dashAnchor"></a>
+    <a title="Grammar Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ParsingKit Docs</a> (11% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ParsingKit Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Grammar Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ArrayInput.html">ArrayInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ByteLexer.html">ByteLexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CharLexer.html">CharLexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DefaultCodeOutput.html">DefaultCodeOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar.html">Grammar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Visibility.html">– Visibility</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Structure.html">– Structure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Availability.html">– Availability</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Properties.html">– Properties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Sym.html">– Sym</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GrammarBuilder.html">GrammarBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Lexers.html">Lexers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LiteralCharLexer.html">LiteralCharLexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Parser.html">Parser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RuleBodyBuilder.html">RuleBodyBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RuleId.html">RuleId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SyntaxTree.html">SyntaxTree</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TerminalPriorityId.html">TerminalPriorityId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextGrammar.html">TextGrammar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UTF8CharLexer.html">UTF8CharLexer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/GrammarComponent.html">GrammarComponent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ParseResult.html">ParseResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ParseTree.html">ParseTree</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ParseTree/CodingError.html">– CodingError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ParseTree/Key.html">– Key</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Position.html">Position</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RuleBodyElem.html">RuleBodyElem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SymbolKind.html">SymbolKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SymbolVar.html">SymbolVar</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit2rqopyAA8RuleBody_p23FirstOrderDeepEmbedding4BOOLCF">%?(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit3ssgoiyAA8RuleBody_pq__AA6SymbolCyxq_Gt23FirstOrderDeepEmbedding4SortCRbzAIRb_r0_lF">--&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit3lssoiyAA8RuleBody_pAA6SymbolCyxq_G_xt23FirstOrderDeepEmbedding4SortCRbzAIRb_r0_lF">&lt;--(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit3leeoiyAA8RuleBody_px_xt23FirstOrderDeepEmbedding4SortCRbzlF">&lt;==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit21collectGrammarElementyAA0dE0_pAaC_pyXEF">collectGrammarElement(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit21collectGrammarElementyAA0dE0_pSayAaC_pGF">collectGrammarElement(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit15collectRuleBodyyAA0dE0_pAaC_pyXEF">collectRuleBody(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit15collectRuleBodyyAA0dE0_pSayAaC_pGF">collectRuleBody(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CodeOutput.html">CodeOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/GrammarElement.html">GrammarElement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Lexer.html">Lexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RuleBody.html">RuleBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SymbolWithName.html">SymbolWithName</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/IndexedSymbolName.html">IndexedSymbolName</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Rule.html">Rule</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RuleName.html">RuleName</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SymbolName.html">SymbolName</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminalPriority.html">TerminalPriority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminalPriority.html#/s:10ParsingKit16TerminalPriorityV10AttributesV">– Attributes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminalPriority/Condition.html">– Condition</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10ParsingKit5Inputa">Input</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10ParsingKit11NONTERMINALa">NONTERMINAL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10ParsingKit6SYMBOLa">SYMBOL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10ParsingKit8TERMINALa">TERMINAL</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Grammar</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Grammar</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC10VisibilityO"></a>
+                    <a name="//apple_ref/swift/Enum/Visibility" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC10VisibilityO">Visibility</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/Grammar/Visibility.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Visibility</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC9StructureO"></a>
+                    <a name="//apple_ref/swift/Enum/Structure" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC9StructureO">Structure</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/Grammar/Structure.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Structure</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC12AvailabilityO"></a>
+                    <a name="//apple_ref/swift/Enum/Availability" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC12AvailabilityO">Availability</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/Grammar/Availability.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Availability</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC10PropertiesV"></a>
+                    <a name="//apple_ref/swift/Struct/Properties" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC10PropertiesV">Properties</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/Grammar/Properties.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Properties</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC3SymC"></a>
+                    <a name="//apple_ref/swift/Class/Sym" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC3SymC">Sym</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/Grammar/Sym.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@propertyWrapper</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Sym</span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">SettableSymbol</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7Symbolsa"></a>
+                    <a name="//apple_ref/swift/Alias/Symbols" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7Symbolsa">Symbols</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Symbols</span> <span class="o">=</span> <span class="p">[</span><span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span> <span class="p">:</span> <span class="kt"><a href="../Classes/Grammar/Properties.html">Properties</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC5Rulesa"></a>
+                    <a name="//apple_ref/swift/Alias/Rules" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC5Rulesa">Rules</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Rules</span> <span class="o">=</span> <span class="p">[</span><span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span> <span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Rule.html">Rule</a></span><span class="o">&gt;</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8language23FirstOrderDeepEmbedding8LanguageVvp"></a>
+                    <a name="//apple_ref/swift/Property/language" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8language23FirstOrderDeepEmbedding8LanguageVvp">language</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">language</span><span class="p">:</span> <span class="kt">Language</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7symbolsSDyAA10SymbolNameVAC10PropertiesVGvp"></a>
+                    <a name="//apple_ref/swift/Property/symbols" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7symbolsSDyAA10SymbolNameVAC10PropertiesVGvp">symbols</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">symbols</span><span class="p">:</span> <span class="kt"><a href="../Classes/Grammar.html#/s:10ParsingKit7GrammarC7Symbolsa">Symbols</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC5rulesSDyAA10SymbolNameVShyAA4RuleVGGvp"></a>
+                    <a name="//apple_ref/swift/Property/rules" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC5rulesSDyAA10SymbolNameVShyAA4RuleVGGvp">rules</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rules</span><span class="p">:</span> <span class="kt"><a href="../Classes/Grammar.html#/s:10ParsingKit7GrammarC5Rulesa">Rules</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7rulesOf6symbolShyAA4RuleVGAA10SymbolNameV_tF"></a>
+                    <a name="//apple_ref/swift/Method/rulesOf(symbol:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7rulesOf6symbolShyAA4RuleVGAA10SymbolNameV_tF">rulesOf(symbol:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rulesOf</span><span class="p">(</span><span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Rule.html">Rule</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC18terminalPrioritiesShyAA16TerminalPriorityVGvp"></a>
+                    <a name="//apple_ref/swift/Property/terminalPriorities" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC18terminalPrioritiesShyAA16TerminalPriorityVGvp">terminalPriorities</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">terminalPriorities</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/TerminalPriority.html">TerminalPriority</a></span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC10lookaheadsSDyAA10SymbolNameVSbGvp"></a>
+                    <a name="//apple_ref/swift/Property/lookaheads" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC10lookaheadsSDyAA10SymbolNameVSbGvp">lookaheads</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lookaheads</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span> <span class="p">:</span> <span class="kt">Bool</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7parents6sealedACSayACG_Sbtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(parents:sealed:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7parents6sealedACSayACG_Sbtcfc">init(parents:<wbr>sealed:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">parents</span><span class="p">:</span> <span class="p">[</span><span class="kt">Grammar</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">sealed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8isSealedSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isSealed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8isSealedSbvp">isSealed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isSealed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC4sealyyF"></a>
+                    <a name="//apple_ref/swift/Method/seal()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC4sealyyF">seal()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">seal</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC6kindOfyAA10SymbolKindOSgAA0F4NameVF"></a>
+                    <a name="//apple_ref/swift/Method/kindOf(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC6kindOfyAA10SymbolKindOSgAA0F4NameVF">kindOf(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">kindOf</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/SymbolKind.html">SymbolKind</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC12propertiesOfyAC10PropertiesVSgAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/propertiesOf(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC12propertiesOfyAC10PropertiesVSgAA10SymbolNameVF">propertiesOf(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">propertiesOf</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Grammar/Properties.html">Properties</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC6existsySbAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/exists(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC6existsySbAA10SymbolNameVF">exists(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">exists</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC6isDeepySbAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/isDeep(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC6isDeepySbAA10SymbolNameVF">isDeep(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isDeep</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC6isFlatySbAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/isFlat(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC6isFlatySbAA10SymbolNameVF">isFlat(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isFlat</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC9isVisibleySbAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/isVisible(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC9isVisibleySbAA10SymbolNameVF">isVisible(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isVisible</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC11isAuxiliaryySbAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/isAuxiliary(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC11isAuxiliaryySbAA10SymbolNameVF">isAuxiliary(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isAuxiliary</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8isHiddenySbAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/isHidden(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8isHiddenySbAA10SymbolNameVF">isHidden(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isHidden</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8makeFlatyyAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/makeFlat(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8makeFlatyyAA10SymbolNameVF">makeFlat(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeFlat</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8makeDeepyyAA8TerminalCyxq_G010FirstOrderE9Embedding4SortCRbzAJRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/makeDeep(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8makeDeepyyAA8TerminalCyxq_G010FirstOrderE9Embedding4SortCRbzAJRb_r0_lF">makeDeep(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">makeDeep</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">O</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">terminal</span><span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">where</span> <span class="kt">I</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">O</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7install4sorty23FirstOrderDeepEmbedding4SortC_tF"></a>
+                    <a name="//apple_ref/swift/Method/install(sort:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7install4sorty23FirstOrderDeepEmbedding4SortC_tF">install(sort:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">install</span><span class="p">(</span><span class="nv">sort</span><span class="p">:</span> <span class="kt">Sort</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7install6symbol10propertiesSbAA6SymbolCyxq_G_AC10PropertiesVt23FirstOrderDeepEmbedding4SortCRbzANRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/install(symbol:properties:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7install6symbol10propertiesSbAA6SymbolCyxq_G_AC10PropertiesVt23FirstOrderDeepEmbedding4SortCRbzANRb_r0_lF">install(symbol:<wbr>properties:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">install</span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">properties</span><span class="p">:</span> <span class="kt">Grammar</span><span class="o">.</span><span class="kt"><a href="../Classes/Grammar/Properties.html">Properties</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8terminal_2in3outAA8TerminalCyxq_GAA10SymbolNameV_xq_t23FirstOrderDeepEmbedding4SortCRbzANRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/terminal(_:in:out:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8terminal_2in3outAA8TerminalCyxq_GAA10SymbolNameV_xq_t23FirstOrderDeepEmbedding4SortCRbzANRb_r0_lF">terminal(_:<wbr>in:<wbr>out:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">terminal</span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">,</span> <span class="nv">in</span><span class="p">:</span> <span class="kt">In</span> <span class="o">=</span> <span class="kt">In</span><span class="p">(),</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">Out</span> <span class="o">=</span> <span class="kt">Out</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8terminal_2inAA8TerminalCyx23FirstOrderDeepEmbedding4UNITCGAA10SymbolNameV_xtAH4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/terminal(_:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8terminal_2inAA8TerminalCyx23FirstOrderDeepEmbedding4UNITCGAA10SymbolNameV_xtAH4SortCRbzlF">terminal(_:<wbr>in:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">terminal</span><span class="o">&lt;</span><span class="kt">In</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">,</span> <span class="nv">in</span><span class="p">:</span> <span class="kt">In</span> <span class="o">=</span> <span class="kt">In</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8terminal_3outAA8TerminalCy23FirstOrderDeepEmbedding4UNITCxGAA10SymbolNameV_xtAH4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/terminal(_:out:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8terminal_3outAA8TerminalCy23FirstOrderDeepEmbedding4UNITCxGAA10SymbolNameV_xtAH4SortCRbzlF">terminal(_:<wbr>out:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">terminal</span><span class="o">&lt;</span><span class="kt">Out</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">,</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">Out</span> <span class="o">=</span> <span class="kt">Out</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">UNIT</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8terminalyAA8TerminalCy23FirstOrderDeepEmbedding4UNITCAIGAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/terminal(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8terminalyAA8TerminalCy23FirstOrderDeepEmbedding4UNITCAIGAA10SymbolNameVF">terminal(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">terminal</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">UNIT</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC5fresh8terminal2in3outAA8TerminalCyxq_GAA10SymbolNameV_xq_t23FirstOrderDeepEmbedding4SortCRbzAORb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/fresh(terminal:in:out:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC5fresh8terminal2in3outAA8TerminalCyxq_GAA10SymbolNameV_xq_t23FirstOrderDeepEmbedding4SortCRbzAORb_r0_lF">fresh(terminal:<wbr>in:<wbr>out:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">fresh</span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">(</span><span class="n">terminal</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">,</span> <span class="nv">in</span><span class="p">:</span> <span class="kt">In</span> <span class="o">=</span> <span class="kt">In</span><span class="p">(),</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">Out</span> <span class="o">=</span> <span class="kt">Out</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC11nonterminal_2in3outAA11NonterminalCyxq_GAA10SymbolNameV_xq_t23FirstOrderDeepEmbedding4SortCRbzANRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/nonterminal(_:in:out:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC11nonterminal_2in3outAA11NonterminalCyxq_GAA10SymbolNameV_xq_t23FirstOrderDeepEmbedding4SortCRbzANRb_r0_lF">nonterminal(_:<wbr>in:<wbr>out:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">nonterminal</span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">,</span> <span class="nv">in</span><span class="p">:</span> <span class="kt">In</span> <span class="o">=</span> <span class="kt">In</span><span class="p">(),</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">Out</span> <span class="o">=</span> <span class="kt">Out</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC11nonterminal_2inAA11NonterminalCyx23FirstOrderDeepEmbedding4UNITCGAA10SymbolNameV_xtAH4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/nonterminal(_:in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC11nonterminal_2inAA11NonterminalCyx23FirstOrderDeepEmbedding4UNITCGAA10SymbolNameV_xtAH4SortCRbzlF">nonterminal(_:<wbr>in:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">nonterminal</span><span class="o">&lt;</span><span class="kt">In</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">,</span> <span class="nv">in</span><span class="p">:</span> <span class="kt">In</span> <span class="o">=</span> <span class="kt">In</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC11nonterminal_3outAA11NonterminalCy23FirstOrderDeepEmbedding4UNITCxGAA10SymbolNameV_xtAH4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/nonterminal(_:out:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC11nonterminal_3outAA11NonterminalCy23FirstOrderDeepEmbedding4UNITCxGAA10SymbolNameV_xtAH4SortCRbzlF">nonterminal(_:<wbr>out:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">nonterminal</span><span class="o">&lt;</span><span class="kt">Out</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">,</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">Out</span> <span class="o">=</span> <span class="kt">Out</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">UNIT</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC11nonterminalyAA11NonterminalCy23FirstOrderDeepEmbedding4UNITCAIGAA10SymbolNameVF"></a>
+                    <a name="//apple_ref/swift/Method/nonterminal(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC11nonterminalyAA11NonterminalCy23FirstOrderDeepEmbedding4UNITCAIGAA10SymbolNameVF">nonterminal(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">nonterminal</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">UNIT</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC5fresh11nonterminal2in3outAA11NonterminalCyxq_GAA10SymbolNameV_xq_t23FirstOrderDeepEmbedding4SortCRbzAORb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/fresh(nonterminal:in:out:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC5fresh11nonterminal2in3outAA11NonterminalCyxq_GAA10SymbolNameV_xq_t23FirstOrderDeepEmbedding4SortCRbzAORb_r0_lF">fresh(nonterminal:<wbr>in:<wbr>out:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">fresh</span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nonterminal</span> <span class="nv">name</span><span class="p">:</span> <span class="kt"><a href="../Structs/SymbolName.html">SymbolName</a></span><span class="p">,</span> <span class="nv">in</span><span class="p">:</span> <span class="kt">In</span><span class="p">,</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">Out</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC5EMPTYAA8RuleBody_pvp"></a>
+                    <a name="//apple_ref/swift/Property/EMPTY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC5EMPTYAA8RuleBody_pvp">EMPTY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">EMPTY</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RuleBody.html">RuleBody</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC10prioritise8terminal4over4file4lineAA16TerminalPriorityVAA0I0Cyxq_G_ALyq0_q1_GSSSit23FirstOrderDeepEmbedding4SortCRbzAQRb_AQRb0_AQRb1_r2_lF"></a>
+                    <a name="//apple_ref/swift/Method/prioritise(terminal:over:file:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC10prioritise8terminal4over4file4lineAA16TerminalPriorityVAA0I0Cyxq_G_ALyq0_q1_GSSSit23FirstOrderDeepEmbedding4SortCRbzAQRb_AQRb0_AQRb1_r2_lF">prioritise(terminal:<wbr>over:<wbr>file:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">prioritise</span><span class="o">&lt;</span><span class="kt">In1</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out1</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">In2</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out2</span> <span class="p">:</span> <span class="kt">Sort</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="n">terminal</span> <span class="nv">terminal2</span> <span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">In1</span><span class="p">,</span> <span class="kt">Out1</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">over</span> <span class="nv">terminal1</span> <span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">In2</span><span class="p">,</span> <span class="kt">Out2</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nv">file</span> <span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">line</span> <span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/TerminalPriority.html">TerminalPriority</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC10prioritise8terminal4over4when4file4lineAA16TerminalPriorityVAA0J0Cyxq_G_AMyq0_q1_GAK9ConditionOSSSit23FirstOrderDeepEmbedding4SortCRbzAR23HasAssociatedNativeTypeRzATRb_ArUR_ATRb0_ArUR0_ATRb1_ArUR1_r2_lF"></a>
+                    <a name="//apple_ref/swift/Method/prioritise(terminal:over:when:file:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC10prioritise8terminal4over4when4file4lineAA16TerminalPriorityVAA0J0Cyxq_G_AMyq0_q1_GAK9ConditionOSSSit23FirstOrderDeepEmbedding4SortCRbzAR23HasAssociatedNativeTypeRzATRb_ArUR_ATRb0_ArUR0_ATRb1_ArUR1_r2_lF">prioritise(terminal:<wbr>over:<wbr>when:<wbr>file:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">prioritise</span><span class="o">&lt;</span><span class="kt">In1</span> <span class="p">:</span> <span class="kt">ASort</span><span class="p">,</span> <span class="kt">Out1</span> <span class="p">:</span> <span class="kt">ASort</span><span class="p">,</span> <span class="kt">In2</span> <span class="p">:</span> <span class="kt">ASort</span><span class="p">,</span> <span class="kt">Out2</span> <span class="p">:</span> <span class="kt">ASort</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="n">terminal</span> <span class="nv">terminal2</span> <span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">In1</span><span class="p">,</span> <span class="kt">Out1</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">over</span> <span class="nv">terminal1</span> <span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">In2</span><span class="p">,</span> <span class="kt">Out2</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nv">when</span> <span class="p">:</span> <span class="kt"><a href="../Structs/TerminalPriority.html">TerminalPriority</a></span><span class="o">.</span><span class="kt">Condition</span><span class="p">,</span>
+    <span class="nv">file</span> <span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">line</span> <span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/TerminalPriority.html">TerminalPriority</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC17prioritiseLongest_4file4lineAA0C7Element_pAA14SymbolWithName_pd_SSSitF"></a>
+                    <a name="//apple_ref/swift/Method/prioritiseLongest(_:file:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC17prioritiseLongest_4file4lineAA0C7Element_pAA14SymbolWithName_pd_SSSitF">prioritiseLongest(_:<wbr>file:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prioritiseLongest</span><span class="p">(</span><span class="n">_</span> <span class="nv">terminals</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/SymbolWithName.html">SymbolWithName</a></span><span class="o">...</span><span class="p">,</span>
+                              <span class="nv">file</span> <span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">line</span> <span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/GrammarElement.html">GrammarElement</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC17prioritiseLongest_4file4lineAA0C7Element_pSayAA17IndexedSymbolNameVG_SSSitF"></a>
+                    <a name="//apple_ref/swift/Method/prioritiseLongest(_:file:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC17prioritiseLongest_4file4lineAA0C7Element_pSayAA17IndexedSymbolNameVG_SSSitF">prioritiseLongest(_:<wbr>file:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prioritiseLongest</span><span class="p">(</span><span class="n">_</span> <span class="nv">terminalNames</span> <span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/IndexedSymbolName.html">IndexedSymbolName</a></span><span class="p">],</span>
+                              <span class="nv">file</span> <span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">line</span> <span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/GrammarElement.html">GrammarElement</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC22prioritiseExclusionary_4file4lineAA0C7Element_pAA14SymbolWithName_pd_SSSitF"></a>
+                    <a name="//apple_ref/swift/Method/prioritiseExclusionary(_:file:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC22prioritiseExclusionary_4file4lineAA0C7Element_pAA14SymbolWithName_pd_SSSitF">prioritiseExclusionary(_:<wbr>file:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prioritiseExclusionary</span><span class="p">(</span><span class="n">_</span> <span class="nv">terminals</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/SymbolWithName.html">SymbolWithName</a></span><span class="o">...</span><span class="p">,</span>
+                              <span class="nv">file</span> <span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">line</span> <span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/GrammarElement.html">GrammarElement</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC22prioritiseExclusionary_4file4lineAA0C7Element_pSayAA17IndexedSymbolNameVG_SSSitF"></a>
+                    <a name="//apple_ref/swift/Method/prioritiseExclusionary(_:file:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC22prioritiseExclusionary_4file4lineAA0C7Element_pSayAA17IndexedSymbolNameVG_SSSitF">prioritiseExclusionary(_:<wbr>file:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prioritiseExclusionary</span><span class="p">(</span><span class="n">_</span> <span class="nv">terminalNames</span> <span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/IndexedSymbolName.html">IndexedSymbolName</a></span><span class="p">],</span>
+                                   <span class="nv">file</span> <span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">line</span> <span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/GrammarElement.html">GrammarElement</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7andNextyAA8TerminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxq_GAG4SortCRbzAORb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/andNext(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7andNextyAA8TerminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxq_GAG4SortCRbzAORb_r0_lF">andNext(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">andNext</span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7notNextyAA8TerminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxq_GAG4SortCRbzAORb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/notNext(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7notNextyAA8TerminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxq_GAG4SortCRbzAORb_r0_lF">notNext(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">notNext</span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">Out</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">In</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">In</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">Out</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC3addyyAA0C7Element_pyXEF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC3addyyAA0C7Element_pyXEF">add(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="kd"><a href="../Classes/GrammarBuilder.html">@GrammarBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/GrammarElement.html">GrammarElement</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC3add9componentyAA0C9ComponentO_tF"></a>
+                    <a name="//apple_ref/swift/Method/add(component:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC3add9componentyAA0C9ComponentO_tF">add(component:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nv">component</span><span class="p">:</span> <span class="kt"><a href="../Enums/GrammarComponent.html">GrammarComponent</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC5buildyyF"></a>
+                    <a name="//apple_ref/swift/Method/build()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC5buildyyF">build()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">build</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC6assignyAA0C7Element_pAA6SymbolCyxq_G_AHt23FirstOrderDeepEmbedding4SortCRbzAKRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/assign(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC6assignyAA0C7Element_pAA6SymbolCyxq_G_AHt23FirstOrderDeepEmbedding4SortCRbzAKRb_r0_lF">assign(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">assign</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol1</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">symbol2</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/GrammarElement.html">GrammarElement</a></span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC13freshTerminalyAA0E0Cyxq_GSS23FirstOrderDeepEmbedding4SortCRbzAJRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/freshTerminal(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC13freshTerminalyAA0E0Cyxq_GSS23FirstOrderDeepEmbedding4SortCRbzAJRb_r0_lF">freshTerminal(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">freshTerminal</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC16freshNonterminalyAA0E0Cyxq_GSS23FirstOrderDeepEmbedding4SortCRbzAJRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/freshNonterminal(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC16freshNonterminalyAA0E0Cyxq_GSS23FirstOrderDeepEmbedding4SortCRbzAJRb_r0_lF">freshNonterminal(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">freshNonterminal</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC5EmptyAA11NonterminalCyxxGy23FirstOrderDeepEmbedding4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/Empty()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC5EmptyAA11NonterminalCyxxGy23FirstOrderDeepEmbedding4SortCRbzlF">Empty()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Empty</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC4MuteyAA11NonterminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxq_GAG4SortCRbzAORb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/Mute(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC4MuteyAA11NonterminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxq_GAG4SortCRbzAORb_r0_lF">Mute(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Mute</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC6RepeatyAA11NonterminalCyxxGAA6SymbolCyxxG23FirstOrderDeepEmbedding4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/Repeat(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC6RepeatyAA11NonterminalCyxxGAA6SymbolCyxxG23FirstOrderDeepEmbedding4SortCRbzlF">Repeat(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Repeat</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC12RepeatGreedyyAA6SymbolCyxxGAG23FirstOrderDeepEmbedding4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/RepeatGreedy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC12RepeatGreedyyAA6SymbolCyxxGAG23FirstOrderDeepEmbedding4SortCRbzlF">RepeatGreedy(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">RepeatGreedy</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7IterateyAA11NonterminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxAIGAG4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/Iterate(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7IterateyAA11NonterminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxAIGAG4SortCRbzlF">Iterate(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Iterate</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC13IterateGreedyyAA6SymbolCyx23FirstOrderDeepEmbedding4UNITCGAjG4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/IterateGreedy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC13IterateGreedyyAA6SymbolCyx23FirstOrderDeepEmbedding4UNITCGAjG4SortCRbzlF">IterateGreedy(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">IterateGreedy</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC7Repeat1yAA11NonterminalCyxxGAA6SymbolCyxxG23FirstOrderDeepEmbedding4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/Repeat1(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC7Repeat1yAA11NonterminalCyxxGAA6SymbolCyxxG23FirstOrderDeepEmbedding4SortCRbzlF">Repeat1(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Repeat1</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC13Repeat1GreedyyAA6SymbolCyxxGAG23FirstOrderDeepEmbedding4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/Repeat1Greedy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC13Repeat1GreedyyAA6SymbolCyxxGAG23FirstOrderDeepEmbedding4SortCRbzlF">Repeat1Greedy(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Repeat1Greedy</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC5MaybeyAA11NonterminalCyxxGAA6SymbolCyxxG23FirstOrderDeepEmbedding4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/Maybe(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC5MaybeyAA11NonterminalCyxxGAA6SymbolCyxxG23FirstOrderDeepEmbedding4SortCRbzlF">Maybe(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Maybe</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC11MaybeGreedyyAA11NonterminalCyxxGAA6SymbolCyxxG23FirstOrderDeepEmbedding4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/MaybeGreedy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC11MaybeGreedyyAA11NonterminalCyxxGAA6SymbolCyxxG23FirstOrderDeepEmbedding4SortCRbzlF">MaybeGreedy(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">MaybeGreedy</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC11MaybeGreedyyAA11NonterminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxAIGAG4SortCRbzlF"></a>
+                    <a name="//apple_ref/swift/Method/MaybeGreedy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC11MaybeGreedyyAA11NonterminalCyx23FirstOrderDeepEmbedding4UNITCGAA6SymbolCyxAIGAG4SortCRbzlF">MaybeGreedy(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">MaybeGreedy</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">UNIT</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC2OryAA11NonterminalCyxq_GAA6SymbolCyxq_Gd_t23FirstOrderDeepEmbedding4SortCRbzAMRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/Or(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC2OryAA11NonterminalCyxq_GAA6SymbolCyxq_Gd_t23FirstOrderDeepEmbedding4SortCRbzAMRb_r0_lF">Or(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Or</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbols</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC8OrGreedyyAA11NonterminalCyxq_GAA6SymbolCyxq_Gd_t23FirstOrderDeepEmbedding4SortCRbzAMRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/OrGreedy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC8OrGreedyyAA11NonterminalCyxq_GAA6SymbolCyxq_Gd_t23FirstOrderDeepEmbedding4SortCRbzAMRb_r0_lF">OrGreedy(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">OrGreedy</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbols</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC3SeqyAA11NonterminalCyxq0_GAA6SymbolCyxq_G_AIyq_q0_Gt23FirstOrderDeepEmbedding4SortCRbzANRb_ANRb0_r1_lF"></a>
+                    <a name="//apple_ref/swift/Method/Seq(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC3SeqyAA11NonterminalCyxq0_GAA6SymbolCyxq_G_AIyq_q0_Gt23FirstOrderDeepEmbedding4SortCRbzANRb_ANRb0_r1_lF">Seq(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Seq</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">U</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol1</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">symbol2</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">U</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">U</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC3SeqyAA11NonterminalCyxq1_GAA6SymbolCyxq_G_AIyq_q0_GAIyq0_q1_Gt23FirstOrderDeepEmbedding4SortCRbzAORb_AORb0_AORb1_r2_lF"></a>
+                    <a name="//apple_ref/swift/Method/Seq(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC3SeqyAA11NonterminalCyxq1_GAA6SymbolCyxq_G_AIyq_q0_GAIyq0_q1_Gt23FirstOrderDeepEmbedding4SortCRbzAORb_AORb0_AORb1_r2_lF">Seq(_:<wbr>_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Seq</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">U</span><span class="p">,</span> <span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol1</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">symbol2</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">U</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">symbol3</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">U</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">V</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">W</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC3SeqyAA11NonterminalCyxq2_GAA6SymbolCyxq_G_AIyq_q0_GAIyq0_q1_GAIyq1_q2_Gt23FirstOrderDeepEmbedding4SortCRbzAPRb_APRb0_APRb1_APRb2_r3_lF"></a>
+                    <a name="//apple_ref/swift/Method/Seq(_:_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC3SeqyAA11NonterminalCyxq2_GAA6SymbolCyxq_G_AIyq_q0_GAIyq0_q1_GAIyq1_q2_Gt23FirstOrderDeepEmbedding4SortCRbzAPRb_APRb0_APRb1_APRb2_r3_lF">Seq(_:<wbr>_:<wbr>_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Seq</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">U</span><span class="p">,</span> <span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="p">,</span> <span class="kt">X</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol1</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">symbol2</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">U</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">symbol3</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span><span class="p">,</span>
+                               <span class="n">_</span> <span class="nv">symbol4</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">W</span><span class="p">,</span> <span class="kt">X</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">X</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC3SeqyAA11NonterminalCyxq3_GAA6SymbolCyxq_G_AIyq_q0_GAIyq0_q1_GAIyq1_q2_GAIyq2_q3_Gt23FirstOrderDeepEmbedding4SortCRbzAQRb_AQRb0_AQRb1_AQRb2_AQRb3_r4_lF"></a>
+                    <a name="//apple_ref/swift/Method/Seq(_:_:_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC3SeqyAA11NonterminalCyxq3_GAA6SymbolCyxq_G_AIyq_q0_GAIyq0_q1_GAIyq1_q2_GAIyq2_q3_Gt23FirstOrderDeepEmbedding4SortCRbzAQRb_AQRb0_AQRb1_AQRb2_AQRb3_r4_lF">Seq(_:<wbr>_:<wbr>_:<wbr>_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Seq</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">U</span><span class="p">,</span> <span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="p">,</span> <span class="kt">X</span><span class="p">,</span> <span class="kt">Y</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol1</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">symbol2</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">U</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">symbol3</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">V</span><span class="p">,</span> <span class="kt">W</span><span class="o">&gt;</span><span class="p">,</span>
+                                  <span class="n">_</span> <span class="nv">symbol4</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">W</span><span class="p">,</span> <span class="kt">X</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">symbol5</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">X</span><span class="p">,</span> <span class="kt">Y</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">Y</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC6SupplyyAA11NonterminalCy23FirstOrderDeepEmbedding4UNITCq_Gx_AA6SymbolCyxq_GtAG4SortCRbzAORb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/Supply(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC6SupplyyAA11NonterminalCy23FirstOrderDeepEmbedding4UNITCq_Gx_AA6SymbolCyxq_GtAG4SortCRbzAORb_r0_lF">Supply(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Supply</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">input</span><span class="p">:</span> <span class="kt">S</span> <span class="o">=</span> <span class="kt">S</span><span class="o">.</span><span class="nf">default</span><span class="p">(),</span> <span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a></span><span class="o">&lt;</span><span class="kt">UNIT</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit7GrammarC6GreedyyAA8TerminalCyxq_GAA6SymbolCyxq_G23FirstOrderDeepEmbedding4SortCRbzAMRb_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/Greedy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit7GrammarC6GreedyyAA8TerminalCyxq_GAA6SymbolCyxq_G23FirstOrderDeepEmbedding4SortCRbzAMRb_r0_lF">Greedy(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="kt">Greedy</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">symbol</span><span class="p">:</span> <span class="kt"><a href="../Classes/Symbol.html">Symbol</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Sort</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-07-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SymbolKind Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Enum/SymbolKind" class="dashAnchor"></a>
+    <a title="SymbolKind Enumeration Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ParsingKit Docs</a> (11% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ParsingKit Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        SymbolKind Enumeration Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ArrayInput.html">ArrayInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ByteLexer.html">ByteLexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CharLexer.html">CharLexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DefaultCodeOutput.html">DefaultCodeOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar.html">Grammar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Visibility.html">– Visibility</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Structure.html">– Structure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Availability.html">– Availability</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Properties.html">– Properties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Grammar/Sym.html">– Sym</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GrammarBuilder.html">GrammarBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Lexers.html">Lexers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LiteralCharLexer.html">LiteralCharLexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:10ParsingKit11NonterminalC">Nonterminal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Parser.html">Parser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RuleBodyBuilder.html">RuleBodyBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RuleId.html">RuleId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SyntaxTree.html">SyntaxTree</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:10ParsingKit8TerminalC">Terminal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TerminalPriorityId.html">TerminalPriorityId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextGrammar.html">TextGrammar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UTF8CharLexer.html">UTF8CharLexer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/GrammarComponent.html">GrammarComponent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ParseResult.html">ParseResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ParseTree.html">ParseTree</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ParseTree/CodingError.html">– CodingError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ParseTree/Key.html">– Key</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Position.html">Position</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RuleBodyElem.html">RuleBodyElem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SymbolKind.html">SymbolKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SymbolVar.html">SymbolVar</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit2rqopyAA8RuleBody_p23FirstOrderDeepEmbedding4BOOLCF">%?(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit3ssgoiyAA8RuleBody_pq__AA6SymbolCyxq_Gt23FirstOrderDeepEmbedding4SortCRbzAIRb_r0_lF">--&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit3lssoiyAA8RuleBody_pAA6SymbolCyxq_G_xt23FirstOrderDeepEmbedding4SortCRbzAIRb_r0_lF">&lt;--(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit3leeoiyAA8RuleBody_px_xt23FirstOrderDeepEmbedding4SortCRbzlF">&lt;==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit21collectGrammarElementyAA0dE0_pAaC_pyXEF">collectGrammarElement(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit21collectGrammarElementyAA0dE0_pSayAaC_pGF">collectGrammarElement(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit15collectRuleBodyyAA0dE0_pAaC_pyXEF">collectRuleBody(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10ParsingKit15collectRuleBodyyAA0dE0_pSayAaC_pGF">collectRuleBody(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CodeOutput.html">CodeOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/GrammarElement.html">GrammarElement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Lexer.html">Lexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RuleBody.html">RuleBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SymbolWithName.html">SymbolWithName</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/IndexedSymbolName.html">IndexedSymbolName</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Rule.html">Rule</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RuleName.html">RuleName</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SymbolName.html">SymbolName</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminalPriority.html">TerminalPriority</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminalPriority.html#/s:10ParsingKit16TerminalPriorityV10AttributesV">– Attributes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminalPriority/Condition.html">– Condition</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10ParsingKit5Inputa">Input</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10ParsingKit11NONTERMINALa">NONTERMINAL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10ParsingKit6SYMBOLa">SYMBOL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10ParsingKit8TERMINALa">TERMINAL</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>SymbolKind</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SymbolKind</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit10SymbolKindO8terminalyAC23FirstOrderDeepEmbedding4SortC_AGtcACmF"></a>
+                    <a name="//apple_ref/swift/Element/terminal(in:out:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit10SymbolKindO8terminalyAC23FirstOrderDeepEmbedding4SortC_AGtcACmF">terminal(in:<wbr>out:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">terminal</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">Sort</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit10SymbolKindO11nonterminalyAC23FirstOrderDeepEmbedding4SortC_AGtcACmF"></a>
+                    <a name="//apple_ref/swift/Element/nonterminal(in:out:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit10SymbolKindO11nonterminalyAC23FirstOrderDeepEmbedding4SortC_AGtcACmF">nonterminal(in:<wbr>out:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">nonterminal</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="kt">Sort</span><span class="p">,</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">Sort</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit10SymbolKindO10isTerminalSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isTerminal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit10SymbolKindO10isTerminalSbvp">isTerminal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isTerminal</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit10SymbolKindO13isNonterminalSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isNonterminal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit10SymbolKindO13isNonterminalSbvp">isNonterminal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isNonterminal</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit10SymbolKindO2in23FirstOrderDeepEmbedding4SortCvp"></a>
+                    <a name="//apple_ref/swift/Property/in" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit10SymbolKindO2in23FirstOrderDeepEmbedding4SortCvp">in</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">var</span> <span class="err">`</span><span class="k">in</span><span class="err">`</span><span class="p">:</span> <span class="kt">Sort</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10ParsingKit10SymbolKindO3out23FirstOrderDeepEmbedding4SortCvp"></a>
+                    <a name="//apple_ref/swift/Property/out" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10ParsingKit10SymbolKindO3out23FirstOrderDeepEmbedding4SortCvp">out</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">out</span><span class="p">:</span> <span class="kt">Sort</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">left</span><span class="p">:</span> <span class="kt">SymbolKind</span><span class="p">,</span> <span class="nv">right</span><span class="p">:</span> <span class="kt">SymbolKind</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SH4hash4intoys6HasherVz_tF"></a>
+                    <a name="//apple_ref/swift/Method/hash(into:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SH4hash4intoys6HasherVz_tF">hash(into:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-07-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
