@@ -51,7 +51,7 @@ public final class SyntaxTree : Hashable {
         })
     }
     
-    subscript (_ index : Int) -> SyntaxTree {
+    public subscript (_ index : Int) -> SyntaxTree {
         return children[index]
     }
     
