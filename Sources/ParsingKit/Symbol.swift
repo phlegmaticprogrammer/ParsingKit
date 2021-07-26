@@ -154,7 +154,7 @@ public protocol SymbolWithName {
     
 }
 
-public class Symbol<In : Sort, Out : Sort> : RuleBody, SymbolWithName {
+public class Symbol<In : Sort, Out : Sort> : RuleBody, SymbolWithName, CustomStringConvertible {
 
     public let name : IndexedSymbolName
     
@@ -168,6 +168,10 @@ public class Symbol<In : Sort, Out : Sort> : RuleBody, SymbolWithName {
         Out.Var(SymbolVar.Out(symbol: name))
     }
     
+    public var description : String {
+        return name.description
+    }
+
     public static postfix func ~(symbol : Symbol<In, Out>) -> Out {
         return symbol.out
     }
@@ -188,7 +192,7 @@ public class Symbol<In : Sort, Out : Sort> : RuleBody, SymbolWithName {
         }
         return elems
     }
-
+    
     public func rule(name : RuleName = RuleName(), file : String = #file, line : Int = #line, @RuleBodyBuilder _ ruleBodyBuilder : () -> RuleBody) -> GrammarElement {
         return Rule(name : name, position : .position(file: file, line: line), symbol: self.name, body: ruleBodyBuilder().ruleBodyElems)
     }
