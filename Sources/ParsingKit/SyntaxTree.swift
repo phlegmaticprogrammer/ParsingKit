@@ -51,6 +51,10 @@ public final class SyntaxTree : Hashable {
         })
     }
     
+    subscript (_ index : Int) -> SyntaxTree {
+        return children[index]
+    }
+    
     public func explode() -> Set<SyntaxTree> {
         var trees : Set<SyntaxTree> = []
         for i in 0 ..< countCases {
